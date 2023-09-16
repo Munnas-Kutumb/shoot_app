@@ -1,0 +1,137 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title style="text-align: center;">Explore Event & Photographers</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content style="--background:#f9f9ff;">
+    <div *ngIf="instant_photographer.length==0 && nearby.length==0 && live.length==0">
+        <img src="assets/img/camera-logo.png"
+            style="width: 11rem; margin: auto;display: block;position: relative;top: 6rem;" />
+        <h6 class="notava">No Instant Photographer, Live Event and Nearby Photographer available.</h6>
+    </div>
+
+
+    <!-- live event nearby -->
+
+    <div class="scrolling-wrapper" *ngIf=" live && live.length>0">
+        <h3 style=" margin-left: 17px; font-size: 17px; font-weight: bold;" class="ion-margin-top">Live Event NearBy
+        </h3>
+        <div class="card" *ngFor="let item of live">
+
+            <ion-card (click)="tomProfile(item.merchant_id._id)" style="height: 9rem;">
+                <img *ngIf="item.merchant_id.banner_image"
+                    src="{{this.common.serviceurl}}merchant/{{item.merchant_id.banner_image}}" class="card-bg-img">
+                <img *ngIf="!item.merchant_id.banner_image" src="assets/img/event-camera.png" class="card-bg-img">
+                <!-- <img src="assets/img/event-camera.png" class="card-bg-img"> -->
+                <p class="card-brand-name">{{item.merchant_id.brand_name.slice(0,20)}}..</p>
+                <span>
+                    <ion-icon name="location" style="font-size: 12px; position: relative;top: -9px; left: 3px;">
+                    </ion-icon>
+                    <span style="position: relative; top: -11px;font-size: 10px;left: 3px;">{{item.merchant_id.address.address.slice(0,20)}}...</span>
+                    <!-- <span *ngIf="item.address.address.length<=20"style="position: relative; top: -11px;font-size: 10px;left: 3px;">{{item.merchant_id.address.address}}</span> -->
+
+                </span>
+                <p style="position: relative;
+                top: -25px;
+                left: 5px;"><span>
+                        <ion-icon name="star" style="color: #ea2d78;font-size: 12px;"></ion-icon>
+                    </span>
+                    <span class="rating" *ngIf="item.merchant_id.rating">{{item.merchant_id.rating}}</span>
+                    <span class="rating" *ngIf="!item.merchant_id.rating">3.5</span>
+
+                </p>
+                <!-- <p class="card-location"><span class="loc-icon">
+                        <ion-icon name="location" style="font-size: 13px;"></ion-icon>
+                    </span> <span style="position: relative; top: -2px;">{{item.address.address.slice(0,20)}}
+                    </span></p> -->
+            </ion-card>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div style="position: relative;" class="ion-margin-top" *ngIf="nearby && nearby.length>0">
+        <h3 class="hero-label" style="position: relative; top: -2px;">Popular Photography Nearby</h3>
+
+        <div class="scrolling-wrapper">
+            <div class="card" *ngFor="let item of nearby">
+                <ion-card (click)="tomProfile(item._id)" style="height: 9rem;">
+                    <img *ngIf="item.banner_image" src="{{this.common.serviceurl}}merchant/{{item.banner_image}}"
+                        class="card-bg-img">
+                    <img *ngIf="!item.banner_image" src="assets/img/event-camera.png" class="card-bg-img">
+                    <!-- <img src="assets/img/event-camera.png" class="card-bg-img"> -->
+                    <p class="card-brand-name">{{item.brand_name.slice(0,20)}}...</p>
+                    <span>
+                        <ion-icon name="location" style="font-size: 12px; position: relative;top: -9px;left: 3px;">
+                        </ion-icon>
+                        <span 
+                            style="position: relative; top: -12px;font-size: 10px;left: 3px;">{{item.address.address.slice(0,20)}}...</span>
+                        <!-- <span *ngIf="item.address.address.length<=20"
+                            style="position: relative; top: -12px;font-size: 10px;left: 3px;">{{item.address.address}}</span> -->
+                    </span>
+                    <p style="position: relative; top: -25px; left: 5px;"><span><ion-icon name="star" style="color: #ea2d78;font-size: 12px;"></ion-icon></span>
+                        <span class="rating" *ngIf="item.rating">{{item.rating}}</span>
+                        <span class="rating" *ngIf="!item.rating">3.5</span>
+
+                    </p>
+                    <!-- <p class="card-location"><span class="loc-icon">
+                            <ion-icon name="location" style="font-size: 13px;"></ion-icon>
+                        </span> <span style="position: relative; top: -2px;">{{item.address.address.slice(0,20)}}
+                        </span></p> -->
+                </ion-card>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="ion-margin-top" *ngIf="  instant_photographer.length>0">
+        <h3 class="hero-label">Instant Photographer Nearby</h3>
+        <div class="scrolling-wrapper">
+            <div class="card" *ngFor="let item of instant_photographer">
+                <ion-card (click)="tomProfile(item._id)" style="height: 9rem;">
+                    <img *ngIf="item.banner_image" src="{{this.common.serviceurl}}merchant/{{item.banner_image}}"
+                        class="card-bg-img">
+                    <img *ngIf="!item.banner_image" src="assets/img/event-camera.png" class="card-bg-img">
+                    <!-- <img src="assets/img/event-camera.png" class="card-bg-img"> -->
+                    <p *ngIf="item.brand_name.length>20" class="card-brand-name">{{item.brand_name.slice(0,20)}}...</p>
+                    <p *ngIf="item.brand_name.length<=20" class="card-brand-name">{{item.brand_name}}</p>
+
+                    <span>
+                        <ion-icon name="location" style="font-size: 12px; position: relative;top: -9px;left: 3px;">
+                        </ion-icon>
+                        <span 
+                            style="position: relative; top: -12px;font-size: 10px;left: 3px;">{{item.address.address.slice(0,20)}}...</span>
+                        <!-- <span *ngIf="item.address.address.length<=20"
+                            style="position: relative; top: -12px;font-size: 10px;left: 3px;">{{item.address.address}}</span> -->
+
+                    </span>
+                    <p style="position: relative; top: -25px; left: 5px;"><span>
+                            <ion-icon name="star" style="color: #ea2d78;font-size: 12px;"></ion-icon>
+                        </span>
+                        <span class="rating" *ngIf="item.rating">{{item.rating}}</span>
+                        <span class="rating" *ngIf="!item.rating">3.5</span>
+
+                    </p>
+                    <!-- <p class="card-location"><span class="loc-icon">
+                            <ion-icon name="location" style="font-size: 13px;"></ion-icon>
+                        </span> <span style="position: relative; top: -2px;">{{item.address.address.slice(0,20)}}
+                        </span></p> -->
+                </ion-card>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+</ion-content>

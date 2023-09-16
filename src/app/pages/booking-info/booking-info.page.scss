@@ -1,0 +1,137 @@
+.hero-segment {
+
+    font-size: 12px;
+}
+
+.back-btn {
+ margin-left: 15px;
+}
+
+
+.label-text {
+
+    padding: 10px;
+    margin-left: 5px;
+    font-weight: 600;
+    color: #696969;
+}
+
+.term-text {
+
+    margin-left: 10px;
+    font-size: 14px;
+    color: #696969;
+    margin-top: -2px;
+}
+
+.call-now-btn {
+
+    padding: 3px;
+    margin-right: 10px;
+}
+
+.cancel-btn {
+
+    margin: 20px 15px;
+}
+
+// ion-segment-button {
+    
+//     --background-checked: var(--ion-color-tertiary);
+//     --color-checked: var(--ion-color-tertiary-contrast);
+//   }
+
+.tag-data {
+    font-size: 13px;
+    color: #696969;
+    margin-left: 5px;
+}
+
+.service-list {
+
+    text-align: left;
+}
+
+.back-btn {
+
+    margin-left: 10px;
+    font-size: 18px;
+}
+.label-status {
+
+    float: right;
+    margin-right: 10px;
+}
+.d-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #696969;
+    margin-left: 5px;
+}
+
+.cz-text {
+
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+}
+
+.active-mark-icon {
+
+    color: #2ecc71;
+}
+
+.cz-cancelled {
+
+    text-align: center;
+    color: #e74c3c;
+    font-weight: 700;
+}
+
+.sad-icon {
+
+    font-size: 42px;
+    color: #e74c3c;
+    margin-top: 25px;
+}
+
+.prime-chip {
+
+    font-size: 8px;
+    margin-left: 5px;
+}
+
+.start-ser-button{
+    margin: 0px 15px;
+    margin-bottom: 25px;
+}
+
+.start-ser-button-active {
+    margin: 0px 9px;
+    margin-bottom: 25px;
+    text-transform: capitalize;
+    font-size: 13px;
+    width: 90%;
+}
+
+.d_txt{
+    font-size: 13px; 
+    color: #696969;
+     margin-right: 5px;
+}
+
+.s_txt{
+    font-size: 13px;
+}
+
+
+.call-now-btn-active {
+    width: 90%;
+    text-transform: capitalize;
+    font-size: 13px;
+    position: relative;
+    top: -3px;
+    right: -7px;
+    
+}

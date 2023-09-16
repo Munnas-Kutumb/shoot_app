@@ -1,0 +1,148 @@
+<ion-content #content>
+  <div style="margin-bottom: 5px; display: block">
+    <ion-icon class="cover-cam" name="camera-outline" (click)="uploadimg()"></ion-icon>
+    <img *ngIf="!bannerimage" class="bnrimg" src="assets/img/hero-img.png" />
+    <img *ngIf="bannerimage" class="bnrimg" src="{{setUrl}}merchant/{{bannerimage}}" />
+  </div>
+  <!-- <ion-input #input> -->
+
+  <div class="brand-name-label">
+    <h3 *ngIf="brand_name && !temp_brand_name" class="brand-name">
+      {{brand_name}}
+      <ion-icon (click)="brandNameUpdate()" style="float: right" name="create"></ion-icon>
+    </h3>
+    <!-- <h3 *ngIf="!brand_name && !temp_brand_name" class="brand-name">
+      <ion-icon style="float: right" name="create"></ion-icon> Brand Name
+    </h3> -->
+    <h3 *ngIf="brand_name || temp_brand_name" class="brand-name">
+      <ion-icon style="float: right" (click)="tempFunc()" name="create"></ion-icon> {{temp_brand_name}}
+    </h3>
+  </div>
+  <!-- 
+  <ion-row>
+    <ion-col size="5">
+      <ion-item lines="none">
+        <ion-label class="opt-sec">Available</ion-label>
+        <ion-toggle slot="end" name="blueberry" (click)="serviceToggle()" [(ngModel)]="service_toggle"
+          [disabled]="available_timing.from_time == '' || available_timing.to_time == '' "></ion-toggle>
+      </ion-item>
+    </ion-col>
+    <ion-col size="7">
+      <ion-item lines="none">
+        <ion-label class="opt-sec">Instant Services</ion-label>
+        <ion-toggle slot="end" name="blueberry" (click)="instantAvailabilty()" [(ngModel)]="instant_avail_toggle">
+        </ion-toggle>
+      </ion-item>
+    </ion-col>
+  </ion-row> -->
+  <ion-row>
+    <ion-col size="4">
+      <p class="opt-sec">Available</p>
+    </ion-col>
+    <ion-col size="2">
+      <p>
+        <ion-toggle slot="end" name="blueberry" (click)="serviceToggle()" [(ngModel)]="service_toggle"
+          [disabled]="available_timing.from_time == '' || available_timing.to_time == '' "></ion-toggle>
+      </p>
+    </ion-col>
+
+    <ion-col size="4">
+      <p class="opt-sec">Instant Services</p>
+    </ion-col>
+    <ion-col size="2">
+      <p>
+        <ion-toggle slot="end" name="blueberry" (click)="instantAvailabilty()" [(ngModel)]="instant_avail_toggle">
+        </ion-toggle>
+      </p>
+    </ion-col>
+  </ion-row>
+
+
+
+
+  <ion-card>
+    <ion-row>
+      <ion-col size="4" style="text-align: center">
+        <div class="leads-box">
+          <h6 class="pro-details">
+            <!-- {{merchantDetails.view_count}} -->
+            0
+          </h6>
+          <!-- <h6 *ngIf="!merchantDetails.view_count" class="pro-details">N/A</h6> -->
+          <br />
+          <p class="myviewtext">Page View</p>
+        </div>
+      </ion-col>
+      <ion-col size="4" style="text-align: center" *ngIf="booking_count">
+        <div class="leads-box">
+          <h6 *ngIf="booking_count.pending_booking" class="pro-details">{{booking_count.pending_booking}}</h6>
+          <h6 *ngIf="!booking_count.pending_booking" class="pro-details">N/A</h6>
+
+          <!-- <h6 *ngIf="!booking_number" class="pro-details">N/A</h6> -->
+          <br />
+          <p class="myviewtext">Leads</p>
+        </div>
+      </ion-col>
+      <ion-col size="4" style="text-align: center">
+        <div class="leads-box">
+          <h6 *ngIf="rating_mer" class="pro-details">{{rating_mer}}/5</h6>
+          <h6 *ngIf="!rating_mer" class="pro-details">N/A</h6>
+        </div>
+        <p class="myviewtext">Ratings</p>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-row>
+    <ion-col>
+      <ion-card (click)="toMarket()">
+        <img class="home-img" src="assets/img/marketyourself.png" />
+        <h6 class="btn-div-text">Market Yourself</h6>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card (click)="toMerServices()">
+        <img class="home-img" src="assets/img/photo-grid.png" />
+        <h6 class="btn-div-text">Selected Services</h6>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-card>
+    <div>
+      <p class="label-date">Today's Availability</p>
+      <ion-row>
+        <ion-col>
+          <ion-label class="frm-to">From</ion-label>
+          <ion-datetime displayFormat="h:mm A" minuteValues="0,15,30,45" [(ngModel)]="available_timing.from_time"
+            (ionChange)="updateTodayTime($event.detail.value,1)" placeholder="Select Time"></ion-datetime>
+        </ion-col>
+        <ion-col>
+          <ion-label class="frm-to">To</ion-label>
+          <ion-datetime displayFormat="h:mm A" minuteValues="0,15,30,45" [(ngModel)]="available_timing.to_time"
+            (ionChange)="updateTodayTime($event.detail.value,2)" placeholder="Select Time"></ion-datetime>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-title style="margin: 10px 15px">
+      <p class="avail-banner">Select Unavailable Dates</p>
+    </ion-card-title>
+
+    <div>
+      <ion-row *ngFor="let m of months;let ind=index;">
+        <ion-col *ngIf="m.length>0" size="12">
+          <ion-chip class="chip">{{m[0].month}}</ion-chip>
+        </ion-col>
+        <ion-col size="2" *ngFor="let it of m;let i=index;">
+          <ion-chip class="mydate ion-text-centre" [ngClass]="{'activedate': it.selected }"
+            (click)="setUnavailable(it.date, it.month_num,ind)" color="primary">
+            <p style="width: 100%;">{{it.day}}<br>{{it.date}}</p>
+          </ion-chip>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-card>
+</ion-content>

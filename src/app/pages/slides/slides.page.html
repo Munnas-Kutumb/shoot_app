@@ -1,0 +1,96 @@
+<ion-header class="ion-no-border bk-white">
+  <ion-row class="header-text">
+    <ion-col size="6" [ngClass]="{'header-text-active': slidefor == 'customer'}" (click)="changesliderfor('customer')">
+      I'm A Customer</ion-col>
+    <ion-col size="6" [ngClass]="{'header-text-active': slidefor == 'merchant'}" (click)="changesliderfor('merchant')">
+      I'm A Merchant</ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+  <ion-slides #theCustomer *ngIf="slidefor == 'customer'" pager="true">
+    <ion-slide>
+      <div class="slide">
+        <img src="/assets/img/Customer_WhatIsShoot.png" />
+        <h2>What is SHOOT?</h2>
+        <p>
+          SHOOT is an on-demand photography app, created to make it easy for you
+          to book expert photographers through a wide selection anywhere,
+          anytime.
+        </p>
+        <ion-button class="letsGoBtn" shape="round" (click)="moveToNext(theCustomer)">Learn more
+          <ion-icon class="slide-arrow" name="chevron-forward-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <img src="/assets/img/Customer_HowItWorks.png" />
+      <h2>How SHOOT works?</h2>
+      <p>
+        • Select your event category<br />
+        • View Recommended Photographers<br />
+        • Shortlist a photographer<br />
+        • Add services to your cart<br />
+        • Book & Hire as per event time
+      </p>
+      <ion-button class="letsGoBtn" shape="round" (click)="moveToNext(theCustomer)">Tell Me More
+        <ion-icon class="slide-arrow" name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-slide>
+    <ion-slide>
+      <img src="/assets/img/Customer_Editing.png" />
+      <h2>What SHOOT offers?</h2>
+      <p>
+        • Talented photographers on one click<br />
+        • Professionally edited, dynamic photos<br>
+        • Safety payment process<br />
+        • Instant photographers for your last-minute planning
+      </p>
+      <ion-button class="letsGoBtn" shape="round" (click)="customerLogin()">Let's Get A SHOOT</ion-button>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-slides #theSlides *ngIf="slidefor == 'merchant'" pager="true">
+    <ion-slide>
+      <div class="slide">
+        <img src="/assets/img/photo_WhatisShoot.png" />
+        <h2>What is SHOOT?</h2>
+        <p>
+          SHOOT is an on-demand photography app, Created to make it easy for us
+          to book expert photographers and help them grow their business and
+          portfolio.
+        </p>
+        <ion-button class="letsGoBtn" shape="round" (click)="moveToNext(theSlides)">Tell me more
+          <ion-icon class="slide-arrow" name="chevron-forward-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <img src="/assets/img/Photographer_HowShootWorks.png" />
+      <h2>How SHOOT works?</h2>
+      <p>
+        Works anywhere and anytime. Just keep availability 'on' to accept
+        jobs.<br />
+
+        • Setup your shop in the app<br />
+        • Provide your services & its prices<br />
+        • Show your availability<br />
+        • Get yourself highlighted by going premium
+      </p>
+      <ion-button class="letsGoBtn" shape="round" (click)="moveToNext(theSlides)">Sounds Amazing
+        <ion-icon class="slide-arrow" name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-slide>
+    <ion-slide>
+      <img src="/assets/img/PhotoGraphrMachine.png" />
+      <h2>What SHOOT offers?</h2>
+      <p>
+        • We help your Photography business grow<br />
+        • We provide a retail platform for arts, banners & printing products<br />
+        • Setup your services & products as you need using our specially
+        designed platform
+      </p>
+      <ion-button class="letsGoBtn" shape="round" (click)="merchatLogin()">Let's Get A SHOOT</ion-button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

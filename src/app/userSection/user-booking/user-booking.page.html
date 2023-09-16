@@ -1,0 +1,316 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon slot="start" name="chevron-back-outline" class="back-btn" (click)="backBtn()"></ion-icon>
+    <ion-title>Booking Info</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background:#f9f9ff;" *ngIf="d">
+  <ion-row *ngIf="d.isProduct==false" style="margin-top: 5px;">
+    <ion-col size="6">
+      <ion-label class="d-name">Photographer Name</ion-label>
+    </ion-col>
+    <ion-col size="6" style="text-align: right;">
+      <span class="d_txt">{{d.merchant[0].name}}</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+      <ion-label class="d-name">Brand Name</ion-label>
+    </ion-col>
+    <ion-col size="6" style="text-align: right;">
+      <span class="d_txt">{{d.merchant[0].brand_name}}</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+      <ion-label class="d-name">Photographer Number</ion-label>
+    </ion-col>
+    <ion-col size="6" style="text-align: right;">
+      <span class="d_txt">{{d.merchant[0].phone}}</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+      <ion-label class="d-name">Photographer Email</ion-label>
+    </ion-col>
+    <ion-col size="6" style="text-align: right;">
+      <span class="d_txt">{{d.merchant[0].business_email}}</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="d.isProduct==false">
+    <ion-col size="6">
+      <ion-label class="d-name">Venue</ion-label>
+    </ion-col>
+    <ion-col size="6" style="text-align: right;">
+      <span class="d_txt">{{d.address}}</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="d.isProduct==false">
+    <ion-col size="6">
+      <ion-label class="d-name">Time</ion-label>
+    </ion-col>
+    <ion-col size="6" style="text-align: right;">
+      <span class="d_txt">{{d.booking_time | date:'shortTime'}}</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="d.isProduct==false">
+    <ion-col size="6">
+      <ion-label class="d-name">Date</ion-label>
+    </ion-col>
+    <ion-col size="6" style="text-align: right;">
+      <span class="d_txt">{{d.booking_date}}</span>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="d.isProduct==true">
+    <ion-col size="6">
+      <ion-label class="d-name">Delivery Address</ion-label>
+    </ion-col>
+    <ion-col size="6" style="text-align: right;">
+      <span class="d_txt">{{d.delivery_address}}</span>
+    </ion-col>
+  </ion-row>
+  <!-- <ion-row *ngIf="d.booking_status=='accepted'">
+    <ion-col size="6">
+      <ion-label class="d-name">OTP</ion-label>
+    </ion-col>
+    <ion-col size="6" style="text-align: right;">
+      <span class="d_txt">{{d.otp}}</span>
+    </ion-col>
+  </ion-row> -->
+
+
+  <!-- <ion-item>
+    <ion-col >
+      <p>Venue</p>
+    </ion-col>
+   <ion-col offset="5" >
+    <span style="font-size: 14px;">{{d.address}}</span>
+
+   </ion-col>
+  </ion-item>
+
+  
+
+  <ion-item>
+    <p>Time & Date</p>
+    <p slot="end">{{d.booking_time | date:'shortTime'}} &nbsp;{{d.booking_date}} </p>
+  </ion-item> -->
+
+
+
+
+
+  <!-- <ion-card style="padding: 7px;">
+    <span>Service Requested</span>
+    <ion-item lines="none" class="service-list" style="border-top: 1px solid darkgrey;">
+      <p>{{d.booking_details[0].service_primecategory}} <span *ngIf="d.booking_details[0].service_type == 0">(photography)</span> <span
+          *ngIf="d.service_type == 1">(Videography)</span> </p>
+      <p slot="end">{{d.booking_details[0].rate - d.booking_details[0].rate*(d.booking_details[0].discount/100)}}</p>
+    </ion-item>
+
+    <ion-item lines="none" class="service-list" style="border-top: 1px solid #ccc;">
+      <p>Total Amount</p>
+      <p slot="end">{{d.total_ammount}}</p>
+    </ion-item>
+  </ion-card> -->
+
+  <ion-card style="padding: 7px;" *ngIf="d.isProduct==false">
+    <ion-row style="border-bottom: 1px solid darkgrey;">
+      <ion-col size="12">
+        <ion-label style="font-size: 14px; color: #696969; font-weight: bold; ">Service Requested</ion-label>
+      </ion-col>
+    </ion-row>
+    <div *ngFor="let item of d.booking_details">
+      <ion-row>
+
+        <ion-col size="6">
+          <ion-label>{{item.service_primecategory| titlecase}}</ion-label>
+          <span *ngIf="item.service_type == 0">(Photography)</span>
+          <span *ngIf="item.service_type == 1">(Videography)</span>
+        </ion-col>
+        <ion-col size="6" style="text-align: right;">
+          <ion-icon name="camera" *ngIf="item.service_type == 0"></ion-icon>
+          <ion-icon name="videocam" *ngIf="item.service_type == 1"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-col size="4" style="text-align: right;">
+          <span >₹{{item.rate}}</span>
+        </ion-col> -->
+      <!-- <ion-row style="margin-top: -7px;"> -->
+      <ion-row style="margin-top: -7px;">
+        <ion-col size="6">
+          <ion-label style="font-size: 13px; color: #35ad35; font-weight: bold;">{{item.discount}}%off</ion-label>
+        </ion-col>
+        <ion-col size="6" style="text-align: right;">
+          <span>{{item.rate | currency:'INR'}}</span>
+        </ion-col>
+
+
+        <!-- </ion-row> -->
+      </ion-row>
+    </div>
+
+  </ion-card>
+
+  <!-- product card -->
+  <ion-card style="padding: 7px;" *ngIf="d.isProduct==true">
+    <ion-row style="border-bottom: 1px solid darkgrey;">
+      <ion-col size="12">
+        <ion-label style="font-size: 14px; color: #696969; font-weight: bold; ">Product Requested</ion-label>
+      </ion-col>
+    </ion-row>
+    <div *ngFor="let item of d.booking_details">
+      <ion-row>
+
+        <ion-col size="12">
+          <ion-label>{{item.product_name}}</ion-label>
+        </ion-col>
+
+      </ion-row>
+
+      <!-- <ion-col size="4" style="text-align: right;">
+          <span >₹{{item.rate}}</span>
+        </ion-col> -->
+      <!-- <ion-row style="margin-top: -7px;"> -->
+      <ion-row style="margin-top: -7px;">
+        <ion-col size="6">
+          <ion-label style="font-size: 13px; color: #35ad35; font-weight: bold;">{{item.discount}}%off</ion-label>
+        </ion-col>
+        <ion-col size="6" style="text-align: right;">
+          <span>{{item.rate | currency:'INR'}}</span>
+        </ion-col>
+
+
+        <!-- </ion-row> -->
+      </ion-row>
+    </div>
+
+  </ion-card>
+
+  <ion-card style="padding: 5px;">
+    <ion-row style="margin-top: 4px;">
+      <ion-col size="6">
+        <ion-label class="s_txt"> Amount </ion-label>
+      </ion-col>
+      <ion-col size="6" style="text-align:right;">
+        <span class="s_txt">{{this.rates | currency:'INR'}}</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="s_txt"> Discount </ion-label>
+      </ion-col>
+      <ion-col size="6" style="text-align:right;">
+        <span class="s_txt">{{this.rates-this.amounts | currency:'INR'}}</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="s_txt"> Delivery Charges </ion-label>
+      </ion-col>
+      <ion-col size="6" style="text-align:right;">
+        <span class="s_txt">{{this.final_delivary_charges| currency: 'INR'}}</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="border-top: 1px solid darkgrey;">
+      <ion-col size="6">
+        <ion-label class="s_txt"> Total Amount </ion-label>
+      </ion-col>
+      <ion-col size="6" style="text-align:right;">
+        <span class="s_txt"> {{this.amounts+this.final_delivary_charges | currency:'INR'}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-row *ngIf="d.booking_status=='accepted'" style="margin-top: 0.2rem;">
+    <ion-col offset="4" size="5" style="text-align: center; box-shadow:1px 1px 1px 1px grey">
+      <ion-label style="color: black;font-weight: bold;" >OTP :</ion-label>
+      <span style="color: black;font-weight:600;" >{{d.otp}}</span>
+
+    </ion-col>
+    
+  </ion-row>
+  <ion-row *ngIf="d.booking_status=='ongoing'" style="margin-top: 0.2rem;">
+    <ion-col offset="4" size="5" style="text-align: center; box-shadow:1px 1px 1px 1px grey">
+      <ion-label style="color: black;font-weight: bold; font-size: 13px;" > End Service OTP :</ion-label>
+      <span style="color: black;font-weight:600; font-size: 13px;" >{{d.otp}}</span>
+
+    </ion-col>
+    
+  </ion-row>
+
+
+
+
+  <!-- <ion-item class="input-sec">
+    <ion-label position="stacked">Photographer Name</ion-label>
+    <p>{{d.merchant[0].name}}</p>
+  </ion-item> -->
+
+  <!-- <ion-item class="input-sec">
+    <ion-label position="stacked">Brand Name</ion-label>
+    <p>{{d.merchant[0].brand_name}}</p>
+  </ion-item> -->
+
+  <!-- <ion-item class="input-sec">
+    <ion-label position="stacked">Photographer Number</ion-label>
+    <p>{{d.merchant[0].phone}}</p>
+  </ion-item> -->
+
+  <!-- <ion-item class="input-sec">
+    <ion-label position="stacked">Photographer Email</ion-label>
+    <p>{{d.merchant[0].business_email}}</p>
+  </ion-item> -->
+
+  <ion-row style="margin-top: 10px;" *ngIf="d.booking_status == 'pending' || d.booking_status == 'accepted' ">
+    <ion-col size="6" *ngIf="d.booking_status == 'pending' ">
+      <ion-button class="call-now-btn" color="danger" (click)="confirm()"
+        style="text-transform: capitalize; font-size: 13px;"> Cancel Booking</ion-button>
+    </ion-col>
+    <ion-col class="ion-float-right" size="6" *ngIf="d.booking_status == 'pending' ">
+      <ion-button (click)="callNow(d.merchant[0].phone)" class="call-now-btn"
+        style="text-transform: capitalize; font-size: 13px;">
+        <ion-icon name="call"></ion-icon> &nbsp; Call Now
+      </ion-button>
+    </ion-col>
+    <ion-col class="ion-float-right" size="12" *ngIf="d.booking_status == 'accepted' ">
+      <ion-button (click)="callNow(d.merchant[0].phone)" class="call-now-btn"
+        style="text-transform: capitalize; font-size: 13px;">
+        <ion-icon name="call"></ion-icon> &nbsp; Call Now
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngFor="let item of d.booking_details">
+    <ion-item class="input-sec" *ngIf="item.softcopy && d.booking_status=='completed'">
+      <ion-label position="stacked">Download Link</ion-label>
+      <p>Link Not Available</p>
+    </ion-item>
+  </ion-row>
+
+  <h6 class="label-text" style="margin-bottom: 0;" *ngIf="d.booking_status == 'completed' && feedback==false ">Rate to photographer
+  </h6>
+
+  <ion-row *ngIf="d.booking_status == 'completed' && feedback==false ">
+    <ion-col offset="3" size="6" style="padding: 0;">
+      <ion-item lines="none" class="ion-text-center">
+        <ion-icon [ngClass]="{ 'star': star >= 1 }" name="star" (click)="selectStar(1)"></ion-icon>
+        <ion-icon [ngClass]="{ 'star': star >= 2 }" name="star" (click)="selectStar(2)"></ion-icon>
+        <ion-icon [ngClass]="{ 'star': star >= 3 }" name="star" (click)="selectStar(3)"></ion-icon>
+        <ion-icon [ngClass]="{ 'star': star >= 4 }" name="star" (click)="selectStar(4)"></ion-icon>
+        <ion-icon [ngClass]="{ 'star': star == 5 }" name="star" (click)="selectStar(5)"></ion-icon>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

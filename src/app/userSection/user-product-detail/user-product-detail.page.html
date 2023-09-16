@@ -1,0 +1,163 @@
+<ion-header *ngIf="product_details">
+  <ion-toolbar>
+    <ion-icon style="margin-left: 10px; font-size: 1.5rem;" slot="start" name="chevron-back-outline"
+      (click)="backBtn()"></ion-icon>
+    <ion-title>{{product_details.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="product_details">
+  <!-- <img src="assets/img/mount.jpeg" class="bkimage" alt="not available"> -->
+
+  <ion-slides pager=true [options]="slideOpts" class="ion-padding-top"
+    *ngIf=" product_details.image && product_details.image.length>0">
+    <ion-slide *ngFor="let item of product_details.image">
+      <img *ngIf="item" src="{{baseUrl}}merchant/{{item}}" class="bkimage" alt="not available">
+      <!-- <img src="{{baseUrl}}merchant/{{item}}" onerror="this.src='assets/img/event-camera.png'" alt="Card"> -->
+    </ion-slide>
+  </ion-slides>
+  <img *ngIf=" product_details.image && product_details.image.length==0" src="assets/img/empty-box.png"
+    class="nobkimage" alt="not available">
+
+  <ion-card>
+    <ion-card>
+      <div class="card-margin">
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="pname">
+              {{product_details.name}}
+            </ion-label>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="padding-top: 6px;">
+          <!-- <ion-col size="6" class="ion-padding-start" *ngFor="let p of product_details.price"> -->
+          <!-- <span class="fprice">Price:{{p.price}}</span> -->
+          <!-- </ion-col> -->
+          <!-- <ion-col size="5" *ngFor="let item of product_details" >
+      <span style="float: right;">Size:{{item.price[0].size}}</span>
+    </ion-col> -->
+          <ion-col size="6">
+            <span style="margin: 0.8rem;">Price:{{size}}₹</span>
+
+          </ion-col>
+          <ion-col size="6" style="text-align: right;">
+            <ion-label for="size" class="size">Size:</ion-label>
+            <select [(ngModel)]="size" (change)="selectSize($event.target.value)"
+              style="width: 45%;margin-right: 6px;position: relative;top: 4px; background-color: white; color: black;">
+              <option *ngFor="let item of products_size;" [value]="item.price">
+                {{item.size}}
+              </option>
+            </select>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="fsize">Description</ion-label>
+            <ion-row class="pdesc" *ngIf="product_details">{{product_details.description}}</ion-row>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-card>
+
+    <ion-card>
+      <div class="card-margin">
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="pdetail">Product Detail</ion-label>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <span class="fsize">Print Type</span>
+          </ion-col>
+          <ion-col>
+            <span class="txt">{{product_details.print_type}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <span class="fsize">Prints</span>
+          </ion-col>
+          <ion-col>
+            <span class="txt">{{product_details.prints}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <span class="fsize">Embossing</span>
+          </ion-col>
+          <ion-col size="6">
+            <span class="txt">{{product_details.embossing}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <span class="fsize">Delivery Day</span>
+          </ion-col>
+          <ion-col size="6">
+            <span class="txt">{{product_details.delivery_day}}</span>
+          </ion-col>
+        </ion-row>
+
+
+
+        <ion-row>
+          <ion-col size="6">
+            <span class="fsize">Delivery Charge</span>
+          </ion-col>
+          <ion-col size="6">
+            <span class="txt">{{product_details.delivery_charge}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <span class="fsize">Discount</span>
+          </ion-col>
+          <ion-col size="6">
+            <span class="txt">{{product_details.discount }}%</span>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-card>
+
+    <ion-card>
+      <div class="card-margin">
+        <!--Seller detail  -->
+        <ion-row *ngIf="product_details.merchant_id">
+          <ion-col size="12">
+            <ion-label class="pseller">Seller Detail</ion-label>
+          </ion-col>
+          <ion-row>
+            <ion-col size="12">
+              <ion-label class="fsize">Name:{{product_details.merchant_id.name}}</ion-label>
+            </ion-col>
+            <ion-col size="12">
+              <ion-label class="fsize">Brand Name:{{product_details.merchant_id.brand_name}}</ion-label>
+            </ion-col>
+            <ion-col size="12">
+              <ion-label class="fsize">City:{{product_details.merchant_id.city.name}}</ion-label>
+            </ion-col>
+            <!-- <ion-col size="12">
+        <ion-label class="fsize">Adress:{{product_details.merchant_id.address.address}}</ion-label>
+      </ion-col> -->
+          </ion-row>
+        </ion-row>
+      </div>
+    </ion-card>
+
+  </ion-card>
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding-start ion-padding-end" style="background-color: white;">
+  <ion-toolbar>
+    <ion-button expand="block" style="--background:#fb5018" (click)="addtocart()">Add To Cart</ion-button>
+
+  </ion-toolbar>
+</ion-footer>

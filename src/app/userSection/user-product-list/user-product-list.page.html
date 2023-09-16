@@ -1,0 +1,103 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-icon style="margin-left: 10px; font-size: 1.5rem;" slot="start" name="chevron-back-outline"
+            (click)="backBtn()"></ion-icon>
+        <ion-title> {{this.categoryname}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-searchbar name="searchdata" [(ngModel)]="searchdata"></ion-searchbar>
+
+    <div *ngFor="let item of products | search : searchdata">
+
+
+        <ion-card *ngIf="item.isProduct=='true'">
+            <div (click)="detailpage(item)">
+                <ion-row style="margin-bottom: -15px;">
+                    <ion-col size="4">
+                        <img *ngIf="item.image.length>0" class="bg-img"
+                            src="{{baseUrl}}merchant/{{item.image[0]}}">
+                        <img *ngIf="item.image.length == 0" src="assets/img/empty-box.png" class="bg-img" />
+                    </ion-col>
+                    <ion-col size="8">
+                        <p class="p1">{{item.name}}</p>
+                        <p style="position: relative;  top: -13px; font-size: 13px;">{{item.merchant_id.brand_name}}</p>
+                        <!-- <p class="ptype">Print Type:{{item.print_type}}</p> -->
+                        <!-- <p  style="margin-top: -10px;">No.of prints:{{item.prints}}</p> -->
+                        <ion-row style="margin-top: -25px;margin-left: -6px;">
+                            <ion-col size="6">
+                                <span style="font-size: 13px;">Price:{{item.price[0].price}}</span>
+
+                            </ion-col>
+                            <ion-col size="6">
+                                <span style="float: right; font-size: 13px;">Discount:{{item.discount}}%</span>
+                            </ion-col>
+                        </ion-row>
+
+
+
+                        <!-- <label for="size" class="lbl-txt">Size</label>
+                <select name="size" id="size" style="position: absolute;">
+               <option value="xs" >XS</option>
+                  <option value="xl">XL</option>
+                  <option value="md">Sm</option>
+                
+                </select> -->
+
+
+                        <!-- <select [(ngModel)]="it">
+                    <option value="{{it}}" *ngFor="let it of item.price">{{it.size}}</option>
+                </select> -->
+                    </ion-col>
+                    <!-- <ion-col size="4">
+                <ion-icon name="information-circle-outline" class="icon-i" (click)="close(item)"></ion-icon>
+                <ion-button color="success" class="bg-button">Add Cart</ion-button>
+            </ion-col> -->
+                </ion-row>
+            </div>
+        </ion-card>
+    </div>
+
+    <!-- <ion-card>
+        <ion-row style="margin-bottom: -15px;">
+            <ion-col size="4">
+                <img class="bg-img" src="assets/img/wedding-vedio.png">
+            </ion-col>
+            <ion-col size="4">
+                <p class="p1" style="font-size: 15px;">
+                    Product Name
+                </p>
+                <p class="p2">Price</p> -->
+    <!-- <p class="card-star" style="margin-top:0;"><span class="star-card">
+                        <ion-icon name="star"></ion-icon>
+                    </span> 4.5 (91)
+                </p> -->
+    <!-- </ion-col>
+            <ion-col size="4">
+                <ion-icon name="information-circle-outline" class="icon-i" (click)="close()"></ion-icon>
+                <ion-button color="success" class="bg-button">Add Cart</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-card> -->
+
+
+</ion-content>
+
+<div class="bg-model" *ngIf="isopen">
+    <div class="modal-content">
+        <div class="close" (click)="close()">
+            +
+        </div>
+        <h2 style="text-align: center; color: #ff5722">Product Info</h2>
+
+        <div>
+            <h6>Size : {{info.price[0].size}}</h6>
+            <h6>Prints:{{info.prints}}</h6>
+            <h6>Discount : {{info.discount}}%</h6>
+            <h6>Description : {{info.description}}</h6>
+            <h6>Delivery Charges : {{info.delivery_charge}}</h6>
+            <h6>Delivery Day : {{info.delivery_day}}</h6>
+        </div>
+    </div>
+</div>

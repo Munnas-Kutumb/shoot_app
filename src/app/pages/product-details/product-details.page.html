@@ -1,0 +1,214 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon slot="start" name="chevron-back-outline" (click)="backBtn()" class="back-btn"></ion-icon>
+    <ion-title *ngIf="!product_id">Add Product ({{subcatName}})</ion-title>
+    <ion-title *ngIf="product_id">Edit {{name}} ({{subcatName}})</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="margin: 5px; margin-top: 15px">
+    <ion-item class="input-sec-box" lines="none">
+      <ion-label position="stacked">Product Name</ion-label>
+      <ion-input type="text" [(ngModel)]="name"></ion-input>
+    </ion-item>
+
+    <ion-item class="input-sec-box" lines="none">
+      <ion-label position="stacked">Description</ion-label>
+      <ion-textarea type="text" [autoGrow]="true" [(ngModel)]="description" style="border: 1px solid #cecece;">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item class="input-sec-box" lines="none">
+      <ion-label position="stacked">No. of Prints/Quantity</ion-label>
+      <ion-input type="number" [(ngModel)]="no_of_print"></ion-input>
+      <!-- <ion-select
+        ok-text="Select"
+        cancel-text="Cancel"
+        [(ngModel)]="no_of_print"
+        placeholder="Select No. of Prints"
+      >
+        <ion-select-option [value]="1">1</ion-select-option>
+        <ion-select-option [value]="2">2</ion-select-option>
+        <ion-select-option [value]="3">3</ion-select-option>
+        <ion-select-option [value]="4">4</ion-select-option>
+        <ion-select-option [value]="5">5</ion-select-option>
+        <ion-select-option [value]="6">6</ion-select-option>
+        <ion-select-option [value]="7">7</ion-select-option>
+        <ion-select-option [value]="8">8</ion-select-option>
+        <ion-select-option [value]="9">9</ion-select-option>
+        <ion-select-option [value]="10">10</ion-select-option>
+      </ion-select> -->
+    </ion-item>
+
+
+
+    <ion-item class="input-sec-box" lines="none">
+      <ion-label position="stacked">Print Type</ion-label>
+      <ion-select ok-text="Select" cancel-text="Cancel" [(ngModel)]="print_type">
+        <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
+        <ion-select-option value="Offset">Offset</ion-select-option>
+        <ion-select-option value="Digital">Digital</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="input-sec-box" lines="none">
+      <ion-label position="stacked">Embossing</ion-label>
+      <ion-select ok-text="Select" cancel-text="Cancel" [(ngModel)]="embossing">
+        <ion-select-option value="Not Applicable">Not Applicable</ion-select-option>
+        <ion-select-option value="Yes">Yes</ion-select-option>
+        <ion-select-option value="No">No</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <p style="font-size: 14px; margin-left: 20px">Product Images</p>
+
+    <div class="scrolling-wrapper">
+      <div *ngIf="!album[0]" class="upload-box" (click)="uploadimg()">
+        <!-- <ion-icon class="plus-btn" name="add"></ion-icon> -->
+        <img class="thumbimg" src="assets/img/add_img.png" />
+      </div>
+      <div *ngIf="album[0]" class="upload-box">
+        <ion-icon name="trash" (click)="removeImage(0)" class="imgtrash"></ion-icon>
+        <img class="thumbimg" src="{{this.commonservice.serviceurl}}merchant/{{album[0]}}" />
+      </div>
+
+      <div *ngIf="!album[1]" class="upload-box" (click)="uploadimg()">
+        <img class="thumbimg" src="assets/img/add_img.png" />
+      </div>
+      <div *ngIf="album[1]" class="upload-box">
+        <ion-icon name="trash" (click)="removeImage(1)" class="imgtrash" style="position: absolute"></ion-icon>
+        <img class="thumbimg" src="{{this.commonservice.serviceurl}}merchant/{{album[1]}}" />
+      </div>
+
+      <div *ngIf="!album[2]" class="upload-box" (click)="uploadimg()">
+        <img class="thumbimg" src="assets/img/add_img.png" />
+      </div>
+      <div *ngIf="album[2]" class="upload-box">
+        <ion-icon name="trash" (click)="removeImage(2)" class="imgtrash" slot="item-right"></ion-icon>
+        <img class="thumbimg" src="{{this.commonservice.serviceurl}}merchant/{{album[2]}}" />
+      </div>
+
+      <div *ngIf="!album[3]" class="upload-box" (click)="uploadimg()">
+        <img class="thumbimg" src="assets/img/add_img.png" />
+      </div>
+      <div *ngIf="album[3]" class="upload-box">
+        <ion-icon name="trash" (click)="removeImage(3)" class="imgtrash" style="position: absolute"></ion-icon>
+        <img class="thumbimg" src="{{this.commonservice.serviceurl}}merchant/{{album[3]}}" />
+      </div>
+
+      <div *ngIf="!album[4]" class="upload-box" (click)="uploadimg()">
+        <img class="thumbimg" src="assets/img/add_img.png" />
+      </div>
+      <div *ngIf="album[4]" class="upload-box">
+        <ion-icon name="trash" (click)="removeImage(4)" class="imgtrash" style="position: absolute"></ion-icon>
+        <img class="thumbimg" src="{{this.commonservice.serviceurl}}merchant/{{album[3]}}" />
+      </div>
+    </div>
+
+    <p style="font-size: 14px; margin-left: 20px">
+      Size & Price
+      <ion-icon class="plus-btn" style="margin-top: 0" name="add" (click)="addMoreSize()" style="float: right">
+      </ion-icon>
+    </p>
+
+    <ion-card style="padding: 10px 5px" *ngIf="sizeCard.length">
+      <ion-row *ngFor="let item of sizeCard; let i = index;">
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label position="stacked">Size</ion-label>
+            <!-- <ion-select ok-text="Select" cancel-text="Cancel" [(ngModel)]="sizeCard[i].size" placeholder="Size">
+              <ion-select-option [value]="Small">Small</ion-select-option>
+              <ion-select-option [value]="Medium">Medium</ion-select-option>
+              <ion-select-option [value]="Large">Large</ion-select-option>
+              <ion-select-option [value]="XLarge">Extra Large</ion-select-option>
+            </ion-select> -->
+            <ion-select ok-text="Select" [value]=sizeCard[i].size cancel-text="Cancel" [(ngModel)]="sizeCard[i].size"
+              placeholder="Size">
+              <ion-select-option [value]="item.size" *ngFor="let item of productSize">{{item.size}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item lines="none">
+            <ion-label position="stacked">Price</ion-label>
+            <ion-input [(ngModel)]="sizeCard[i].price" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+
+    <ion-item class="input-sec-box" lines="none">
+      <ion-label position="stacked">Discount(%)</ion-label>
+      <ion-select ok-text="Select" cancel-text="Cancel" [(ngModel)]="discount">
+        <ion-select-option [value]="0">0</ion-select-option>
+        <ion-select-option [value]="5">5</ion-select-option>
+        <ion-select-option [value]="10">10</ion-select-option>
+        <ion-select-option [value]="15">15</ion-select-option>
+        <ion-select-option [value]="20">20</ion-select-option>
+        <ion-select-option [value]="25">25</ion-select-option>
+        <ion-select-option [value]="30">30</ion-select-option>
+        <ion-select-option [value]="35">35</ion-select-option>
+        <ion-select-option [value]="40">40</ion-select-option>
+        <ion-select-option [value]="45">45</ion-select-option>
+        <ion-select-option [value]="50">50</ion-select-option>
+        <ion-select-option [value]="55">55</ion-select-option>
+        <ion-select-option [value]="60">60</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="input-sec-box" lines="none">
+      <ion-label position="stacked">Delivery Days</ion-label>
+      <!-- <ion-input type="text" [(ngModel)]="delivery_day"></ion-input> -->
+
+      <ion-select ok-text="Select" cancel-text="Cancel" [(ngModel)]="delivery_day">
+        <ion-select-option [value]="1">1</ion-select-option>
+        <ion-select-option [value]="2">2</ion-select-option>
+        <ion-select-option [value]="3">3</ion-select-option>
+        <ion-select-option [value]="4">4</ion-select-option>
+        <ion-select-option [value]="5">5</ion-select-option>
+        <ion-select-option [value]="6">6</ion-select-option>
+        <ion-select-option [value]="7">7</ion-select-option>
+        <ion-select-option [value]="8">8</ion-select-option>
+        <ion-select-option [value]="9">9</ion-select-option>
+        <ion-select-option [value]="10">10</ion-select-option>
+        <ion-select-option [value]="11">11</ion-select-option>
+        <ion-select-option [value]="12">12</ion-select-option>
+        <ion-select-option [value]="13">13</ion-select-option>
+        <ion-select-option [value]="14">14</ion-select-option>
+        <ion-select-option [value]="15">15</ion-select-option>
+        <ion-select-option [value]="16">16</ion-select-option>
+        <ion-select-option [value]="17">17</ion-select-option>
+        <ion-select-option [value]="18">18</ion-select-option>
+        <ion-select-option [value]="19">19</ion-select-option>
+        <ion-select-option [value]="20">20</ion-select-option>
+        <ion-select-option [value]="21">21</ion-select-option>
+        <ion-select-option [value]="22">22</ion-select-option>
+        <ion-select-option [value]="23">23</ion-select-option>
+        <ion-select-option [value]="24">24</ion-select-option>
+        <ion-select-option [value]="25">25</ion-select-option>
+        <ion-select-option [value]="26">26</ion-select-option>
+        <ion-select-option [value]="27">27</ion-select-option>
+        <ion-select-option [value]="28">28</ion-select-option>
+        <ion-select-option [value]="29">29</ion-select-option>
+        <ion-select-option [value]="30">30</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="input-sec-box" lines="none">
+      <ion-label position="stacked">Delivery Charges</ion-label>
+      <ion-input [(ngModel)]="charges" type="number"></ion-input>
+    </ion-item>
+
+    <ion-row class="input-sec-box">
+      <ion-col>
+        <div>
+          <ion-button *ngIf="!product_id" class="save-btn" size="full" (click)="addProduct()">Save</ion-button>
+          <ion-button *ngIf="product_id" class="save-btn" size="full" (click)="addProduct()">Update</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

@@ -1,0 +1,34 @@
+.back-btn {
+  margin-left: 10px;
+}
+
+.detail-info {
+  margin-left: 25px;
+  color: #878787;
+}
+
+ion-input::placeholder {
+  font-size: 6px;
+}
+
+.discription {
+  height: 6rem;
+}
+
+.loc-status {
+  text-align: center;
+  color: #009933;
+}
+
+.searchbox {
+  border: 0px;
+  border-bottom: 1px solid gray;
+  width: 100%;
+  height: 31px;
+}
+input:focus {
+  outline: none;
+}
+.gst{
+  text-transform: uppercase;
+}

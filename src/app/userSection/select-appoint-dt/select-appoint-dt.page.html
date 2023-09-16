@@ -1,0 +1,120 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-icon *ngIf="showdate" slot="start" name="chevron-back-outline" class="back-btn" (click)="backBtn()"></ion-icon>
+    <ion-icon *ngIf="!showdate" slot="start" name="chevron-back-outline" class="back-btn" (click)="back()"></ion-icon>
+    <ion-title>Select Appointment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="showdate">
+  <!-- <ion-calendar [(ngModel)]="date" [options]="optionsMulti" [type]="type" [format]="'YYYY-MM-DD'"
+    (change)="getDate($event.format('DD-MM-YYYY'))">
+  </ion-calendar> -->
+
+  <ion-row *ngFor="let m of months;let ind=index;" style="padding: 0.5rem;">
+    <ion-col *ngIf="m.length>0" size="12">
+      <ion-chip class="chip">{{m[0].month}}</ion-chip>
+    </ion-col>
+    <ion-col size="2" *ngFor="let it of m;let i=index;">
+      <ion-chip class="mydate ion-text-centre" [ngClass]="{'activedate': it.selected, 'selecteddate': it.booked }"
+        (click)="setDate(it.date, it.month_num,ind)" color="primary">
+        <p style="width: 100%;">{{it.day}}<br>{{it.date}}</p>
+      </ion-chip>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-margin-top">
+    <!-- <ion-col size="12">
+      <ion-item lines="none">
+        <ion-label position="stacked">Select Time</ion-label>
+        <ion-input [(ngModel)]="time" type="time"></ion-input>
+      </ion-item>
+    </ion-col> -->
+
+    <ion-col>
+      <ion-item lines="none">
+        <ion-label position="stacked">Select Time</ion-label>
+        <ion-input>
+          <ion-datetime style="margin-left: -1rem;" displayFormat="h:mm A"  [(ngModel)]="time" placeholder="Select Time">
+          </ion-datetime>
+        </ion-input>
+      </ion-item>
+
+    </ion-col>
+    <!-- <ion-col size="6">
+      <ion-item lines="none">
+        <ion-label  position="stacked">To</ion-label>
+        <ion-input type="time" value= "17:00"></ion-input>
+      </ion-item>
+    </ion-col> -->
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <ion-item lines="none">
+        <ion-label position="stacked">Venue Details</ion-label>
+        <ion-textarea rows="3" style="border-bottom: 1px solid #aaa;" placeholder="Your venue for service"
+          [(ngModel)]="venue"></ion-textarea>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <!-- <h6 class="info-bt">You will be unavailable from dated.</h6> -->
+
+  <ion-row class="ion-margin-top ion-margin-bottom">
+    <ion-col>
+      <ion-button size="full" [disabled]="!(date && time && venue)" (click)="save()" class="save-btn">
+        Save
+      </ion-button>
+      <!-- <ion-button [disabled]="!(date && time)" expand="full" (click)="next()" class="save-btn">
+        Next
+      </ion-button> -->
+    </ion-col>
+  </ion-row>
+
+</ion-content>
+
+<ion-content *ngIf="!showdate">
+
+  <h6 class="info-bt">We will serve you at...</h6>
+
+  <ion-row>
+    <ion-col size="12">
+      <ion-item lines="none">
+        <ion-label position="stacked">Full Name</ion-label>
+        <ion-input [(ngModel)]="name"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12">
+      <ion-item lines="none">
+        <ion-label position="stacked">Contact</ion-label>
+        <ion-input [(ngModel)]="contact"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12">
+      <ion-item lines="none">
+        <ion-label position="stacked">Building</ion-label>
+        <ion-input [(ngModel)]="building"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12">
+      <ion-item lines="none">
+        <ion-label position="stacked">Location</ion-label>
+        <ion-input [(ngModel)]="location"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12">
+      <ion-item lines="none">
+        <ion-label position="stacked">City</ion-label>
+        <ion-input [(ngModel)]="city"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-margin-top">
+    <ion-col>
+      <ion-button size="full" (click)="save()" class="save-btn">
+        Save
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

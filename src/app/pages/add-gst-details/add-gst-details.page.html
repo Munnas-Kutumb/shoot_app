@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-icon (click)="backBtn()" class="back-btn" slot="start" name="chevron-back-outline"></ion-icon> 
+    <ion-title>Add GST Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div style="margin: 10px 25px;">
+
+    <ion-item >
+      <ion-label position="stacked">Your GSTIN</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="stacked">Registered Address</ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item>
+  
+    <ion-button size="full" class="submit-btn">Submit</ion-button>
+
+  </div>
+
+</ion-content>

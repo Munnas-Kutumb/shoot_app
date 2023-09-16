@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon style="margin-left: 10px; font-size: 1.5rem;" slot="start" name="chevron-back-outline"
+      (click)="backBtn()"></ion-icon>
+    <ion-title> Product Categories</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let item of pro_categry" (click)="navprolist(item._id, item.subcategory_name)">
+    <ion-card style="background-color: #ebe9e9 ;">
+      <img class="img-sec" src="{{this.common.serviceurl}}/subcategory/{{item.image}}" />
+      <p class="card-label">{{item.subcategory_name}}</p>
+      <p class="list-prime">{{item.tagline}}</p>
+    </ion-card>
+  </div>
+
+  <!-- <ion-card (click)="navprolist()" style="background-color: #ebe9e9;">
+        <img class="img-sec" src="assets/img/wedding-vedio.png" />
+        <p class="card-label">
+            Painting
+        </p>
+        <p class="list-prime">
+            Paint your life with smile.
+        </p>
+    </ion-card>
+
+    <ion-card (click)="navprolist()" style="background-color: #ebe9e9;">
+        <img class="img-sec" src="assets/img/wedding-vedio.png" />
+        <p class="card-label">
+            Painting
+        </p>
+        <p class="list-prime">
+            Paint your life with smile.
+        </p>
+    </ion-card>
+
+    <ion-card (click)="navprolist()" style="background-color: #ebe9e9;">
+        <img class="img-sec" src="assets/img/wedding-vedio.png" />
+        <p class="card-label">
+            Painting
+        </p>
+        <p class="list-prime">
+            Paint your life with smile.
+        </p>
+    </ion-card>
+     -->
+</ion-content>

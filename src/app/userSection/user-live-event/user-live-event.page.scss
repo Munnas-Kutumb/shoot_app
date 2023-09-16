@@ -1,0 +1,104 @@
+.brand-name {
+    margin-top: -5px;
+    font-size: 12px;
+}
+
+// .star-ratings {
+//     margin-top: -5px;
+//     font-size: 12px;
+// }
+
+.rating{
+    font-size: 12px;
+}
+
+.address {
+    margin-top: -5px;
+    font-size: 12px;
+}
+.card-bg-img {
+    height: 6rem;
+    width: 100%;
+  }
+  
+
+.img-src {
+    margin-top: 18px;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.back-btn {
+    margin-left: 10px;
+}
+
+.hero-label {
+    margin-left: 1rem;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-left: 5px;
+    .card {
+        display: inline-block;
+        height: 50px;
+        margin-right: -8px;
+        width: 40%;
+        margin-top: -10px;
+    }
+}
+
+.card-brand-name {
+    font-size: 10px;
+    /* margin-top: -1px; */
+    font-weight: bold;
+    position: relative;
+    left: 6px;
+    top: -6px;
+}
+
+.small-brand-name {
+    margin-top: -12px;
+    margin-left: 10px;
+    font-size: 11px;
+}
+
+.card-star {
+    margin-left: 10px;
+    margin-top: -10px;
+    font-size: 12px;
+}
+
+.card-location {
+    font-size: 10px;
+    position: relative;
+    left: 7px;
+    top: -29px;
+}
+
+.star-card {
+    color: #FF4600;
+}
+
+.loc-icon {
+    color: #FF4600;
+    margin-top: -1px;
+}
+
+.card-bg-img {
+   height: 5rem;
+   width: 9rem;
+}
+
+.notava{
+    position: relative;
+    top: 7rem;
+    font-size: 13px;
+    text-align: center;
+    color:#FF4600;
+    font-weight: bold;
+}

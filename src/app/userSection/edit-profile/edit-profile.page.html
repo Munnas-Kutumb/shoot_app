@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon style="margin-left: 10px; font-size: 1.5rem;" slot="start" name="chevron-back-outline"
+      (click)="backBtn()"></ion-icon>
+    <ion-title>Edit Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div style="margin: 0px 0px 20px 0px;">
+    <img *ngIf="!image" src="assets/img/profile-pic.png" class="cover-pic">
+    <img *ngIf="image" src="{{baseUrl}}user/{{image}}" class="cover-pic">
+    <ion-icon name="camera-reverse" class="pic-change-cam" (click)="uploadImg()"></ion-icon>
+  </div>
+  <!-- <div style="text-align: center; margin-top: -0.9rem;" *ngIf="details">
+      <ion-icon name="call-outline" style="font-size: 16px;"></ion-icon>
+      <span class="mtext">{{details.phone}}</span>
+     </div> -->
+
+
+  <!-- <div style="text-align: center; margin-top: -1.2rem;">
+   <span style="font-size: 14px;" >Mobile Num:8209695827</span>
+ </div> -->
+
+  <div style="margin: 0px 10px;">
+
+    <ion-item>
+      <ion-label position="stacked">
+        First Name
+      </ion-label>
+      <ion-input [(ngModel)]="first_name" inputmode="text"
+        onkeypress='return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 '
+        autocomplete="off">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Last Name</ion-label>
+      <ion-input [(ngModel)]="last_name" inputmode="text"
+        onkeypress='return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122'
+        autocomplete="off">
+      </ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="stacked">E-Mail Address</ion-label>
+      <ion-input [(ngModel)]="email" inputmode="email" (ionChange)="checkEmail('email')" (keyup)="checkEmail('email')"
+        (focusout)="checkEmail('email')" autocomplete="off"></ion-input>
+    </ion-item>
+    <!-- <span *ngIf="email_valid" style="color: red;
+    font-size: 10px;
+    position: relative;
+    left: 10px;
+    top: -5px;">Invalid Email!</span> -->
+
+    <ion-item>
+      <ion-label position="stacked">Phone Number</ion-label>
+      <ion-input [(ngModel)]="phone" inputmode="tel" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+        autocomplete="off"></ion-input>
+    </ion-item>
+
+    <!-- <ion-item>
+      <ion-label position="stacked">
+       Gender
+      </ion-label>
+      <ion-input></ion-input>
+    </ion-item> -->
+
+    <!-- <ion-item>
+      <ion-label position="stacked">
+        Date of Birth
+      </ion-label>
+      <ion-input></ion-input>
+    </ion-item> -->
+
+  </div>
+
+
+  <div style="margin: 20px 10px;">
+    <ion-button style="--background: #ff4600" size="block"  (click)="updateUserDetails()" [disabled]="!(first_name && last_name && email && phone )">Save Changes</ion-button>
+  </div>
+
+</ion-content>

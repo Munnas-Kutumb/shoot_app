@@ -1,0 +1,266 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon (click)="backBtn()" class="back-btn" slot="start" name="chevron-back-outline"></ion-icon>
+    <ion-title>Booking Info</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="booking_status == 'cancelled'" style="text-align: center;">
+
+    <ion-icon class="sad-icon" name="sad-outline"></ion-icon>
+
+    <h4 class="cz-cancelled">OOPS! Booking is cancelled !</h4>
+
+    <ion-chip>
+      <ion-label>BOOKING ID : {{booking_info.booking_number}}</ion-label>
+    </ion-chip>
+
+  </div>
+  <div *ngIf="booking_status != 'cancelled'">
+
+    <ion-row style="margin-top: 8px;">
+      <ion-col size="6">
+        <ion-label class="d-name">Customer Name</ion-label>
+      </ion-col>
+      <ion-col size="6" style="text-align: right;">
+        <span class="d_txt">{{customer_details.first_name + " " + customer_details.last_name}}</span>
+      </ion-col>
+    </ion-row>
+
+
+    <div>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="d-name">Phone Number</ion-label>
+        </ion-col>
+
+        <ion-col size="6" style="text-align: right;">
+          <span class="d_txt">+91 {{customer_details.phone}}</span>
+        </ion-col>
+      </ion-row>
+    </div>
+
+
+    <ion-row *ngIf="booking_info.isProduct==false">
+      <ion-col size="6">
+        <ion-label class="d-name">Shoot Address</ion-label>
+      </ion-col>
+
+      <ion-col size="6" style="text-align: right;">
+        <span class="d_txt">{{booking_address}}</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="booking_info.isProduct==true">
+      <ion-col size="6">
+        <ion-label class="d-name">Delivery Address</ion-label>
+      </ion-col>
+
+      <ion-col size="6" style="text-align: right;">
+        <span class="d_txt">{{booking_info.delivery_address}}</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="booking_info.isProduct==false">
+      <ion-col size="6">
+        <ion-label class="d-name">Time:</ion-label>
+        <span style="font-size: 13px; color: #696969;position: relative;left: 2px;">{{booking_info.booking_time |
+          date:'shortTime'}}</span>
+      </ion-col>
+      <ion-col size="6" style="text-align: right; ">
+        <ion-label class="d-name">Date:</ion-label>
+        <span class="d_txt">{{booking_info.booking_date }}</span>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <!-- service card -->
+
+  <ion-card style="padding: 5px;" *ngIf="booking_info.isProduct==false">
+    <ion-row style="border-bottom: 1px solid darkgrey;">
+      <ion-col size="12">
+        <ion-label style="font-size: 14px; color: #696969; font-weight: bold; ">Service Requested</ion-label>
+      </ion-col>
+    </ion-row>
+    <div *ngFor="let serviceLst of booking_info.booking_details">
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="s_txt">
+            {{serviceLst.service_primecategory | titlecase}} ({{serviceLst.service_subcategory| titlecase}})
+          </ion-label>
+        </ion-col>
+        <ion-col size="6" style="text-align:right;">
+          <ion-icon name="camera" *ngIf="serviceLst.service_type == 0"></ion-icon>
+          <ion-icon name="videocam" *ngIf="serviceLst.service_type == 1"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: -7px;">
+        <ion-col size="6">
+          <span style="color: #35ad35;font-weight: bolder;">{{serviceLst.discount}}% off</span>
+        </ion-col>
+        <ion-col size="6" style="text-align:right;">
+          <span class="s_txt"> {{serviceLst.rate| currency: 'INR' }}</span>
+        </ion-col>
+
+      </ion-row>
+    </div>
+
+  </ion-card>
+
+  <!-- Product card -->
+  <ion-card style="padding: 5px;" *ngIf="booking_info.isProduct==true">
+    <ion-row style="border-bottom: 1px solid darkgrey;">
+      <ion-col size="12">
+        <ion-label style="font-size: 14px; color: #696969; font-weight: bold; ">Product Requested</ion-label>
+      </ion-col>
+    </ion-row>
+    <div *ngFor="let serviceLst of booking_info.booking_details">
+      <ion-row>
+        <ion-col size="12">
+          <ion-label class="s_txt">
+            {{serviceLst.product_name | titlecase}}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: -7px;">
+        <ion-col size="6">
+          <span style="color: #35ad35;font-weight: bolder;">{{serviceLst.discount}}% off</span>
+        </ion-col>
+        <ion-col size="6" style="text-align:right;">
+          <span class="s_txt"> {{serviceLst.rate| currency: 'INR' }}</span>
+        </ion-col>
+
+      </ion-row>
+    </div>
+
+  </ion-card>
+
+
+  <ion-card style="padding: 5px;" *ngIf="booking_info">
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="s_txt"> Amount </ion-label>
+      </ion-col>
+      <ion-col size="6" style="text-align:right;">
+        <span class="s_txt">{{this.rates| currency: 'INR'}}</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="s_txt"> Discount </ion-label>
+      </ion-col>
+      <ion-col size="6" style="text-align:right;">
+        <span class="s_txt">{{this.rates-this.amounts| currency: 'INR'}}</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="s_txt"> Delivery Charges </ion-label>
+      </ion-col>
+      <ion-col size="6" style="text-align:right;">
+        <span class="s_txt">{{this.final_delivary_charges| currency: 'INR'}}</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="border-top: 1px solid darkgrey;">
+      <ion-col size="6">
+        <ion-label class="s_txt"> Total Amount </ion-label>
+      </ion-col>
+      <ion-col size="6" style="text-align:right;">
+        <span class="s_txt"> {{this.amounts+this.final_delivary_charges | currency: 'INR'}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+
+  <!-- <ion-row>
+      <ion-col size="6">
+        <ion-label class="d-name">Service Name</ion-label>
+      </ion-col>
+      <ion-col size="6" style="text-align: right;">
+        <span class="d_txt">{{serviceLst.primecategory_name}}</span>
+      </ion-col>
+    </ion-row> -->
+
+
+
+  <!-- </div> -->
+
+
+  <!-- <h6 class="label-text">Service Requested</h6>
+
+  <div style="margin: 15px 15px;" *ngFor="let serviceLst of booking_info.booking_details">
+
+    <ion-item class="service-list">
+      <p>Service Name</p>
+      <ion-chip class="prime-chip" color="primary">
+        <ion-label>{{serviceLst.primecategory_name}}</ion-label>
+      </ion-chip>
+      <p slot="end">{{serviceLst.rate}}</p>
+    </ion-item>
+  </div> -->
+
+  <ion-row *ngIf="booking_status == 'pending'">
+    <ion-col size="6">
+
+      <ion-button size="full" class="accept-btn" (click)="acceptBooking()" style="text-transform: capitalize;">Accept
+      </ion-button>
+
+    </ion-col>
+    <ion-col size="6">
+      <ion-button size="full" class="rej-btn" color="light" (click)="cancelAlertConfirm(booking_info._id)"
+        style="text-transform: capitalize;">Reject
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <div *ngIf="booking_status == 'accepted' || booking_status == 'ongoing'">
+
+    <div>
+
+      <ion-item lines="none">
+        <ion-icon class="active-mark-icon" name="checkmark-circle"></ion-icon>
+        <h6 class="cz-text">Congrats Booking is Active</h6>
+      </ion-item>
+
+    </div>
+
+    <ion-row *ngIf="booking_info.booking_status=='accepted'">
+      <ion-col size="6">
+        <ion-button color="success" class="start-ser-button-active"   (click)="toStartService(booking_info._id)">
+          Start
+          Service</ion-button>
+      </ion-col>
+      <ion-col size='6' class="ion-float-right">
+        <ion-button class="call-now-btn-active" (click)="callNow(customer_details.phone)">
+          <ion-icon name="call"></ion-icon> &nbsp; Call Now
+        </ion-button>
+      </ion-col>
+      <ion-col style="display: flex; justify-content: center; justify-items: center;">
+        <ion-button color="light" class="start-ser-button-active" (click)="cancelAlertConfirm(booking_info._id)"
+          style="text-transform: capitalize;">Cancel
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-button *ngIf="booking_info.booking_status=='ongoing'" color="success" class="start-ser-button" size="full"
+      (click)="toEndService(booking_info._id)">End
+      Service</ion-button>
+
+    <ion-card *ngIf="view == booking_info._id">
+
+      <p> Enter OTP </p>
+      <p>Show Text</p>
+
+    </ion-card>
+
+  </div>
+
+
+
+</ion-content>

@@ -1,0 +1,79 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-icon slot="start" name="chevron-back-outline" class="back-btn" (click)="backBtn()"></ion-icon>
+    <ion-title style="font-size: 17px;">Business Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item style="margin: 0px 15px">
+    <ion-label>Business Type</ion-label>
+    <ion-select value="1" [(ngModel)]="sel_value" required>
+      <ion-select-option value="1" lines="none">Individual</ion-select-option>
+      <ion-select-option value="2" lines="none">Company</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <div style="margin: 0px 15px">
+    <ion-item style="margin-top: 1.5rem">
+      <ion-label position="stacked">GST Number (Optional)</ion-label>
+      <ion-input placeholder="Enter GST Number" [(ngModel)]="gstnumber" class="gst"
+        maxlength="20" onkeypress='return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122|| event.charCode >= 48 && event.charCode <= 57 '  ></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-top: 1.5rem; margin-left: -10px" lines="none">
+      <h6>Business Location</h6>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Business City</ion-label>
+      <ion-select [(ngModel)]="city">
+        <ion-select-option value="{{item._id}}" *ngFor="let item of cities">{{item.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- map -->
+    <ion-list>
+      <div class="regField_div" style="width: 100%; padding: 10px">
+        <input style="
+            border: 0px;
+            border-bottom: 1px solid gray;
+            width: 100%;
+            height: 31px;
+          " [(ngModel)]="workingarea.address" type="text" class="ion-text-start searchbox"
+          placeholder="Preferred working area" id="pic_location" autocomplete="off" class="regInput" />
+        <ion-icon style="color: #d4d9dd; float: right; margin-top: -25px; width: 34px" name="search"></ion-icon>
+      </div>
+    </ion-list>
+    <div style="
+        position: static !important;
+        overflow: inherit !important;
+        height: 20rem !important;
+      " #map id="map_canvas"></div>
+
+    <section class="lngbtn" style="padding-bottom: 20px">
+      <ion-button size="small" fill="outline">Work Radius</ion-button>
+      <ion-button size="small" fill="outline" style="float: right">{{work_radius / 1000 }} Kms</ion-button>
+    </section>
+
+    <ion-item style="margin: 0px 15px">
+      <ion-label>Work Radius</ion-label>
+      <ion-select [(ngModel)]="work_radius" (ionChange)="loadMap()">
+        <ion-select-option [value]=5000 lines="none">5 KM</ion-select-option>
+        <ion-select-option [value]=10000 lines="none">10 KM</ion-select-option>
+        <ion-select-option [value]=15000 lines="none">15 KM</ion-select-option>
+        <ion-select-option [value]=20000 lines="none">20 KM</ion-select-option>
+        <ion-select-option [value]=25000 lines="none">25 KM</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <!-- map end -->
+
+    <ion-button style="margin-top: 3rem; --background: #01b1ff" size="block" (click)="submitDetails()">Submit
+    </ion-button>
+  </div>
+
+  <p *ngIf="errorMsg" style="text-align: center; color: #ff0000; margin-top: 2rem">
+    Error : {{errorMsg}}
+  </p>
+</ion-content>

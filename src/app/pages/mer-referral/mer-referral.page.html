@@ -1,0 +1,48 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-icon class="back-btn" slot="start" name="chevron-back-outline"></ion-icon> -->
+    <ion-label slot="end" class="skip-btn"(click)="skip()">Skip</ion-label>
+    <!-- <ion-title></ion-title> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <div *ngIf="view == 'entercode'">
+
+    <div style="text-align: center; margin-top: 55px;">
+      <img class="ref-img" src="assets/img/referral.png">
+    </div>
+
+      <h6 class="hero-tag">GOT A REFERRAL CODE ?</h6>
+
+      <div>
+
+        <ion-item class="cup-add-sec">
+          <ion-input placeholder="Enter Code Here" [(ngModel)]="inputCode"></ion-input>
+          <ion-button slot="end" class="red-btn" (click)="submitReferrel()">Redeem</ion-button>
+        </ion-item>
+
+      </div>
+
+      <p *ngIf="result.status == false" class="invalid-ref">Please enter a valid referral code</p>
+
+      <p class="ref-info-text">If you have a referral code paste it here</p>
+
+  </div>
+
+
+  <div *ngIf="view == 'sharecode'">
+
+    <h1>Share</h1>
+
+  </div>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <div class="ft-ref" (click)="skip()">
+    <p class="ref-tx"> Don't Have Refrerral Code</p>
+  </div>
+</ion-footer>

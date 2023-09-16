@@ -1,0 +1,56 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-icon (click)="backBtn()" class="back-btn" slot="start" name="chevron-back-outline"></ion-icon>
+    <ion-title style="font-size: 17px;">Profile Progress</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-row>
+    <ion-col size="3">
+      <ion-icon *ngIf="!merchant_details.image" class="profile-pic" name="person-circle-outline"></ion-icon>
+      <img *ngIf="merchant_details.image" class="profile-pic"
+        src="{{this.commonservice.serviceurl}}merchant/{{merchant_details.image}}" />
+    </ion-col>
+    <ion-col size="9">
+      <h3 class="hello-user">Hello, <span style="color: #0e91c4;">{{merchant_details.name | titlecase}}</span></h3>
+      <p class="label-info">Complete the below steps to proceed</p>
+    </ion-col>
+  </ion-row>
+
+  <ion-item lines="none" style="margin-top: 8px;" (click)="toDoc()">
+    <ion-icon *ngIf="onBoardingDoc" style="color: #0bbd41;" slot="start" name="checkmark-circle"></ion-icon>
+    <ion-icon *ngIf="!onBoardingDoc" style="color: #fcc200;" slot="start" name="alert-circle"></ion-icon>
+    <p style="font-weight: 500;">Onboarding Documents</p>
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+  </ion-item>
+
+  <ion-item lines="none" style="margin-top: 8px;" (click)="toBusinessDeatils()">
+    <ion-icon *ngIf="businessDetails" style="color: #0bbd41;" slot="start" name="checkmark-circle"></ion-icon>
+    <ion-icon *ngIf="!businessDetails" style="color: #fcc200;" slot="start" name="alert-circle"></ion-icon>
+    <p style="font-weight: 500;">Business Details</p>
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+  </ion-item>
+
+  <ion-item lines="none" style="margin-top: 8px;" (click)="toBank()">
+    <ion-icon *ngIf="bankdetails" style="color: #0bbd41;" slot="start" name="checkmark-circle"></ion-icon>
+    <ion-icon *ngIf="!bankdetails" style="color: #fcc200;" slot="start" name="alert-circle"></ion-icon>
+    <p style="font-weight: 500;">Bank Details</p>
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+  </ion-item>
+
+
+  <ion-item *ngIf="businessDetails && onBoardingDoc && bankdetails " lines="none" style="margin-top: 8px;"
+    (click)="toPay()">
+    <ion-icon *ngIf="registration_payment_status" style="color: #0bbd41;" slot="start" name="checkmark-circle">
+    </ion-icon>
+    <ion-icon *ngIf="!registration_payment_status" style="color: #fcc200;" slot="start" name="alert-circle"></ion-icon>
+    <p style="font-weight: 500;">Registration Fee</p>
+    <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+  </ion-item>
+
+  <ion-button class="submit-btn" size="block" (click)="proceed()"> Submit For Approval</ion-button>
+
+</ion-content>

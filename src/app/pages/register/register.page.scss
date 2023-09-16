@@ -1,0 +1,28 @@
+.input-box {
+  border: 1px solid gray;
+  margin: 2rem 1.5rem;
+  border-radius: 10px;
+}
+
+.save-btn {
+  height: 2.2rem;
+  --background: #01b1ff;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.cancel-btn {
+  height: 2.2rem;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.profile-pic {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  margin-top: 4rem;
+  font-size: 105px;
+  color: gray;
+}

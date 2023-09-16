@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon slot="start" name="chevron-back-outline" (click)="backBtn()" class="back-btn"></ion-icon>
+    <ion-title>Services & Products</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div *ngIf="servicelistShow == true">
+    <p class="no-item">No Active Service</p>
+  </div> -->
+
+
+  <ion-segment (ionChange)="segmentChanged($event)" class="segment-bar" [(ngModel)]="setView">
+    <ion-segment-button value="service">
+      <ion-label class="hero-segment">Services</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="product">
+      <ion-label class="hero-segment">Products</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="setView == 'service' ">
+    <img style="margin: auto;display: block;height: 14rem;position: relative; top: 6rem;width: 12rem;"
+    src="assets/img/servicejpg.jpg" *ngIf="serviceList && serviceList.length==0">
+    <div *ngFor="let item of serviceList; let i = index;">
+      <ion-card class="round{{i+1}}" [ngStyle]="{'background': item.color_code }" (click)="serviceInfo(item)">
+        <!-- <ion-icon *ngIf="!item.favourite_service" class="fav-star" name="star" (click)="starClicked(item._id,true)"
+          [ngClass]="{'selected': item.favourite_service}"></ion-icon>
+        <ion-icon *ngIf="item.favourite_service" class="fav-star" name="star" (click)="starClicked(item._id,false)"
+          [ngClass]="{'selected': item.favourite_service}"></ion-icon> -->
+        <img src="{{baseUrl}}subcategory/{{item.service_subcategory[0].image}}"
+          class="service-pic" />
+        <!-- <h2 (click)="serviceInfo(item)" class="card-label">{{item.service_category[0].category_name}}</h2> -->
+
+        <p *ngFor="let list of item.service_subcategory" class="card-label">
+          {{list.subcategory_name}}
+        </p>
+
+        <!-- <p (click)="serviceInfo(item)" *ngFor="let list of item.service_primecategory" class="list-prime"> -->
+        <p *ngFor="let list of item.service_subcategory" class="list-prime">
+          <!-- {{list.primecategory_name}} -->
+          {{list.tagline}}
+        </p>
+      </ion-card>
+    </div>
+  </div>
+ 
+  <div *ngIf="setView == 'product' ">
+   <!-- <span *ngIf="productList && productList.length==0" style="margin: auto; display: block; position: relative; top: 50px;"> No Products Available</span> -->
+   <img style="margin: auto;display: block;height: 14rem;position: relative; top: 6rem;width: 12rem;"
+    src="assets/img/servicejpg.jpg"*ngIf="productList && productList.length==0">
+    <div *ngFor="let item of productList let i = index;">
+      <ion-card class="round{{i+1}}" (click)="editproduct(item)">
+        <img
+          *ngIf="item.image.length>0"
+          src="{{baseUrl}}merchant/{{item.image[0]}}"
+          class="service-pic"
+        />
+        <img
+          *ngIf="item.image.length == 0"
+          src="assets/img/empty-box.png"
+          class="service-pic"
+        />
+
+        <h2 class="card-label">{{item.name}}</h2>
+        <p class="list-name">{{item.description}}</p>
+        <p class="list-prime">
+          ₹ {{item.price[0].price}}&nbsp;
+          <span style="color: green">{{item.discount}}% OFF</span>
+        </p>
+      </ion-card>
+    </div>
+  </div>
+
+</ion-content>

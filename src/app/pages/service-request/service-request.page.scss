@@ -1,0 +1,55 @@
+.back-btn {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.ion-input {
+  border: 2px solid #01b1ff;
+  margin: 15px 0px;
+  border-radius: 5px;
+}
+
+.box-de {
+  border: 1px solid gray;
+  margin: 0px 15px;
+  border-radius: 10px;
+}
+
+.save-btn {
+  --background: #01b1ff;
+}
+
+.input-sec-box {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.pen-icon {
+  font-size: 16px;
+}
+
+/**************************
+        
+        Active Chip 
+
+***************************/
+
+.active-chip {
+  background: #29b966;
+  color: #ffffff;
+  margin-left: 5px;
+  font-size: 15px;
+}
+
+.mycheck {
+  position: absolute;
+  right: 1rem;
+}
+
+ion-select::part(icon) {
+  display: none !important;
+}
+
+ion-input {
+    border-bottom: 1px solid #cecece;
+}

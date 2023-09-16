@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon
+      slot="start"
+      name="chevron-back-outline"
+      style="margin-left: 10px"
+      (click)="backBtn()"
+    ></ion-icon>
+    <ion-title>Contact Us</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="img-set">
+    <img src="assets/img/contact.png" height="100" />
+  </div>
+  <label class="lav">Please describe your problem:</label>
+  <div class="lav">
+    <textarea rows="5" [(ngModel)]="description" placeholder="Write your query here..."></textarea>
+    <ion-button expand="block" class="otp-btn" [disabled]="!description" (click)="addsupport()">SEND</ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon (click)="backBtn()" class="back-btn" slot="start" name="chevron-back-outline"></ion-icon>
+    <ion-title>Subscription Fee</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <p class="pay-head">Payment Details</p>
+
+  <!-- <ion-item lines="none" style="text-align: left">
+    <ion-label>Trasaction ID</ion-label>
+    <p *ngIf="merchant.registration_payment">{{merchant.registration_payment.id}}</p>
+  </ion-item> -->
+
+  <ion-item lines="none" style="text-align: left">
+    <ion-label>Date</ion-label>
+    <p>{{paydate | date: 'short'}}</p>
+  </ion-item>
+
+  <ion-item lines="none" style="text-align: left">
+    <ion-label>Name</ion-label>
+    <p>{{name}}</p>
+  </ion-item>
+
+  <ion-item lines="none" style="text-align: left">
+    <ion-label>Amount</ion-label>
+    <p>Rs.{{due_amount}}</p>
+  </ion-item>
+
+
+  <div style="margin: 3rem 1.5rem">
+    <ion-button class="save-btn" size="block" (click)="pay()">PAY NOW
+    </ion-button>
+  </div>
+</ion-content>

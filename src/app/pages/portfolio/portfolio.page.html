@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center">My Portfolio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="service_id" style="padding: 5px" lines="none">
+    <ion-item class="service-box" lines="none">
+      <ion-label position="floating">Select Service</ion-label>
+      <ion-select interface="action-sheet" [(ngModel)]="service_id" (ionChange)="getPortfolio()">
+        <ion-select-option *ngFor="let item of service_list" value="{{item.service_id}}">
+          {{item.service_subcategory[0].subcategory_name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <div *ngIf="service_id">
+      <ion-card-title class="title-hero"> Album </ion-card-title>
+
+      <ion-row>
+        <ion-col size="3">
+          <div *ngIf="!album[0]" class="upload-box" (click)="uploadimg()">
+            <ion-icon class="plus-btn" name="add"></ion-icon>
+          </div>
+          <div *ngIf="album[0]" class="upload-box">
+            <ion-icon name="trash" (click)="removePortfolioImage(0)" class="imgtrash" style="position: absolute">
+            </ion-icon>
+            <img class="thumbimg" src="{{this.commonservice.serviceurl}}merchant/{{album[0]}}" />
+          </div>
+        </ion-col>
+        <ion-col size="3">
+          <div *ngIf="!album[1]" class="upload-box" (click)="uploadimg()">
+            <ion-icon class="plus-btn" name="add"></ion-icon>
+          </div>
+          <div *ngIf="album[1]" class="upload-box">
+            <ion-icon name="trash" (click)="removePortfolioImage(1)" class="imgtrash" style="position: absolute">
+            </ion-icon>
+            <img class="thumbimg" src="{{this.commonservice.serviceurl}}merchant/{{album[1]}}" />
+          </div>
+        </ion-col>
+        <ion-col size="3">
+          <div *ngIf="!album[2]" class="upload-box" (click)="uploadimg()">
+            <ion-icon class="plus-btn" name="add"></ion-icon>
+          </div>
+          <div *ngIf="album[2]" class="upload-box">
+            <ion-icon name="trash" (click)="removePortfolioImage(2)" class="imgtrash" style="position: absolute">
+            </ion-icon>
+            <img class="thumbimg" src="{{this.commonservice.serviceurl}}merchant/{{album[2]}}" />
+          </div>
+        </ion-col>
+        <ion-col size="3">
+          <div *ngIf="!album[3]" class="upload-box" (click)="uploadimg()">
+            <ion-icon class="plus-btn" name="add"></ion-icon>
+          </div>
+          <div *ngIf="album[3]" class="upload-box">
+            <ion-icon name="trash" (click)="removePortfolioImage(3)" class="imgtrash" style="position: absolute">
+            </ion-icon>
+            <img class="thumbimg" src="{{this.commonservice.serviceurl}}merchant/{{album[3]}}" />
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-card-title class="title-hero"> Video Gallery </ion-card-title>
+
+      <ion-row>
+        <ion-col size="3">
+          <div *ngIf="!vediolink[0]" class="upload-box" (click)="addvediolink()">
+            <ion-icon class="plus-btn" name="add"></ion-icon>
+          </div>
+
+          <div *ngIf="vediolink[0]" class="upload-box">
+            <ion-icon name="trash" (click)="remove_vedio(0)" class="imgtrash" style="position: absolute"></ion-icon>
+            <img class="thumbimg" src="{{youtube_thumb(vediolink[0])}}" />
+          </div>
+        </ion-col>
+        <ion-col size="3">
+          <div *ngIf="!vediolink[1]" class="upload-box" (click)="addvediolink()">
+            <ion-icon class="plus-btn" name="add"></ion-icon>
+          </div>
+
+          <div *ngIf="vediolink[1]" class="upload-box">
+            <ion-icon name="trash" (click)="remove_vedio(1)" class="imgtrash" style="position: absolute"></ion-icon>
+            <img class="thumbimg" src="{{youtube_thumb(vediolink[1])}}" />
+          </div>
+        </ion-col>
+        <ion-col size="3">
+          <div *ngIf="!vediolink[2]" class="upload-box" (click)="addvediolink()">
+            <ion-icon class="plus-btn" name="add"></ion-icon>
+          </div>
+
+          <div *ngIf="vediolink[2]" class="upload-box">
+            <ion-icon name="trash" (click)="remove_vedio(2)" class="imgtrash" style="position: absolute"></ion-icon>
+            <img class="thumbimg" src="{{youtube_thumb(vediolink[2])}}" />
+          </div>
+        </ion-col>
+        <ion-col size="3">
+          <div *ngIf="!vediolink[3]" class="upload-box" (click)="addvediolink()">
+            <ion-icon class="plus-btn" name="add"></ion-icon>
+          </div>
+
+          <div *ngIf="vediolink[3]" class="upload-box">
+            <ion-icon name="trash" (click)="remove_vedio(3)" class="imgtrash" style="position: absolute"></ion-icon>
+
+            <img class="thumbimg" src="{{youtube_thumb(vediolink[3])}}" />
+          </div>
+        </ion-col>
+      </ion-row>
+      <p class="link-info">Paste your video link here.</p>
+
+      <p *ngIf="astatus" class="link-info" style="color: green;margin-top: 10px;font-size: 18px;">
+        <ion-icon name="checkmark-circle-outline"></ion-icon><br>Approved
+      </p>
+      <ion-button expand="block" class="otp-btn" *ngIf="!astatus"
+        [disabled]="album.length == 0 && vediolink.length == 0" (click)="approvalMessage(portfolio_id)">Submit For
+        Approvel</ion-button>
+    </div>
+  </ion-card>
+
+  <div *ngIf="!service_id" style="text-align: center">
+    <img class="no-book-img" src="assets/img/no-camera.png" />
+    <h6 class="more-info-text">No services to set portfolio.</h6>
+  </div>
+</ion-content>

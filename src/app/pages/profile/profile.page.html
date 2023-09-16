@@ -1,0 +1,199 @@
+<!-- <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-icon slot="start" class="back-btn" name="chevron-back-outline" (click)="backBtn()"></ion-icon>
+      <ion-title style="text-align: center;">GST Details</ion-title>
+    </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <div style="padding: 2px">
+    <ion-card>
+      <ion-item lines="none" class="pro-top">
+        <ion-avatar style="margin: 0; height: 3.5rem;
+        width: 3.5rem;" slot="start">
+          <ion-icon *ngIf="!merchantDetails.image" class="pro-img" name="person-circle-outline"></ion-icon>
+          <img *ngIf="merchantDetails.image"
+            src="{{this.commonservice.serviceurl}}merchant/{{merchantDetails.image}}" />
+
+          <!-- <ion-icon class="pro-img" name="person-circle"></ion-icon> -->
+        </ion-avatar>
+        <ion-label>
+          <h3 class="name-section">
+            Hello, <span class="mer-name">{{name}}</span>
+          </h3>
+          <p class="more-info">Merchant Id : {{merchantDetails.m_id}}</p>
+        </ion-label>
+      </ion-item>
+      <!-- <div style="text-align: center; margin-top: -12px;">
+        <p class="ref-code"> Referral Code : <span class="code-ref">{{ref_code}}</span></p>
+      </div> -->
+    </ion-card>
+
+    <!-- <ion-row>
+      <ion-col size="6">
+        <ion-chip class="ref-chip-left">
+          <ion-icon class="icon-money" name="analytics-outline"></ion-icon>
+          <ion-label class="chip-text">Referral Amount : 55</ion-label>
+        </ion-chip>
+      </ion-col>
+      <ion-col size="6">
+        <ion-chip class="ref-chip-right">
+          <ion-icon class="icon-money" name="wallet-outline"></ion-icon>
+          <ion-label class="chip-text">Shoot Money : 2500</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row> -->
+
+    <div style="margin-top: 5px">
+      <ion-card (click)="toGeneralDetails()">
+        <ion-row>
+          <ion-col size="2">
+            <ion-icon class="profile-list-tab" name="person"></ion-icon>
+          </ion-col>
+          <ion-col size="10">
+            <h6 class="list-text">General Details</h6>
+            <p style="line-height: 0.1px; font-size: 10px">
+              Manage Your General Details
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+      <!-- <ion-card>
+        <ion-item (click)="toGeneralDetails()" class="list-sec" lines="none">
+          <ion-icon class="list-icon" slot="start" name="person"></ion-icon>
+          <p class="list-text">General Details</p>
+           <ion-icon slot="end" name="chevron-forward-outline"></ion-icon> 
+        </ion-item>
+      </ion-card> -->
+
+      <ion-card (click)="toreportDetails()">
+        <ion-row>
+          <ion-col size="2">
+            <ion-icon class="profile-list-tab" name="stats-chart-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="10">
+            <h6 class="list-text">Reports</h6>
+            <p style="line-height: 0.1px; font-size: 10px">
+              View your detailed report analytics.
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+      <!----------------------- Asked To Comment GST Page------------------------->
+
+      <!-- <ion-card (click)="togstDetails()">
+        <ion-row>
+          <ion-col size="2">
+            <ion-icon class="profile-list-tab" name="reader"></ion-icon>
+          </ion-col>
+          <ion-col size="10">
+            <h6 class="list-text">GST</h6>
+            <p style="line-height: 0.1px; font-size: 10px;">View your GST Details.</p>
+          </ion-col>
+        </ion-row>
+      </ion-card> -->
+
+      <ion-card>
+        <ion-row>
+          <ion-col size="2">
+            <ion-icon class="profile-list-tab" name="gift-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="8">
+            <h6 class="list-text">Invite friends</h6>
+            <p style="line-height: 0.1px; font-size: 10px">
+              Share your code <span class="ref-doce"> {{ref_code}} </span>
+              <ion-icon (click)="copyCode()" name="copy-outline"></ion-icon>
+            </p>
+          </ion-col>
+          <ion-col size="2">
+            <p class="sgare-txt" (click)="share()">
+              <ion-icon name="share-social-outline"></ion-icon>
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+      <!-- <ion-card>
+        <ion-item (click)="togstDetails()" class="list-sec" lines="none">
+          <ion-icon class="list-icon" slot="start" name="reader"></ion-icon>
+          <p class="list-text">GST</p>
+          <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+        </ion-item>
+      </ion-card> -->
+
+      <ion-card>
+        <ion-row>
+          <ion-col size="2">
+            <ion-icon class="profile-list-tab" name="star"></ion-icon>
+          </ion-col>
+          <ion-col size="10">
+            <h6 class="list-text">Rate This App</h6>
+            <p style="line-height: 0.1px; font-size: 10px">
+              Rate app on AppStore.
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+      <!-- <ion-card>
+        <ion-item class="list-sec" lines="none">
+          <ion-icon class="list-icon" slot="start" name="star"></ion-icon>
+          <p class="list-text">Rate This App</p>
+          <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+        </ion-item>
+      </ion-card> -->
+
+      <ion-card (click)="toAboutPage()">
+        <ion-row>
+          <ion-col size="2">
+            <ion-icon class="profile-list-tab" name="information"></ion-icon>
+          </ion-col>
+          <ion-col size="10">
+            <h6 class="list-text">About Us</h6>
+            <p style="line-height: 0.1px; font-size: 10px">
+              Who we are and what we do.
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+      <ion-card (click)="contactus()">
+        <ion-row>
+          <ion-col size="2">
+            <ion-icon class="profile-list-tab" name="mail"></ion-icon>
+          </ion-col>
+          <ion-col size="10">
+            <h6 class="list-text">Contact Us</h6>
+            <p style="line-height: 0.1px; font-size: 10px">
+              Contact admin for any request.
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+      <ion-card (click)="logout()">
+        <ion-row>
+          <ion-col size="2">
+            <ion-icon class="profile-list-tab" name="log-out"></ion-icon>
+          </ion-col>
+          <ion-col size="10">
+            <h6 class="list-text">Log Out</h6>
+            <p style="line-height: 0.1px; font-size: 10px">
+              Logout from the app.
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+      <!-- <ion-card>
+        <ion-item class="list-sec" lines="none">
+          <ion-icon class="list-icon" slot="start" name="log-out"></ion-icon>
+          <p class="list-text">Log Out</p>
+          <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+        </ion-item>
+      </ion-card> -->
+    </div>
+  </div>
+</ion-content>

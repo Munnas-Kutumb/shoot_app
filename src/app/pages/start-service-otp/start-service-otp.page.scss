@@ -1,0 +1,165 @@
+/*****************OTP SCREEN*********************/
+
+
+.cancel-btn {
+
+    padding: 18px;
+    font-size: 30px;
+  }
+  
+  .enter-otp-header {
+  
+    text-align: center;
+    margin-top: 35px;    
+  }
+  
+  .forgot-img {
+  
+    height: 145px;
+    width: 145px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 45px;
+  }
+  
+  .cancel-btn-otp {
+  
+    float: right;
+    width: 7.5rem;
+    height: 2.5rem;
+  }
+  
+  .reset-btn-otp {
+  
+    float: left;
+    width: 7.5rem;
+    height: 2.5rem;
+  }
+  
+  .enter-otp-subheader {
+  
+    text-align: center;
+    margin-top: 35px;
+  }
+  
+  .enter-otp-box {
+  
+    padding: 15px;
+  }
+  
+  .hero-otp-verify {
+  
+    padding: 15px;
+  }
+  
+  .user-mobile-number {
+  
+    color:#01b1ff;
+    font-weight: 700;
+  }
+  
+  .msg-img {
+  
+    width: 10rem;
+    height: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 45px;
+  }
+  
+  ion-item{
+    padding-left: 5px;
+    text-align: center;
+  }
+  
+  .otpinput ion-input{
+    display:inline-block;
+    width:50px;
+    height:50px;
+    margin:10px;
+    --background:#e1e1e1;
+    --padding-start:7px;
+    font-size: 2rem;
+  }
+  
+  .invalid-otp {
+  
+    color: #E71C23;
+    text-align: center;
+    margin-top: 25px;
+  }
+  
+  .new-pass-hero {
+  
+    padding: 39px;
+    margin-bottom: 25px;
+    font-size: 40px;
+    font-weight: 600;
+  }
+  
+  .new-pass-input {
+  
+    margin: 15px;
+    margin-bottom: 45px;
+  }
+  
+  .submit-btn {
+    margin-top: 10px;
+    width: 230px;
+  }
+  
+  .resend-text {
+  
+   text-align: center;
+   color: #01b1ff;
+   font-weight: 600;
+  }
+
+  .btn-div {
+
+    margin: 35px;
+    
+  }
+
+  .input-mob-ar {
+
+    text-align: left;
+    color: #2C3335;
+    font-weight: 600;
+
+    --background-focused: transparent;
+
+  }
+
+  .ion-label {
+
+    text-align: left;
+    font-weight: 600;
+    color: #77787B;
+  }
+
+  .otp-btn {
+
+    --background :  #01B1FF;
+  }
+
+  .counter-30 {
+
+    text-align: center;
+  }
+
+  .hero-text {
+
+    text-align: center;
+    font-size: 18px;
+    margin-top: 3rem;
+  }
+
+  .sub-hero-text {
+
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 25px;
+  }

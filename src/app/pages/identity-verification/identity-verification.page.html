@@ -1,0 +1,109 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-icon (click)="backBtn()" class="back-btn" slot="start" name="chevron-back-outline"></ion-icon>
+    <ion-title style="font-size: 17px;">Onboard Documents</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p class="hero-label">We would like to have following details from you.</p>
+
+  <ion-item lines="none">
+    <p>PAN (Identity Proof)</p>
+  </ion-item>
+
+  <ion-row style="margin: 10px 10px">
+    <ion-col style="text-align: center" size="6">
+      <div *ngIf="!pan_card_image" class="upload-box" (click)="uploadimg('pan')">
+        <ion-icon class="plus-btn" name="add"></ion-icon>
+        <p class="upload-text" id="filebox">Upload PAN</p>
+      </div>
+      <img class="upload-box" *ngIf="pan_card_image"
+        src="{{this.commonservice.serviceurl}}merchant/{{pan_card_image}}" />
+    </ion-col>
+    <ion-col style="text-align: center" size="6">
+      <!-- nothing -->
+    </ion-col>
+  </ion-row>
+
+  <ion-item style="margin: 0px 10px" class="inp-item">
+    <ion-label position="stacked"> Enter PAN Number</ion-label>
+    <ion-input class="pan" type="text" [(ngModel)]="pan_card_number" (keyup)="validPan()"
+      onkeypress='return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122|| event.charCode >= 48 && event.charCode <= 57 '
+      onKeyPress="if(this.value.length==10) return false;" maxlength="10"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <p>Aadhar (Address Proof)</p>
+  </ion-item>
+
+  <ion-row style="margin: 10px 10px">
+    <ion-col style="text-align: center" (click)="uploadimg('adhar_front')">
+      <div *ngIf="!aadhar_card_image[0]" class="upload-box">
+        <ion-icon class="plus-btn" name="add"></ion-icon>
+        <p class="upload-text">Front Side</p>
+      </div>
+      <img class="upload-box" *ngIf="aadhar_card_image[0]"
+        src="{{this.commonservice.serviceurl}}merchant/{{aadhar_card_image[0]}}" />
+    </ion-col>
+    <ion-col style="text-align: center" (click)="uploadimg('adhar_back')">
+      <div *ngIf="!aadhar_card_image[1]" class="upload-box">
+        <ion-icon class="plus-btn" name="add"></ion-icon>
+        <p class="upload-text">Back Side</p>
+      </div>
+      <img class="upload-box" *ngIf="aadhar_card_image[1]"
+        src="{{this.commonservice.serviceurl}}merchant/{{aadhar_card_image[1]}}" />
+    </ion-col>
+  </ion-row>
+
+  <ion-item style="margin: 0px 10px" class="inp-item">
+    <ion-label position="stacked"> Enter Aadhar Number</ion-label>
+    <ion-input type="number" [(ngModel)]="aadhar_card_number" (keyup)="validAadhar()"
+      onKeyPress="if(this.value.length==12) return false;"></ion-input>
+
+    <!-- <span *ngIf="aadar_valid" style="color: red">Invalid aadhar number!</span> -->
+  </ion-item>
+
+  <div style="margin: 0px 15px">
+    <p style="margin-bottom: 15px">Personal Details</p>
+
+    <ion-item>
+      <ion-label position="stacked">Full Name (As Mentioned in Documents)</ion-label>
+      <ion-input type="text" [(ngModel)]="fullName" (keyup)="titlecase($event)"></ion-input>
+    </ion-item>
+  </div>
+
+  <div style="margin: 0px 15px">
+    <h6>Address</h6>
+
+    <ion-item>
+      <ion-label position="stacked"> Current Address</ion-label>
+      <ion-textarea [(ngModel)]="current_address" [autoGrow]="true"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked"> Permanent Address</ion-label>
+      <ion-textarea [autoGrow]="true" [(ngModel)]="permanent_address"></ion-textarea>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-checkbox (ionChange)="onChange($event)" [(ngModel)]="check" style="padding: 1px"></ion-checkbox>
+      <ion-label style="margin-left: 5px; font-size: 12px">Same as Current Address</ion-label>
+    </ion-item>
+  </div>
+
+  <!-- <div style="margin: 0px 15px">
+    <h6>Declaration</h6>
+
+    <ion-item lines="none">
+      <ion-checkbox
+        slot="start"
+        (ionChange)="onChange($event)"
+        [(ngModel)]="check"
+      ></ion-checkbox>
+      <p>I agree with Terms and condition</p>
+    </ion-item>
+  </div> -->
+
+  <ion-button class="submit-btn" size="block" (click)="submitDetails()">Submit</ion-button>
+</ion-content>

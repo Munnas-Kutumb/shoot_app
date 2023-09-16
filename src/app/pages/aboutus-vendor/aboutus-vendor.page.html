@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon (click)="backBtn()" class="back-btn" slot="start" name="chevron-back-outline"></ion-icon>
+    <ion-title>About us</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="img-set">
+    <img src="assets/img/Shoot Logo2.png" height="100" /><br>
+    <img style="max-width: 47%;" src="assets/img/Shoot Logo1.png" />
+  </div>
+
+  <div class="about-text">
+    <h5 class="sec-head">Capturing Moments Creating Art</h5><br>
+    <span>
+      Our days are shaped by moments; joyful moments, big important life achievements, but also the ordinary, everyday
+      moments. Anything could be special when you do it with the people closest to you.<br> But sometimes, these moments
+      pass
+      you by.That’s why we’re here, to capture every moment, from the little ones to the big ones. We connect you to
+      tens
+      of thousands of passionate photographers.
+    </span>
+  </div>
+
+  <ion-item (click)="privacy()">
+    <ion-icon slot="start" name="shield-outline"></ion-icon>
+    <p>Privacy Policy</p>
+  </ion-item>
+
+
+  <ion-item (click)="terms()">
+    <ion-icon slot="start" name="document-text-outline"></ion-icon>
+    <p>Terms & Conditions</p>
+  </ion-item>
+
+</ion-content>

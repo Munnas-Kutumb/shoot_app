@@ -1,0 +1,78 @@
+.save-btn {
+  margin: 0px 15px;
+  --background: #ff4600;
+}
+
+.back-btn {
+  margin-left: 10px;
+}
+
+.info-bt {
+  text-align: center;
+  margin: 35px 15px;
+}
+
+ion-input {
+  border-bottom: 1px solid #ccc;
+}
+
+.chip {
+  --background: #ff4600;
+  color: white;
+}
+
+.mydate {
+  font-size: 0.8rem;
+  color: #919191;
+  border-radius: 5px;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  padding: 0;
+}
+
+ion-input {
+  border-bottom: 1px solid #ccc;
+}
+// new
+.chip {
+  background-color: #ff4600;
+  color: white;
+  height: 1.6rem;
+}
+.mydate {
+  font-size: 0.8rem;
+  color: #919191;
+  border-radius: 5px;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  padding: 0;
+  background-color: cornsilk;
+}
+
+.activedate {
+  font-size: 0.8rem;
+    color: #cccccc;
+    border-radius: 5px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+    cursor: not-allowed;
+    border: 1px solid #cccccc;
+    background-color: #fff;
+}
+
+.selecteddate{
+  font-size: 0.8rem;
+  color: #8bc34a;
+  border-radius: 5px;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  padding: 0;
+  border: 2px solid #8bc34a;
+  cursor: pointer;
+  background-color: #ffffff;
+}

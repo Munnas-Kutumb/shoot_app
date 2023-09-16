@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon slot="start" name="chevron-back-outline" class="back-btn" (click)="backBtn()"></ion-icon>
+    <ion-title>Services Category</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row style="margin-top: 25px;">
+    <ion-col size="4" style="text-align: center;" (click)="serviceClicked(c._id,c)"
+      *ngFor="let c of categories; let i=index;">
+      <img src='{{baseUrl}}category/{{c.image}}' class="icon-img"
+        [ngClass]="{ selected: selected_cat == c._id || selected_cat == c.category_name}">
+      <p style="font-size: 0.8rem;">{{c.category_name}}</p>
+    </ion-col>
+  </ion-row>
+  <!-- 
+  <div *ngFor="let s of subcategories; let i = index;">
+    <ion-item lines="none" class="list-sec" (click)="toServiceDetails(s)" class="round{{i+1}}"> -->
+  <!-- <div class="round{{i+1}}" [ngStyle]="{'background': s.color_code }">// -->
+  <!-- <h5>{{s.subcategory_name}}</h5>
+      <ion-icon [ngStyle]="{background : s.color_code }" slot="end" name="chevron-forward-outline"
+        style="font-size: 18px;"></ion-icon>
+    </ion-item>
+  </div>  -->
+  <div *ngFor="let s of subcategories; let i = index;">
+    <ion-card class="round{{i+1}}" (click)="toServiceDetails(s)" [ngStyle]="{'background': s.color_code }">
+      <img *ngIf="!s.image" class="img-sec" src="assets/img/no-img.png" />
+      <img *ngIf="s.image" class="img-sec" src="{{baseUrl}}subcategory/{{s.image}}" />
+      <p class="card-label">
+        {{s.subcategory_name}}
+      </p>
+      <p class="list-prime">
+        {{s.tagline}}
+      </p>
+    </ion-card>
+  </div>
+
+</ion-content>

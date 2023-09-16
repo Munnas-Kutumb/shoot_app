@@ -1,0 +1,94 @@
+.hero-segment {
+
+    font-size: 12px;
+}
+
+// .segment-bar {
+
+//     padding: 5px;
+
+//     ion-segment-button {
+//       --background-checked: var(--ion-color-primary);
+//       --color-checked: var(--ion-color-primary-contrast);
+//     }
+//   }
+
+.label-text {
+    font-weight: 700;
+    padding: 10px;
+    margin-left: 5px;
+}
+
+.term-text {
+
+    margin-left: 10px;
+    font-size: 14px;
+    color: #696969;
+    margin-top: -2px;
+    border-bottom: 1px solid black;
+}
+
+.call-now-btn {
+
+    width: 100%;
+    padding: 3px;
+    margin-right: 10px;
+    --background: #FF4600;
+}
+
+.cancel-btn {
+
+    margin: 20px 15px;
+}
+
+// ion-segment-button {
+    
+//     --background-checked: var(--ion-color-tertiary);
+//     --color-checked: var(--ion-color-tertiary-contrast);
+//   }
+
+.tag-data {
+
+    font-size: 14px;
+}
+
+.service-list {
+
+    text-align: left;
+}
+
+.back-btn {
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
+ion-segment-button {
+         --checked: #ff4600;
+          --color-checked: #ff4600;
+}
+
+ion-item{
+    --background: transparent;
+    margin: 5px 15px;
+    --padding-start: 0;
+}
+
+.star{
+    color: #FF4600;
+}
+
+.d-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #696969;
+    margin-left: 5px;
+}
+
+.d_txt{
+    font-size: 13px; 
+    color: #696969;
+     margin-right: 5px;
+}
+.s_txt{
+    font-size: 13px;
+}

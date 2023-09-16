@@ -1,0 +1,39 @@
+<ion-content>
+  <ion-item lines="none" style="margin-top: 10px;">
+    <ion-icon class="cross-btn" slot="end" name="close-outline" (click)="closePage()"></ion-icon>
+  </ion-item>
+
+  <h1 class="hero-text">ENTER OTP TO START SERVICE</h1>
+
+  <p class="sub-hero-text">
+    OTP is sent to customer Registred Mobile Number!
+  </p>
+
+  <div class="login-box">
+    <form #otpForm="ngForm" novalidate>
+      <ion-row style="text-align: center; margin-bottom: 25px" class="animated fadeInUp">
+        <ion-col class="otpinput">
+          <ion-input [(ngModel)]="myotp1" name="otp1" type="tel" #otp1 required maxLength="1"
+            (keyup)="otpController($event,otp2,'')">
+          </ion-input>
+          <ion-input [(ngModel)]="myotp2" name="otp2" type="tel" #otp2 required maxLength="1"
+            (keyup)="otpController($event,otp3,otp1)">
+          </ion-input>
+          <ion-input [(ngModel)]="myotp3" name="otp3" type="tel" #otp3 required maxLength="1"
+            (keyup)="otpController($event,otp4,otp2)">
+          </ion-input>
+          <ion-input [(ngModel)]="myotp4" name="otp4" type="tel" #otp4 required maxLength="1"
+            (keyup)="otpController($event,'',otp3)">
+          </ion-input>
+        </ion-col>
+      </ion-row>
+    </form>
+
+    <div class="btn-div">
+      <ion-button expand="block" class="otp-btn" [disabled]="!(myotp1 && myotp2 && myotp3 && myotp4)"
+        (click)="acceptBooking()">Start</ion-button>
+    </div>
+
+    <p class="resend-text" (click)="resendOtp()">Not Received OTP</p>
+  </div>
+</ion-content>

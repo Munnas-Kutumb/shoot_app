@@ -1,0 +1,66 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-icon (click)="backBtn()" class="back-btn" slot="start" name="chevron-back-outline"></ion-icon>
+    <ion-title>Market Yourself</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- paid card -->
+  <ion-label *ngIf="merchant.subscription_details" class="pln-hd">My Plans</ion-label>
+  <ion-card *ngIf="merchant.subscription_details" style="background: linear-gradient(45deg, #dedede, transparent);">
+    <ion-card-header>
+      <ion-card-title>
+        {{merchant.subscription_details.name}}
+        <span style="float: right; font-size: 1rem;">{{merchant.subscription_details.sub_date |
+          date:'dd/MM/yyyy'}}</span>
+
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{merchant.subscription_details.description}}</p>
+      <p style="text-align: end;">
+        <ion-button fill="outline" size="small">Purchased</ion-button>
+      </p>
+      <p>
+        Duration: {{merchant.subscription_details.duration}} days<span style="float: right;"> ₹ {{
+          merchant.subscription_details.total_amount
+          }}  &nbsp;
+</span></p>
+    </ion-card-content>
+  </ion-card>
+  <br>
+  <!--  -->
+
+  <!-- <ion-card *ngFor="let item of subscription" style="background: linear-gradient(45deg, #dedede, transparent);"> -->
+  <ion-label *ngIf="subscription.length" class="pln-hd">Subscription Plans</ion-label>
+  <ion-card *ngFor="let item of subscription,let i = index;">
+    <div class="round{{i+1}}">
+      <ion-card-header>
+        <ion-card-title>
+          {{item.name}}
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>{{item.description}}</p>
+        <p style="text-align: end;">
+          <ion-button fill="outline" (click)="buySubscription(item)" size="small">Buy</ion-button>
+        </p>
+        <p>
+          Duration: {{item.duration}} days<span style="float: right;"> ₹ {{ item.ammount -
+            (item.ammount *
+            item.discount)/100 }} <del>{{item.ammount}}</del>&nbsp; <span style="color: green;">{{item.discount}}%
+              OFF</span></span></p>
+      </ion-card-content>
+    </div>
+  </ion-card>
+
+
+  <div *ngIf="subscription.length == 0" style="text-align: center">
+    <img class="no-book-img" src="assets/img/no-camera.png" />
+    <h6 class="more-info-text">No Subscriptions Available yet.</h6>
+  </div>
+
+</ion-content>

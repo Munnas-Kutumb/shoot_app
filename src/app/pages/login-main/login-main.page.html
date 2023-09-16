@@ -1,0 +1,83 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-icon style="margin: 10px; font-size: 2rem" slot="end" *ngIf="view == 'otp'" name="close-outline"
+      (click)="close()"></ion-icon>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="view == 'login'">
+
+    <div class="logo_ico" style="text-align: center; margin-top: 3rem;">
+      <img style="max-width: 47%;" src="assets/img/Shoot Logo2.png" /><br>
+      <img style="max-width: 47%;" src="assets/img/Shoot Logo1.png" />
+    </div>
+    <!-- 
+  <div style="text-align: center;">
+    <img src="assets/img/commiso2.png" />
+  </div> -->
+
+    <div>
+      <ion-item style="margin: 0px 30px">
+        <ion-label position="stacked" class="ion-label">Phone Number</ion-label>
+        <ion-input class="input-mob-ar" [(ngModel)]="phone" type="number" maxlength="10"
+        onKeyPress="if(this.value.length==10) return false;">+91&nbsp;</ion-input>
+      </ion-item>
+
+      <ion-button class="login-btn" expand="block" (click)="login()">Continue</ion-button>
+
+
+      <div>
+        <div style="text-align: center">
+          <h6 style="margin-top: 105px">Looking for Bussiness Account ?</h6>
+          <p class="click-here" (click)="regVendorPage()">Click Here</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="view == 'otp'">
+    <h1 class="hero-text">Enter Verification Code</h1>
+
+    <p class="sub-hero-text">
+      Enter the 4 digit OTP sent to your mobile number.
+    </p>
+
+    <div class="login-box">
+      <form #otpForm="ngForm" novalidate>
+        <ion-row style="text-align: center; margin-bottom: 25px" class="animated fadeInUp">
+          <ion-col class="otpinput">
+            <ion-input [(ngModel)]="myotp1" name="otp1" type="tel" #otp1 required maxLength="1"
+              (keyup)="otpController($event,otp2,'')">
+            </ion-input>
+            <ion-input [(ngModel)]="myotp2" name="otp2" type="tel" #otp2 required maxLength="1"
+              (keyup)="otpController($event,otp3,otp1)">
+            </ion-input>
+            <ion-input [(ngModel)]="myotp3" name="otp3" type="tel" #otp3 required maxLength="1"
+              (keyup)="otpController($event,otp4,otp2)">
+            </ion-input>
+            <ion-input [(ngModel)]="myotp4" name="otp4" type="tel" #otp4 required maxLength="1"
+              (keyup)="otpController($event,'',otp3)">
+            </ion-input>
+          </ion-col>
+        </ion-row>
+      </form>
+
+
+
+      <div class="btn-div">
+        <ion-button expand="block" class="otp-btn" [disabled]="!(myotp1 && myotp2 && myotp3 && myotp4)"
+          (click)="verifyOTP()">Verify And Proceed</ion-button>
+      </div>
+
+      <p class="resend-text" (click)="resendOtp()">RESEND OTP</p>
+
+
+    </div>
+  </div>
+
+
+
+
+</ion-content>

@@ -1,0 +1,66 @@
+.back-btn {
+  font-size: 1.5rem;
+  margin-left: 10px;
+}
+
+.photo {
+  color: #ee6ea5;
+  font-size: 0.7rem;
+  width: 11rem;
+  height: 2rem;
+  --border-color: #ee6ea5;
+  margin: 0 auto;
+  display: block;
+}
+.layer {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  width: 6.5rem;
+  height: 5.5rem;
+}
+
+.card {
+  // position: relative;
+  height: 7rem !important;
+  width: 7rem !important;
+  // position: relative;
+  // top: -18px;
+  // margin-left: 5px;
+  // display: inline-block;
+  // margin-right: -1px;
+}
+
+.card-img {
+  height: 6rem;
+  width: 7.11rem;
+}
+
+.label-txt {
+  display: block;
+  margin-top: 6px;
+  margin-left: 9px;
+  font-size: 1.4rem;
+}
+
+.thumbimg {
+  height: 5rem;
+  width: 100%;
+  margin-top: -19px;
+}
+.playicon {
+  margin: auto;
+  display: block;
+  position: relative;
+  top: 2rem;
+  color: white;
+  opacity: 0.7;
+  font-size: 19px;
+}
+
+.imgcol {
+  float: left;
+  width: 33.33%;
+  padding: 2px;
+}

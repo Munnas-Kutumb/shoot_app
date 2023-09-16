@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>workingArea</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-list>
+      <!-- <ion-item  no-padding class="animated fadeInUp" style=" margin-bottom:10px; --highlight-background: #e2e2e2;">
+        <ion-input placeholder="Preferred working area" class="ion-text-start" [(ngModel)]="workingarea.address" name="address" type="text" id="pic_location" spellcheck="false" autocapitalize="off"
+          required>
+        </ion-input>
+        <ion-icon style="color: #d4d9dd;"  name="search" ></ion-icon>
+      </ion-item> -->
+      <div class="regField_div" style="width: 100%; padding: 10px">
+        <input
+          style="
+            border: 0px;
+            border-bottom: 1px solid gray;
+            width: 100%;
+            height: 31px;
+          "
+          [(ngModel)]="workingarea.address"
+          type="text"
+          class="ion-text-start searchbox"
+          placeholder="Preferred working area"
+          id="pic_location"
+          autocomplete="off"
+          class="regInput"
+        />
+        <ion-icon
+          style="color: #d4d9dd; float: right; margin-top: -25px; width: 34px"
+          name="search"
+        ></ion-icon>
+      </div>
+    </ion-list>
+    <div
+      style="
+        position: static !important;
+        overflow: inherit !important;
+        height: 20rem !important;
+      "
+      #map
+      id="map_canvas"
+    ></div>
+
+    <section class="lngbtn" style="padding-bottom: 20px">
+      <ion-button size="small" fill="outline">Work Radius</ion-button>
+      <ion-button size="small" fill="outline" style="float: right"
+        >5 Kms</ion-button
+      >
+    </section>
+
+    <ion-row style="padding-top: 20px">
+      <ion-col size="12" class="ion-text-center">
+        <ion-text style="font-size: 25px; font-size: 700">Time</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-text-center">
+      <ion-col size="6" (click)="opendatatime(1, 'Set Start Time')">
+        <ion-label class="datecol">Starting Time</ion-label>
+        <br />
+        <ion-text *ngIf="!workingarea.starttime">Select starting time</ion-text>
+        <ion-text>{{workingarea.starttime}}</ion-text>
+        <!-- <ion-datetime  minuteValues="0,30" style="padding: 10px;" placeholder="Select starting date" [(ngModel)]="workingarea.starttime"  displayFormat="h:mm A"></ion-datetime> -->
+      </ion-col>
+      <ion-col size="6" (click)="opendatatime(2, 'Set End Time')">
+        <ion-label class="datecol">End Time</ion-label>
+        <br />
+        <ion-text *ngIf="!workingarea.endtime">Select end time</ion-text>
+        <ion-text>{{workingarea.endtime}}</ion-text>
+        <!-- <ion-datetime minuteValues="0,30" style="padding: 10px;" placeholder="Select end date" [(ngModel)]="workingarea.endtime"  displayFormat="h:mm A"></ion-datetime> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: 10px">
+      <ion-col size="12">
+        <ion-button class="ion-text-capitalize" (click)="next()" expand="block"
+          >Done</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon slot="start" name="chevron-back-outline" class="back-btn" (click)="backBtn()"></ion-icon>
+    <ion-title>{{sub_cat_name}}</ion-title>
+    <ion-icon class="filter-icon" slot="end" name="options-outline" (click)="filterOpen()"></ion-icon>
+  </ion-toolbar>
+
+  <ion-item [hidden]='hidePlaySpeedList'>
+    <ion-select #filterOption [(ngModel)]="ratingFilter" interface="action-sheet" (ionChange)="filterChoice($event.detail.value)">
+      <ion-select-option value="highToLow">High Rating</ion-select-option>
+      <!-- <ion-select-option value="discount">Discount</ion-select-option> -->
+      <!-- <ion-select-option value="featured">Featured</ion-select-option> -->
+      <ion-select-option value="lowTOhigh">Low Rating</ion-select-option>
+      <!-- <ion-select-option value="area">Rating</ion-select-option> -->
+      <!-- <ion-select-option value="rating">Customer Rating</ion-select-option> -->
+    </ion-select>
+  </ion-item>
+</ion-header>
+
+<ion-content style="--background:white;">
+  <img style="margin: auto;display: block;height: 14rem;position: relative; top: 6rem;width: 12rem;"
+    src="assets/img/servicejpg.jpg" *ngIf=' merchants && merchants.length==0'>
+  <!-- <img src="assets/img/baby-img.png" alt="not available"> -->
+
+  <!-- <ion-card (click)="tomProfile(m.merchant_id)" class="cards" *ngFor="let m of merchants"  >
+
+    <ion-row>
+      <ion-col size="4">
+
+        <img src="{{baseUrl}}merchant/{{m.merchants[0].banner_image}}" class="brand-best-photo">
+
+      </ion-col>
+      <ion-col size="8">
+        <ion-row style="margin-left: 10px;">
+          <ion-col size="12">
+            <h6 >{{m.merchants[0].brand_name}}</h6>
+          </ion-col> -->
+  <!-- <ion-col size="2">
+            <ion-icon name="heart" style="color: #ff3508; margin-top: 18px;"></ion-icon>
+          </ion-col> -->
+  <!-- </ion-row>
+        <p class="address-bar" *ngIf="m.merchants[0].address">{{m.merchants[0].address.address}}</p>
+        <p class="ratings-sec">Ratings :
+          <span>
+            <ion-icon name="star" class="fill-star" *ngIf="m.merchants[0].rating >= 1"></ion-icon>
+            <ion-icon name="star" class="fill-star" *ngIf="m.merchants[0].rating >= 2"></ion-icon>
+            <ion-icon name="star" class="fill-star" *ngIf="m.merchants[0].rating >= 3"></ion-icon>
+            <ion-icon name="star" class="fill-star" *ngIf="m.merchants[0].rating >= 4"></ion-icon>
+            <ion-icon name="star" class="fill-star" *ngIf="m.merchants[0].rating == 5"></ion-icon>
+
+            <ion-icon name="star" *ngIf="m.merchants[0].rating <= 4"></ion-icon>
+            <ion-icon name="star" *ngIf="m.merchants[0].rating <= 3"></ion-icon>
+            <ion-icon name="star" *ngIf="m.merchants[0].rating <= 2"></ion-icon>
+            <ion-icon name="star" *ngIf="m.merchants[0].rating <= 1"></ion-icon>
+            <ion-icon name="star" *ngIf="m.merchants[0].rating == 0"></ion-icon>
+          </span>
+        </p>
+        <p class="ratings-sec">
+          Amount :
+          <span style="color:#019031;  margin-left: 5px;">{{m.rate - m.rate*(m.discount/100)}}</span>&nbsp;
+          <span style="text-decoration-line: line-through; color: #E71C23 ;"> {{m.rate}} </span>
+          <span style="color:#26ae60; margin-left: 5px;">({{m.discount}}%)</span>
+        </p>
+      </ion-col>
+    </ion-row>
+
+  </ion-card> -->
+
+  <!-- <h6 style="text-align: center; color: blue;">Load More</h6> -->
+
+
+  <!-- card -->
+  <ion-card (click)="tomProfile(m._id)" *ngFor="let m of merchants">
+    <ion-row class="brow">
+      <ion-col size="4">
+        <img *ngIf="m.banner_image" src="{{baseUrl}}merchant/{{m.banner_image}}" class="brand-image">
+        <img *ngIf="!m.banner_image" src="assets/img/event-camera.png" alt="" class="brand-image">
+      </ion-col>
+      <ion-col size="8" style="margin-left: -6px;">
+        <ion-row >
+          <ion-col size="12">
+            <h6 class="brand-name">{{m.brand_name}}</h6>
+            <!-- <h6  style="margin-top: -5px; font-size: 14px;">{{m.name}}</h6> -->
+          </ion-col>
+        </ion-row>
+        <!-- <p>{{m.name}}</p> -->
+        <p style="margin-top:-11px;">
+          <span>
+            <ion-icon name="star" class="rating-icon"></ion-icon>
+          </span>
+          <!-- <span class="rating" *ngIf="m.merchants[0].rating" >{{m.merchants[0].rating}}</span> -->
+          <span class="rating" *ngIf="!m.rating">3.5</span>
+          <span class="rating" *ngIf="m.rating">{{m.rating}}</span>
+
+
+        </p>
+        <!-- <p class="address"><ion-icon name="location"></ion-icon>{{m.address.address.slice(0,19)}}..</p> -->
+        <p class="address"><ion-icon name="location" style="position: relative; font-size: 13px; top: 1px;"></ion-icon>{{city}}</p>
+
+
+        <!-- <p style="color: gray;font-weight: bolder;margin-left: 12px;">Amount: -->
+        <!-- <p style="margin-left: -1.2rem;;font-size:1rem;margin-top: -8px;">
+          <span style="color:#019031;  margin-left: 5px;font-weight:bold;margin-left:20px; font-size: 0.8rem;">₹{{m.rate
+            - m.rate*(m.discount/100)}}</span>
+          <span
+            style="text-decoration-line: line-through; color: #E71C23 ;font-weight:bold;margin-left:10px;font-size: 0.8rem;">₹{{m.rate}}</span>
+          <span
+            style="color:#26ae60; margin-left: 5px;font-weight:bold;margin-left:10px;font-size: 0.8rem;">({{m.discount}}%)</span>
+        </p> -->
+
+
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+  
+
+</ion-content>

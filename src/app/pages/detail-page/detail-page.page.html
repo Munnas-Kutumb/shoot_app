@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon
+      slot="start"
+      name="chevron-back-outline"
+      class="back-btn"
+      (click)="backBtn()"
+    ></ion-icon>
+    <ion-title>Reports</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row *ngIf="booking_count">
+    <ion-col class="card">
+      <ion-card class="card">
+        <h4 class="counter">{{booking_count.completed_bookings}}</h4>
+        <h6 class="ser-name">Completed Bookings</h6>
+      </ion-card>
+    </ion-col>
+    <ion-col class="card">
+      <ion-card class="card">
+        <h4 class="counter">{{booking_count.cancelled_booking}}</h4>
+        <h6 class="ser-name">Cancelled Bookings</h6>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="card">
+      <ion-card class="card">
+        <h4 class="counter">{{booking_count.services}}</h4>
+        <h6 class="ser-name">Offering Services</h6>
+      </ion-card>
+    </ion-col>
+    <ion-col class="card" *ngIf="total_earning">
+      <ion-card class="card">
+        <h4 class="counter">{{total_earning.total_earning}}</h4>
+        <h6 class="ser-name">Total Earnings</h6>
+      </ion-card>
+    </ion-col>
+    <!-- <ion-col class="card">
+      <ion-card class="card">
+        <h4 class="counter">{{referal_earnings}}</h4>
+        <h6 class="ser-name">Referral Earnings</h6>
+      </ion-card>
+    </ion-col> -->
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="card">
+      <ion-card class="card">
+        <h4 class="counter">{{cancellation_charges}}%</h4>
+        <h6 class="ser-name">Cancellation Charges</h6>
+      </ion-card>
+    </ion-col>
+    <ion-col class="card">
+      <ion-card class="card">
+        <h4 class="counter">{{secure_amount ? secure_amount : 0}}</h4>
+        <h6 class="ser-name">Secure Amount</h6>
+      </ion-card>
+    </ion-col>
+    
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="card">
+      <ion-card class="card">
+        <h4 class="counter">{{shoot_money}}</h4>
+        <h6 class="ser-name">Balance Amount</h6>
+      </ion-card>
+    </ion-col>
+    <ion-col class="card">
+      <ion-card class="card">
+        <h4 class="counter">{{penalty}}</h4>
+        <h6 class="ser-name">Penalty</h6>
+      </ion-card>
+    </ion-col>
+    
+  </ion-row>
+
+  <!-- <ion-row>
+    <ion-col class="card" size="6">
+      <ion-card class="card">
+        <h4 class="counter">{{remaining_count}}</h4>
+        <h6 class="ser-name">Remaining Instant Count</h6>
+      </ion-card>
+    </ion-col>
+  </ion-row> -->
+
+  <!-- <p style="text-align: center">Get All Detailed Stats here</p> -->
+</ion-content>

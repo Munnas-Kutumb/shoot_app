@@ -1,0 +1,316 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon slot="start" class="back-btn" (click)="backBtn()" name="chevron-back-outline"></ion-icon>
+    <!-- <ion-title>Service Request</ion-title> -->
+    <ion-title>{{subCatName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="ion-input" lines="none" style="margin: 15px 10px">
+    <ion-label position="stacked">Select Services</ion-label>
+    <ion-select ok-text="Select" cancel-text="Cancel" value="1" [(ngModel)]="valued"
+      (ionChange)="selectSection($event)">
+      <ion-select-option value="0">Photography</ion-select-option>
+      <ion-select-option value="1">Videography</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <div>
+    <div *ngFor="let item of primeServices">
+      <ion-card>
+        <ion-item lines="none">
+          <ion-label (click)="addOpt(item._id , item.primecategory_name)">{{item.primecategory_name}}</ion-label>
+          <!-- <ion-toggle slot="end"></ion-toggle> -->
+          <ion-checkbox *ngIf="item.service_id" class="mycheck" [checked]="item.chkStatus" (click)="updateStatus(item.service_id, item.chkStatus)"></ion-checkbox>
+        </ion-item>
+      </ion-card>
+
+
+      <ion-card *ngIf="view == item._id" style="margin: 0px 15px">
+        <ion-item *ngIf="valued == 0" class="input-sec-box" lines="none">
+          <ion-label position="stacked">Number of Photos</ion-label>
+          <ion-input [(ngModel)]="numberOfPhotos" type="number"></ion-input>
+        </ion-item>
+
+        <!-- <ion-item *ngIf="valued == 1" class="input-sec-box">
+          <ion-label position="stacked">Duration</ion-label>
+          <ion-datetime displayFormat="h:mm:ss" [(ngModel)]="duration" placeholder="HH:MM:SS"></ion-datetime>
+        </ion-item> -->
+
+        <div *ngIf="valued == 1" style="margin-top: 5px;">
+          <ion-label style="padding: 0 1.3rem; color: #000000; font-size: 0.8rem">Edited Video Duration
+            ({{durationHH}}:{{durationMM}}:{{durationSS}})</ion-label>
+          <ion-row>
+            <ion-col size="3">
+              <ion-item lines="none">
+                <ion-label position="stacked" style="font-size: 0.8rem;">Hours</ion-label>
+                <ion-select ok-text="Select" cancel-text="Cancel" [(ngModel)]="durationHH">
+                  <ion-select-option value="00">00</ion-select-option>
+                  <ion-select-option value="01">01</ion-select-option>
+                  <ion-select-option value="02">02</ion-select-option>
+                  <ion-select-option value="03">03</ion-select-option>
+                  <ion-select-option value="04">04</ion-select-option>
+                  <ion-select-option value="05">05</ion-select-option>
+                  <ion-select-option value="06">06</ion-select-option>
+                  <ion-select-option value="07">07</ion-select-option>
+                  <ion-select-option value="08">08</ion-select-option>
+                  <ion-select-option value="09">09</ion-select-option>
+                  <ion-select-option value="10">10</ion-select-option>
+                  <ion-select-option value="11">11</ion-select-option>
+                  <ion-select-option value="12">12</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col size="1">
+              <h4 style="margin: 0; margin-top: 1.5rem;">:</h4>
+            </ion-col>
+            <ion-col size="3">
+              <ion-item lines="none">
+                <ion-label position="stacked" style="font-size: 0.8rem;">Min</ion-label>
+                <ion-select ok-text="Select" cancel-text="Cancel" [(ngModel)]="durationMM">
+                    <ion-select-option value="00">00</ion-select-option>
+                    <ion-select-option value="01">01</ion-select-option>
+                    <ion-select-option value="02">02</ion-select-option>
+                    <ion-select-option value="03">03</ion-select-option>
+                    <ion-select-option value="04">04</ion-select-option>
+                    <ion-select-option value="05">05</ion-select-option>
+                    <ion-select-option value="06">06</ion-select-option>
+                    <ion-select-option value="07">07</ion-select-option>
+                    <ion-select-option value="08">08</ion-select-option>
+                    <ion-select-option value="09">09</ion-select-option>
+                    <ion-select-option value="10">10</ion-select-option>
+                    <ion-select-option value="11">11</ion-select-option>
+                    <ion-select-option value="12">12</ion-select-option>
+                    <ion-select-option value="13">13</ion-select-option>
+                    <ion-select-option value="14">14</ion-select-option>
+                    <ion-select-option value="15">15</ion-select-option>
+                    <ion-select-option value="16">16</ion-select-option>
+                    <ion-select-option value="17">17</ion-select-option>
+                    <ion-select-option value="18">18</ion-select-option>
+                    <ion-select-option value="19">19</ion-select-option>
+                    <ion-select-option value="20">20</ion-select-option>
+                    <ion-select-option value="21">21</ion-select-option>
+                    <ion-select-option value="22">22</ion-select-option>
+                    <ion-select-option value="23">23</ion-select-option>
+                    <ion-select-option value="24">24</ion-select-option>
+                    <ion-select-option value="25">25</ion-select-option>
+                    <ion-select-option value="26">26</ion-select-option>
+                    <ion-select-option value="27">27</ion-select-option>
+                    <ion-select-option value="28">28</ion-select-option>
+                    <ion-select-option value="29">29</ion-select-option>
+                    <ion-select-option value="30">30</ion-select-option>
+                    <ion-select-option value="31">31</ion-select-option>
+                    <ion-select-option value="32">32</ion-select-option>
+                    <ion-select-option value="33">33</ion-select-option>
+                    <ion-select-option value="34">34</ion-select-option>
+                    <ion-select-option value="35">35</ion-select-option>
+                    <ion-select-option value="36">36</ion-select-option>
+                    <ion-select-option value="37">37</ion-select-option>
+                    <ion-select-option value="38">38</ion-select-option>
+                    <ion-select-option value="39">39</ion-select-option>
+                    <ion-select-option value="40">40</ion-select-option>
+                    <ion-select-option value="41">41</ion-select-option>
+                    <ion-select-option value="42">42</ion-select-option>
+                    <ion-select-option value="43">43</ion-select-option>
+                    <ion-select-option value="44">44</ion-select-option>
+                    <ion-select-option value="45">45</ion-select-option>
+                    <ion-select-option value="46">46</ion-select-option>
+                    <ion-select-option value="47">47</ion-select-option>
+                    <ion-select-option value="48">48</ion-select-option>
+                    <ion-select-option value="49">49</ion-select-option>
+                    <ion-select-option value="50">50</ion-select-option>
+                    <ion-select-option value="51">51</ion-select-option>
+                    <ion-select-option value="52">52</ion-select-option>
+                    <ion-select-option value="53">53</ion-select-option>
+                    <ion-select-option value="54">54</ion-select-option>
+                    <ion-select-option value="55">55</ion-select-option>
+                    <ion-select-option value="56">56</ion-select-option>
+                    <ion-select-option value="57">57</ion-select-option>
+                    <ion-select-option value="58">58</ion-select-option>
+                    <ion-select-option value="59">59</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col size="1">
+              <h4 style="margin: 0; margin-top: 1.5rem;">:</h4>
+            </ion-col>
+            <ion-col size="3">
+              <ion-item lines="none">
+                <ion-label position="stacked" style="font-size: 0.8rem;">Sec</ion-label>
+                <ion-select ok-text="Select" cancel-text="Cancel" [(ngModel)]="durationSS">
+                  <ion-select-option value="00">00</ion-select-option>
+                  <ion-select-option value="01">01</ion-select-option>
+                  <ion-select-option value="02">02</ion-select-option>
+                  <ion-select-option value="03">03</ion-select-option>
+                  <ion-select-option value="04">04</ion-select-option>
+                  <ion-select-option value="05">05</ion-select-option>
+                  <ion-select-option value="06">06</ion-select-option>
+                  <ion-select-option value="07">07</ion-select-option>
+                  <ion-select-option value="08">08</ion-select-option>
+                  <ion-select-option value="09">09</ion-select-option>
+                  <ion-select-option value="10">10</ion-select-option>
+                  <ion-select-option value="11">11</ion-select-option>
+                  <ion-select-option value="12">12</ion-select-option>
+                  <ion-select-option value="13">13</ion-select-option>
+                  <ion-select-option value="14">14</ion-select-option>
+                  <ion-select-option value="15">15</ion-select-option>
+                  <ion-select-option value="16">16</ion-select-option>
+                  <ion-select-option value="17">17</ion-select-option>
+                  <ion-select-option value="18">18</ion-select-option>
+                  <ion-select-option value="19">19</ion-select-option>
+                  <ion-select-option value="20">20</ion-select-option>
+                  <ion-select-option value="21">21</ion-select-option>
+                  <ion-select-option value="22">22</ion-select-option>
+                  <ion-select-option value="23">23</ion-select-option>
+                  <ion-select-option value="24">24</ion-select-option>
+                  <ion-select-option value="25">25</ion-select-option>
+                  <ion-select-option value="26">26</ion-select-option>
+                  <ion-select-option value="27">27</ion-select-option>
+                  <ion-select-option value="28">28</ion-select-option>
+                  <ion-select-option value="29">29</ion-select-option>
+                  <ion-select-option value="30">30</ion-select-option>
+                  <ion-select-option value="31">31</ion-select-option>
+                  <ion-select-option value="32">32</ion-select-option>
+                  <ion-select-option value="33">33</ion-select-option>
+                  <ion-select-option value="34">34</ion-select-option>
+                  <ion-select-option value="35">35</ion-select-option>
+                  <ion-select-option value="36">36</ion-select-option>
+                  <ion-select-option value="37">37</ion-select-option>
+                  <ion-select-option value="38">38</ion-select-option>
+                  <ion-select-option value="39">39</ion-select-option>
+                  <ion-select-option value="40">40</ion-select-option>
+                  <ion-select-option value="41">41</ion-select-option>
+                  <ion-select-option value="42">42</ion-select-option>
+                  <ion-select-option value="43">43</ion-select-option>
+                  <ion-select-option value="44">44</ion-select-option>
+                  <ion-select-option value="45">45</ion-select-option>
+                  <ion-select-option value="46">46</ion-select-option>
+                  <ion-select-option value="47">47</ion-select-option>
+                  <ion-select-option value="48">48</ion-select-option>
+                  <ion-select-option value="49">49</ion-select-option>
+                  <ion-select-option value="50">50</ion-select-option>
+                  <ion-select-option value="51">51</ion-select-option>
+                  <ion-select-option value="52">52</ion-select-option>
+                  <ion-select-option value="53">53</ion-select-option>
+                  <ion-select-option value="54">54</ion-select-option>
+                  <ion-select-option value="55">55</ion-select-option>
+                  <ion-select-option value="56">56</ion-select-option>
+                  <ion-select-option value="57">57</ion-select-option>
+                  <ion-select-option value="58">58</ion-select-option>
+                  <ion-select-option value="59">59</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+
+        <!-- <ion-item class="input-sec-box" lines="none"> -->
+        <!-- <ion-label position="stacked">Hours of service per day</ion-label> -->
+        <!-- <ion-input [(ngModel)]="hoursPerDay"></ion-input> -->
+
+        <ion-label style="padding: 0 1.3rem; color: #000000; font-size: 0.8rem">Hours of service per day
+          ({{hoursPerDayHH}}:{{hoursPerDayMM}})</ion-label>
+        <ion-row>
+          <ion-col size="3">
+            <ion-item lines="none">
+              <ion-label position="stacked" style="font-size: 0.8rem;">Hours</ion-label>
+              <ion-select ok-text="Select" cancel-text="Cancel" [(ngModel)]="hoursPerDayHH">
+                <ion-select-option value="00">00</ion-select-option>
+                <ion-select-option value="01">01</ion-select-option>
+                <ion-select-option value="02">02</ion-select-option>
+                <ion-select-option value="03">03</ion-select-option>
+                <ion-select-option value="04">04</ion-select-option>
+                <ion-select-option value="05">05</ion-select-option>
+                <ion-select-option value="06">06</ion-select-option>
+                <ion-select-option value="07">07</ion-select-option>
+                <ion-select-option value="08">08</ion-select-option>
+                <ion-select-option value="09">09</ion-select-option>
+                <ion-select-option value="10">10</ion-select-option>
+                <ion-select-option value="11">11</ion-select-option>
+                <ion-select-option value="12">12</ion-select-option>
+                <ion-select-option value="13">13</ion-select-option>
+                <ion-select-option value="14">14</ion-select-option>
+                <ion-select-option value="15">15</ion-select-option>
+                <ion-select-option value="16">16</ion-select-option>
+                <ion-select-option value="17">17</ion-select-option>
+                <ion-select-option value="18">18</ion-select-option>
+                <ion-select-option value="19">19</ion-select-option>
+                <ion-select-option value="20">20</ion-select-option>
+                <ion-select-option value="21">21</ion-select-option>
+                <ion-select-option value="22">22</ion-select-option>
+                <ion-select-option value="23">23</ion-select-option>
+                <ion-select-option value="24">24</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="1">
+            <h4 style="margin: 0; margin-top: 1.5rem;">:</h4>
+          </ion-col>
+          <ion-col size="4">
+            <ion-item lines="none">
+              <ion-label position="stacked" style="font-size: 0.8rem;">Min</ion-label>
+              <ion-select ok-text="Select" cancel-text="Cancel" [(ngModel)]="hoursPerDayMM">
+                  <ion-select-option value="00">00</ion-select-option>
+                  <ion-select-option value="15">15</ion-select-option>
+                  <ion-select-option value="30">30</ion-select-option>
+                  <ion-select-option value="45">45</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <!-- <ion-datetime
+            displayFormat="h:mm"
+            [(ngModel)]="hoursPerDay"
+            placeholder="HH:MM"
+          ></ion-datetime> -->
+        <!-- </ion-item> -->
+
+        <ion-item *ngIf="valued == 0" class="input-sec-box" lines="none">
+          <ion-label style="font-size: 0.8rem;">Softcopy</ion-label>
+          <ion-toggle slot="end" [(ngModel)]="softcopy" (ionChange)="checkSoftCopy($event)"></ion-toggle>
+        </ion-item>
+
+        <ion-item *ngIf="valued == 1" class="input-sec-box" lines="none">
+          <ion-label style="font-size: 0.8rem;">Raw video</ion-label>
+          <ion-toggle slot="end" [(ngModel)]="softcopy" (ionChange)="checkSoftCopy($event)"></ion-toggle>
+        </ion-item>
+
+        <ion-item class="input-sec-box" lines="none">
+          <ion-label position="stacked">Rate(INR)</ion-label>
+          <ion-input [(ngModel)]="price" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-sec-box" lines="none">
+          <ion-label position="stacked">Discount(%)</ion-label>
+          <ion-select ok-text="Select" cancel-text="Cancel" [(ngModel)]="discount">
+            <ion-select-option [value]="0">0</ion-select-option>
+            <ion-select-option [value]="5">5</ion-select-option>
+            <ion-select-option [value]="10">10</ion-select-option>
+            <ion-select-option [value]="15">15</ion-select-option>
+            <ion-select-option [value]="20">20</ion-select-option>
+            <ion-select-option [value]="25">25</ion-select-option>
+            <ion-select-option [value]="30">30</ion-select-option>
+            <ion-select-option [value]="35">35</ion-select-option>
+            <ion-select-option [value]="40">40</ion-select-option>
+            <ion-select-option [value]="45">45</ion-select-option>
+            <ion-select-option [value]="50">50</ion-select-option>
+            <ion-select-option [value]="55">55</ion-select-option>
+            <ion-select-option [value]="60">60</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-row class="input-sec-box">
+          <ion-col>
+            <div>
+              <ion-button *ngIf="editPrimeform" class="save-btn" size="full" (click)="addService()">Save</ion-button>
+              <ion-button *ngIf="!editPrimeform" class="save-btn" size="full" (click)="updatePrimeService()">Update
+              </ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

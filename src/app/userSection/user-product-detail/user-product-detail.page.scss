@@ -1,0 +1,84 @@
+.bkimage {
+  width: 100%;
+  height: 13rem;
+}
+.nobkimage {
+  margin: auto;
+  display: block;
+  padding: 1rem;
+  height: 13rem;
+}
+.pname {
+  position: relative;
+  // top: 8px;
+  font-size: 21px;
+  color: black;
+  left: 9px;
+  font-weight: bold;
+}
+.pdesclbl {
+  font-size: 15px;
+  font-weight: bold;
+  left: 10px;
+  position: relative;
+  // top: 6px;
+  color: #7e808c;
+}
+.pdesc {
+  font-size: 13px;
+  position: relative;
+  left: 11px;
+  top: 4px;
+}
+
+.fsize {
+  font-size: 13px;
+  margin-left: 10px;
+  // font-weight: bold;
+}
+
+.sdesc {
+  padding: 0 1rem 0 1rem;
+  text-align: justify;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.pseller {
+  font-size: 14px;
+  font-weight: bold;
+  left: 10px;
+  position: relative;
+  top: 7px;
+  color: #7e808c;
+}
+.pdetail {
+  font-size: 15px;
+  font-weight: bold;
+  left: 10px;
+  position: relative;
+  top: 7px;
+  color: #7e808c;
+}
+.ion-slides {
+  height: 100%;
+}
+.fprice {
+  font-size: 14px;
+  color: black;
+}
+.size {
+  font-size: 15px;
+  color: black;
+  position: relative;
+  top: 3px;
+  right: 3px;
+}
+.txt {
+  font-size: 14px;
+  float: right;
+  position: relative;
+  right: 10px;
+}
+.card-margin{
+  margin-bottom: 1rem;
+}

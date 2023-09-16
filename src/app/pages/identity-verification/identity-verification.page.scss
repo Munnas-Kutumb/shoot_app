@@ -1,0 +1,56 @@
+.back-btn {
+  margin-left: 15px;
+}
+.hero-label {
+  margin: 15px 20px;
+  font-size: 18px;
+}
+
+.doc-img {
+  width: 100%;
+  height: 4.5rem;
+}
+
+.submit-btn {
+  margin: 25px 15px;
+}
+
+.upload-box {
+  border: 1.5px dotted #01b1ff;
+  height: 9rem;
+  width: 100%;
+}
+
+.plus-btn {
+  text-align: center;
+  margin-top: 50px;
+  background-color: #01b1ff;
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+.submit-btn {
+  --background: #01b1ff;
+}
+
+.upload-text {
+  text-align: center;
+  font-size: 10px;
+}
+
+.file-uploadbox {
+  text-align: center;
+  font-size: 10px;
+  margin: 5px;
+}
+.pan{
+  text-transform: uppercase
+}
+
+.inp-item{
+  padding: 5px;
+
+  .item-native{
+    padding: 0 !important;
+  }
+}

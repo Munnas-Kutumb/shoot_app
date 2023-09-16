@@ -1,0 +1,130 @@
+.back-btn {
+    font-size: 1.5rem;
+    ;
+    margin-left: 10px;
+}
+
+.loc-icon {
+    margin-right: 5px;
+}
+
+// .brand-best-photo {
+//     margin-left: 10px;
+//     margin-top: 5px;
+//     height: 8rem;
+//     width: 8rem;
+//     border-radius: 1rem;
+// }
+// .address-bar {
+//     font-size: 13px;
+//     // line-height: 4px;
+//     margin-left: 10px;
+//     margin-top: -5px;
+// }
+// .ratings-sec {
+//     font-size: 12px;
+//     line-height: 4px;
+//     margin-left: 10px;
+// }
+// .fill-star {
+//     color:#ff4600;
+// }
+.city-chip {
+    width: 5rem;
+    text-align: center;
+}
+
+.city-chip-text {
+    text-align: center;
+    font-size: 12px;
+}
+
+.filter-icon {
+    margin-right: 10px;
+}
+
+.banr_img {
+    max-width: 50%;
+    max-height: 50%;
+}
+
+// CSS
+.brand-image {
+    // height: 8rem;
+    // width: 8rem;
+    // margin-left: 10px;
+    // margin-top: 0.5rem;
+    // border-radius: 0.5rem;
+    // margin-bottom: 0.5rem;
+    // height: 7rem;
+    // width: 8rem;
+    // // border-radius: 0.4rem;
+    // margin-left: -4px;
+    // margin-top: -5px;
+    // max-height: 100%;
+    height: 100%;
+    width: 100%;
+    // object-fit: cover;
+}
+
+.brand-name {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #818181;
+    margin-top: 5px;
+    margin-bottom: 0.3rem;
+}
+
+// .brow {
+//     margin-bottom: -1.33rem;
+// }
+
+.address {
+    color: #b4b4b4;
+    font-size: 0.9rem;
+    // margin-left: -0.3rem;
+    // margin-top: -5px;
+    margin: 0.3rem 0;
+}
+
+.rating-icon {
+    font-size: 1rem;
+    // margin-left: -0.4rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 4px;
+}
+
+.rating {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-left: 3px;
+}
+
+.inp-search{
+    border: 1px solid darkgrey;
+    border-radius: 25px;
+    height: 2rem;
+    position: absolute;
+    top: -1rem;
+    width: 95%;
+    left: 0.4rem;
+    font-size: 0.9rem;
+}
+
+.no-camera {
+
+    width: auto;
+    height: 12rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.no-bbok-text {
+
+    text-align: center;
+    // color:  #FF4600;
+}

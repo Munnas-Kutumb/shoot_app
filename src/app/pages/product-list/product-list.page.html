@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon
+      slot="start"
+      name="chevron-back-outline"
+      (click)="backBtn()"
+      class="back-btn"
+    ></ion-icon>
+    <ion-title>{{subcatName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div
+    *ngIf="productList.length == 0"
+    style="text-align: center; padding-top: 20vh"
+  >
+    <img style="height: 10rem" src="assets/img/empty-box.png" />
+    <p>No Products Found!!</p>
+  </div>
+
+  <ion-card *ngFor="let item of productList let i = index;">
+    <ion-card-content class="round{{i+1}}">
+      <ion-icon
+        name="trash"
+        (click)="removeProduct(item._id)"
+        class="remove"
+      ></ion-icon>
+      <img
+        (click)="editproduct(item)"
+        *ngIf="item.image.length>0"
+        src="{{baseUrl}}merchant/{{item.image[0]}}"
+        class="service-pic"
+      />
+      <img
+        (click)="editproduct(item)"
+        *ngIf="item.image.length == 0"
+        src="assets/img/empty-box.png"
+        class="service-pic"
+      />
+      <h2 (click)="editproduct(item)" class="card-label">{{item.name}}</h2>
+      <p (click)="editproduct(item)" class="list-name">{{item.description}}</p>
+      <p (click)="editproduct(item)" class="list-prime">
+        ₹ {{item.price[0].price}}&nbsp;
+        <span style="color: green">{{item.discount}}% OFF</span>
+       
+      </p>
+      <p *ngIf="item.isProduct=='true'" class="pro_app"> Product approved</p>
+      <p *ngIf="item.isProduct=='false'" class="not_app"> Product not approved </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add" (click)="addProduct()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

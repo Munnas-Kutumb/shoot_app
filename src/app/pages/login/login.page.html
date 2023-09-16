@@ -1,0 +1,99 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-icon style="margin: 10px; font-size: 2rem" slot="end" *ngIf="view == 'otp'" name="close-outline"
+      (click)="close()"></ion-icon>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="view == 'login'">
+    <!-- <div class="logo_ico" style="text-align: center; margin-top: 3rem"> -->
+    <div class="logo_ico" style="text-align: center; margin-top: 3rem;">
+      <img style="max-width: 47%;" src="assets/img/Shoot Logo2.png" /><br>
+      <img style="max-width: 47%;" src="assets/img/Shoot Logo1.png" />
+    </div>
+
+    <div style="margin: 0px 30px">
+      <ion-item>
+        <ion-label position="stacked" class="ion-label">Phone Number</ion-label>
+        <ion-input class="input-mob-ar" [(ngModel)]="phone" type="tel" (keyup)="validatemobile()" maxlength="10" 
+        onKeyPress="if(this.value.length==10) return false;">+91&nbsp;&nbsp;
+        </ion-input>
+      </ion-item>
+
+      <p class="phone-error">{{phone_error}}</p>
+
+      <ion-button class="login-btn" expand="block" (click)="login()">Continue</ion-button>
+
+      <!-- <ion-button class="reg-btn" expand="block" fill="outline" (click)="toRegister()">Register New Business</ion-button> -->
+    </div>
+  </div>
+
+  <div *ngIf="view == 'otp'">
+    <h1 class="hero-text">Enter Verification Code</h1>
+
+    <p class="sub-hero-text">
+      Enter the 4 digit OTP sent to your mobile number +91 {{phone}}.
+    </p>
+
+    <div class="login-box">
+      <form #otpForm="ngForm" novalidate>
+        <ion-row style="text-align: center; margin-bottom: 25px" class="animated fadeInUp">
+          <ion-col class="otpinput">
+            <ion-input [(ngModel)]="myotp1" name="otp1" type="tel" #otp1 required maxLength="1"
+              (keyup)="otpController($event,otp2,'')">
+            </ion-input>
+            <ion-input [(ngModel)]="myotp2" name="otp2" type="tel" #otp2 required maxLength="1"
+              (keyup)="otpController($event,otp3,otp1)">
+            </ion-input>
+            <ion-input [(ngModel)]="myotp3" name="otp3" type="tel" #otp3 required maxLength="1"
+              (keyup)="otpController($event,otp4,otp2)">
+            </ion-input>
+            <ion-input [(ngModel)]="myotp4" name="otp4" type="tel" #otp4 required maxLength="1"
+              (keyup)="otpController($event,'',otp3)">
+            </ion-input>
+          </ion-col>
+        </ion-row>
+      </form>
+
+      <!-- <div class="input-div">
+      <ion-item lines="none" class="inut-sec">
+        <ion-label position="stacked">Enter the 4-digit OTP</ion-label>
+        <ion-input type="text/number" [(ngModel)]="otp"></ion-input>
+        <ion-icon slot="start" name="keypad-outline"></ion-icon>
+      </ion-item>
+    </div> -->
+
+      <!-- <div class="input-div">
+      <ion-item lines="none" class="inut-sec">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password"></ion-input>
+        <ion-icon slot="start" name="key-outline"></ion-icon>
+      </ion-item>
+    </div> -->
+
+      <div class="btn-div">
+        <ion-button expand="block" class="otp-btn" [disabled]="!(myotp1 && myotp2 && myotp3 && myotp4)"
+          (click)="verifyOTP()">Submit</ion-button>
+      </div>
+
+      <p *ngIf="resend_status" class="resend-text" (click)="login()">
+        RESEND OTP
+      </p>
+
+      <p *ngIf="!resend_status" class="resend-text">{{timeleft}}</p>
+
+      <!-- <h6 style="text-align: center">Login With Google</h6> -->
+    </div>
+  </div>
+  <!-- <h3 class="loginusertext" (click)="touserLogin()">User Login</h3> -->
+
+  <div style="text-align: center">
+    <h6 style="margin-top: 105px">Looking for User Account ?</h6>
+    <p class="loginusertext" (click)="touserLogin()">Click Here</p>
+  </div>
+</ion-content>
+
+<!-- <ion-footer class="ion-no-border"> -->
+<!-- </ion-footer> -->

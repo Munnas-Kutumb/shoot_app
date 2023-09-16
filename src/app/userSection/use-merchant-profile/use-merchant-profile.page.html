@@ -1,0 +1,246 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="chevron-back-outline" slot="start" class="back-btn" (click)="backBtn()"></ion-icon>
+    <ion-title *ngIf="merchantdetails" style="font-size: 17px;">{{merchantdetails.brand_name | uppercase}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="merchantdetails">
+  <div class="banr_img">
+    <img *ngIf="merchantdetails.banner_image" class="mec-pro"
+      src="{{baseUrl}}merchant/{{merchantdetails.banner_image}}">
+    <img *ngIf="!merchantdetails.banner_image" class="bnrimg" src="assets/img/hero-img.png" />
+  </div>
+  <div class="album">
+    <button (click)="navigate()">
+      <ion-icon name="albums-outline" class="photo"></ion-icon>Gallery
+    </button>
+
+  </div>
+
+
+  <!-- <ion-row style="margin: 5px 10px;">
+    <ion-col size="6">
+      <p> <b class="mdetail"> {{merchantdetails.name}} </b> </p>
+    </ion-col>
+    <ion-col size="6">
+      <p style="text-align: right;" class="mdetail" (click)="toDateTime()"> <b> Select Date </b></p>
+    </ion-col>
+  </ion-row> -->
+
+  <!-- <p class="location">{{merchantdetails.city}}</p> -->
+
+  <!-- <ion-row style="text-align: center; margin-top: -20px;"> -->
+  <!-- <ion-col> -->
+  <!-- <p> Ratings</p> -->
+  <!-- <p> 3.5 <ion-icon name="star" (click)="selectStar(1)"></ion-icon>
+      </p> -->
+
+  <!-- <p>{{merchantdetails.rating}} Ratings</p> -->
+  <!-- </ion-col> -->
+  <!-- <ion-col>
+      <p *ngIf="!like">
+        <ion-icon name="heart-outline" (click)="addToFav()"></ion-icon> Shortlist
+      </p>
+      <p *ngIf="like">
+        <ion-icon name="heart" class="acc-icon" (click)="addToFav()"></ion-icon> Shortlist
+      </p>
+    </ion-col> -->
+  <!-- <ion-col>
+      <p (click)="share()">
+        <ion-icon name="share-alt"></ion-icon>Share
+      </p>
+    </ion-col>
+  </ion-row> -->
+
+  <!-- new design -->
+
+  <ion-row style="margin: 0.5rem;margin-top: 1rem;">
+    <!-- <ion-col size="6">
+      <span class="mname">{{merchantdetails.name}}</span>
+    </ion-col> -->
+    <ion-col size="6" >
+      <span class="mname" (click)="toDateTime()">
+        <span *ngIf="!bookingDate"> <ion-icon name="calendar-outline" style="vertical-align: text-top;"></ion-icon> Select Date </span>
+        <span *ngIf="bookingDate"> <ion-icon name="calendar-outline" style="vertical-align: text-top;"></ion-icon> Change Date <br>   </span>
+      </span>
+    </ion-col>
+    <ion-col size="6" style="text-align: right;">
+      <span style="color: #8f8f8f; font-size: 14px;"> {{bookingDate}},{{bookingTime | date:'shortTime'}}</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row style="margin: 0.5rem; ">
+    <ion-col size="12">
+      <ion-icon name="location" class="loc"></ion-icon><span class="text">{{merchantdetails.city?.name}}</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row style="margin-top: 10px;">
+    <ion-col size="9">
+      <!-- <button class="star">
+        <ion-icon name="star" class="icostar" (click)="selectStar(1)"></ion-icon><span class="rating">3.4</span>
+      </button> -->
+      <ion-label class="short">Photography</ion-label> 
+      <ion-toggle [(ngModel)]="choose" style="vertical-align: middle;" (ionChange)="chooseType()"></ion-toggle> 
+      <ion-label class="short">Videography</ion-label>
+    </ion-col>
+    <!-- <ion-col size="3" style="padding-top: 1rem;">
+      <ion-icon name="arrow-redo" class="book" (click)="share()"></ion-icon>
+      <span class="short">Share</span>
+    </ion-col> -->
+  </ion-row>
+
+  <div *ngFor="let item of merchantservices">
+
+    <!-- new -->
+    <ion-card class="service-card" *ngIf="showType == item.service_type">
+      <p class="p1">
+        <ion-icon name="camera" *ngIf="item.service_type == 0"></ion-icon>
+        <ion-icon name="videocam" *ngIf="item.service_type == 1"></ion-icon>
+        <span *ngIf="item.service_primecategory.length"> {{ item.service_primecategory[0].primecategory_name | titlecase }} </span>
+      </p>
+      <p class="p2">
+         {{ item.service_subcategory[0].subcategory_name }}
+
+        <span style="float: right; font-size: 0.9rem; line-height: 1.3;">
+          <span> {{( item.rate - item.rate * item.discount/100) | currency: 'INR'}} </span>
+          <br>
+          <del style="color: #f00;" *ngIf="item.discount"> {{item.rate | currency: 'INR'}} </del>
+        </span>
+      </p>
+
+      <div class="p3">
+        <p *ngIf="item.number_of_photo">{{item.number_of_photo}} Photos</p>
+        <p *ngIf="item.hours">Duration: {{item.hours}} Hrs</p>
+      </div>
+
+      <ion-row class="p4">
+        <ion-col size="5"> 
+          <span> 
+            <ion-icon *ngIf="item.softcopy" name="checkmark-circle" style="color: #08de08; vertical-align: bottom;"></ion-icon>
+            <ion-icon *ngIf="!item.softcopy" name="close-circle-outline" style="color: #f00; vertical-align: bottom;"></ion-icon>
+             Softcopy 
+          </span> 
+        </ion-col>
+        <ion-col size="4"> <span *ngIf="item.discount"> <img src="assets/img/discountt.png" style="height: 1rem; vertical-align: text-top;" alt="img"> {{item.discount}}% Off </span> </ion-col>
+        <ion-col size="3"> 
+          <ion-button class="addBtn ion-text-capitalize" expand="block" *ngIf="!item.selected" (click)="addedSc(item)"> Add </ion-button> 
+          <ion-button class="removeBtn ion-text-capitalize" expand="block" *ngIf="item.selected" (click)="removeSc(item)"> Remove </ion-button> 
+        </ion-col>
+      </ion-row>
+    </ion-card>
+
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border" *ngIf="cart_count > 0">
+  <ion-row class="fdesign">
+    <ion-col size="6">
+      <h6 class="services-selected-tx">{{cart_count}} Service Selected</h6>
+    </ion-col>
+    <ion-col size="6">
+      <h6 (click)="toCart()" class="checkout-btn">Checkout</h6>
+    </ion-col>
+  </ion-row>
+</ion-footer>
+
+ <!-- <ion-row *ngIf="album.length" class="label-sec">
+    <ion-col size="6">
+      <h5 class="hero-label">Portfolio</h5>
+    </ion-col>
+    <ion-col size="6">
+      <h5 class="see-all">See All</h5>
+    </ion-col>
+  </ion-row>
+
+  <div class="scrolling-wrapper" style="margin-top: 15px;">
+    <div class="card" *ngFor="let item of album">
+      <img src="{{baseUrl}}merchant/{{item}}" class="scrl-img">
+    </div>
+  </div> -->
+
+
+  
+    <!-- old -->
+    <!-- <ion-card *ngFor="let subcat of item.service_subcategory">
+
+      <ion-item (click)="expandView('expand', subcat._id)">
+        <h6 class="hero-list-name">{{ subcat.subcategory_name }}</h6>
+        <ion-icon slot="end" name="chevron-down"></ion-icon>
+        <ion-icon slot="end" name="chevron-forward" class="acc-icon"></ion-icon>
+
+      </ion-item>
+
+      <div *ngIf="expandid == subcat._id">
+        <ion-item class="item-sel-bo" lines="none" (click)="viewMore('photography')">
+          <p class="ser-name">Photography</p>
+          <ion-icon *ngIf="arrowViewphoto == 'down'" slot="end" name="chevron-down-outline" class="acc-icon"></ion-icon>
+          <ion-icon *ngIf="arrowViewphoto == 'up'" slot="end" name="chevron-forward-outline" class="acc-icon">
+          </ion-icon>
+        </ion-item>
+
+        <ion-card *ngIf="expandid == subcat._id && expandphoto == 'photography'">
+          <div *ngIf="item.service_type == 0">
+            <ion-row style="padding: 10px;" *ngFor="let service_details of item.service_primecategory">
+              <ion-col style="text-align: left;" size="3">
+                <p class="list-name">{{service_details.primecategory_name}}</p>
+              </ion-col>
+              <ion-col style="text-align: center;" size="2">
+                <p (click)="presentPopover(item.number_of_photo, item.softcopy,item.hours)" class="list-name">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                </p>
+              </ion-col>
+              <ion-col style="text-align: center;" size="5">
+                <p class="list-name">{{item.rate}} ₹ &nbsp;<span>{{item.discount}}% Off</span></p>
+              </ion-col>
+              <ion-col style="text-align: center;" size="2">
+                <p (click)="addedSc(subcat.subcategory_name, subcat._id,item)" *ngIf="added">
+                  <ion-icon class="add-btn" name="add-circle-outline"></ion-icon>
+                </p>
+                <p (click)="removeSc(subcat._id, subcat._id)" *ngIf="!added">
+                  <ion-icon class="add-btn" name="remove-circle-outline"></ion-icon>
+                </p>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-card>
+        </div>
+
+
+      <div *ngIf="expandid == subcat._id">
+        <ion-item class="item-sel-bo" lines="none" (click)="viewMore1('videography')">
+          <p class="ser-name">Videography</p>
+          <ion-icon *ngIf="arrowViewvideo == 'down'" slot="end" name="chevron-down-outline" class="acc-icon"></ion-icon>
+          <ion-icon *ngIf="arrowViewvideo == 'up'" slot="end" name="chevron-forward-outline" class="acc-icon">
+          </ion-icon>
+        </ion-item>
+
+        <ion-card *ngIf="expandid == subcat._id && expandphoto == 'videography' ">
+          <div *ngIf="item.service_type == 1">
+            <ion-row style="padding: 10px;" *ngFor="let video_details of item.service_primecategory">
+              <ion-col style="text-align: left;" size="3">
+                <p class="list-name">{{video_details.primecategory_name}}</p>
+              </ion-col>
+              <ion-col style="text-align: center;" size="2">
+                <p (click)="presentPopover(item.number_of_photo, item.softcopy, item.hours)" class="list-name">
+                  <ion-icon name="information-circle-outline"></ion-icon>
+                </p>
+              </ion-col>
+              <ion-col style="text-align: center;" size="5">
+                <p class="list-name">{{item.rate}} ₹ &nbsp; <span>{{item.discount}}% Off</span></p>
+              </ion-col>
+              <ion-col style="text-align: center;" size="2">
+                <p class="add-text">ADD</p>
+                <p (click)="addedSc(subcat.subcategory_name, subcat._id, item)" *ngIf="added">
+                  <ion-icon class="add-btn" name="add-circle-outline"></ion-icon>
+                </p>
+                <p (click)="removeSc(subcat._id)" *ngIf="!added">
+                  <ion-icon class="add-btn" name="remove-circle-outline"></ion-icon>
+                </p>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-card>
+      </div>
+    </ion-card> -->

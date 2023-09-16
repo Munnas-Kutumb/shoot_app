@@ -1,0 +1,339 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-icon class="back-btn" slot="start" name="chevron-back-outline"></ion-icon> -->
+    <ion-title style="text-align: center">My Bookings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment (ionChange)="segmentChanged($event)" class="segment-bar" [(ngModel)]="value">
+    <ion-segment-button value="pending">
+      <ion-label class="hero-segment">Incoming</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="accepted">
+      <ion-label class="hero-segment">Accepted</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="cancelled">
+      <ion-label class="hero-segment">Cancelled</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="completed">
+      <ion-label class="hero-segment">Completed</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="view == 'pending'">
+    <div *ngFor="let item of booking_list; let i=index">
+      <!-- service card -->
+      <ion-card class="round{{i+1}}" *ngIf="item.isProduct==false" class="card-style"
+        (click)="toPage(item.booking_number, item.booking_status, item._id)">
+        <ion-row>
+          <ion-col size="3">
+            <img *ngIf="!item.customer[0].image" src="assets/img/postage.png" class="booking-img" />
+            <img *ngIf="item.customer[0].image" src="{{imgurl}}user/{{item.customer[0].image}}" class="booking-img" />
+
+
+          </ion-col>
+          <ion-col size="9" style="margin-top: 7px;">
+            <ion-row>
+              <ion-col size="12">
+                <span class="ser-title">
+                  {{item.customer[0].first_name + " " + item.customer[0].last_name}}
+                </span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top: -8px;">
+              <ion-col size="12">
+                <ion-icon name="location" class="loc-icon"></ion-icon>
+                <span style="font-size: 11px;">{{item.address[0] }}</span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top: -2px;">
+              <ion-col size="12">
+                <span class="card-time">Time: {{item.booking_time | date:'shortTime'}}</span>
+                <span class="card-date" style="float: right;"> Date:{{item.booking_date}}</span>
+              </ion-col>
+            </ion-row>
+
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+      <!-- product card -->
+      <ion-card class="round{{i+1}}" *ngIf="item.isProduct==true" class="card-style"
+        (click)="toPage(item.booking_number, item.booking_status, item._id)">
+        <ion-row>
+          <ion-col size="3">
+            <img *ngIf="!item.customer[0].image" src="assets/img/postage.png" class="booking-img" />
+            <img *ngIf="item.customer[0].image" src="{{imgurl}}user/{{item.customer[0].image}}" class="booking-img" />
+
+
+          </ion-col>
+          <ion-col size="9" style="margin-top: 7px;">
+            <ion-row>
+              <ion-col size="12">
+                <span class="ser-title">
+                  {{item.customer[0].first_name + " " + item.customer[0].last_name}}
+
+                </span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top: -7px;">
+              <ion-col size="12">
+                <ion-icon name="location" class="loc-icon"></ion-icon>
+                <span style="font-size: 11px;"> {{item.delivery_address}}</span>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </div>
+  </div>
+
+  <div *ngIf="view == 'accepted'">
+    <div *ngFor="let item of booking_list;let i=index">
+      <!-- service card -->
+      <ion-card class="round{{i+2}}" class="card-style" *ngIf="item.isProduct==false"
+        (click)="toPage(item.booking_number, item.booking_status, item._id)">
+        <ion-row>
+          <ion-col size="3">
+            <img *ngIf="!item.customer[0].image" src="assets/img/postage.png" class="booking-img" />
+            <img *ngIf="item.customer[0].image" src="{{imgurl}}user/{{item.customer[0].image}}" class="booking-img" />
+
+          </ion-col>
+          <ion-col size="9" style="margin-top: 7px;">
+            <ion-row>
+              <ion-col size="12">
+                <span class="ser-title">
+                  {{item.customer[0].first_name + " " + item.customer[0].last_name}}
+                </span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top: -3px;">
+              <ion-col size="12">
+                <ion-icon name="location" class="loc-icon"></ion-icon>
+                <span style="font-size: 11px;">{{item.address[0] }}</span>
+              </ion-col>
+            </ion-row>
+
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-top: -12px;">
+          <ion-col size="4">
+            <span class="card-time">Time: {{item.booking_time | date:'shortTime'}}</span>
+          </ion-col>
+          <ion-col size="4" style="text-align: right;">
+            <span class="card-date"> Date:{{item.booking_date}}</span>
+          </ion-col>
+          <ion-col size="4" *ngIf="item.booking_status=='ongoing'">
+            <span style="font-size: 12px;float: right; position: relative;right: 2px;color: #49b149;font-weight: bold;">Live</span>
+          </ion-col>
+        </ion-row>
+
+        <!-- <ion-row *ngIf="item.booking_status=='ongoing'" >
+            <ion-col size="12" style="text-align: right;">
+              <span style="font-size: 11px;">Live</span>
+            </ion-col>
+          </ion-row> -->
+
+      </ion-card>
+
+      <!-- product card -->
+      <ion-card class="round{{i+1}}" *ngIf="item.isProduct==true" class="card-style"
+        (click)="toPage(item.booking_number, item.booking_status, item._id)">
+        <ion-row>
+          <ion-col size="3">
+            <img *ngIf="!item.customer[0].image" src="assets/img/postage.png" class="booking-img" />
+            <img *ngIf="item.customer[0].image" src="{{imgurl}}user/{{item.customer[0].image}}" class="booking-img" />
+
+
+          </ion-col>
+          <ion-col size="9" style="margin-top: 7px;">
+            <ion-row>
+              <ion-col size="12">
+                <span class="ser-title">
+                  {{item.customer[0].first_name + " " + item.customer[0].last_name}}
+
+                </span>
+              </ion-col>
+            </ion-row>
+
+
+
+            <ion-row style="margin-top: -7px;">
+              <ion-col size="12">
+                <ion-icon name="location" class="loc-icon"></ion-icon>
+                <span style="font-size: 11px;"> {{item.delivery_address}}</span>
+                <!-- <span class="card-time">Time: {{item.booking_time | date:'shortTime'}}</span> -->
+                <!-- <span class="card-date" style="float: right;"> Date:{{item.booking_date}}</span> -->
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="item.booking_status=='ongoing'">
+              <ion-col size="12">
+                <span style="font-size: 11px;float: right; color: #49b149;font-weight: bold;">Live</span>
+              </ion-col>
+            </ion-row>
+
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+    </div>
+  </div>
+
+  <div *ngIf="view == 'cancelled'">
+    <div *ngFor="let item of booking_list">
+      <ion-card class="card-style" *ngIf="item.isProduct==false"
+        (click)="toPage(item.booking_number, item.booking_status, item._id)">
+        <ion-row>
+          <ion-col size="3">
+            <img *ngIf="!item.customer[0].image" src="assets/img/postage.png" class="booking-img" />
+            <img *ngIf="item.customer[0].image" src="{{imgurl}}user/{{item.customer[0].image}}" class="booking-img" />
+          </ion-col>
+          <ion-col size="9" style="margin-top: 7px;">
+            <ion-row>
+              <ion-col size="12">
+                <span class="ser-title">
+                  {{item.customer[0].first_name + " " + item.customer[0].last_name}}
+                </span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top: -8px;">
+              <ion-col size="12">
+                <ion-icon name="location" class="loc-icon"></ion-icon>
+                <span style="font-size: 11px;">{{item.address[0] }}</span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top: -2px;">
+              <ion-col size="12">
+                <span class="card-time">Time: {{item.booking_time | date:'shortTime'}}</span>
+                <span class="card-date" style="float: right;"> Date:{{item.booking_date}}</span>
+              </ion-col>
+            </ion-row>
+
+          </ion-col>
+        </ion-row>
+      </ion-card>
+      <!-- product card -->
+      <ion-card class="round{{i+1}}" *ngIf="item.isProduct==true" class="card-style"
+        (click)="toPage(item.booking_number, item.booking_status, item._id)">
+        <ion-row>
+          <ion-col size="3">
+            <img *ngIf="!item.customer[0].image" src="assets/img/postage.png" class="booking-img" />
+            <img *ngIf="item.customer[0].image" src="{{imgurl}}user/{{item.customer[0].image}}" class="booking-img" />
+
+
+          </ion-col>
+          <ion-col size="9" style="margin-top: 7px;">
+            <ion-row>
+              <ion-col size="12">
+                <span class="ser-title">
+                  {{item.customer[0].first_name + " " + item.customer[0].last_name}}
+
+                </span>
+              </ion-col>
+            </ion-row>
+
+
+
+            <ion-row style="margin-top: -7px;">
+              <ion-col size="12">
+                <ion-icon name="location" class="loc-icon"></ion-icon>
+                <span style="font-size: 11px;"> {{item.delivery_address}}</span>
+                <!-- <span class="card-time">Time: {{item.booking_time | date:'shortTime'}}</span> -->
+                <!-- <span class="card-date" style="float: right;"> Date:{{item.booking_date}}</span> -->
+              </ion-col>
+            </ion-row>
+
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </div>
+  </div>
+
+  <div *ngIf="view == 'completed'">
+    <div *ngFor="let item of booking_list">
+      <!-- service card -->
+      <ion-card *ngIf="item.isProduct==false" class="card-style"
+        (click)="toPage(item.booking_number, item.booking_status, item._id)">
+        <ion-row>
+          <ion-col size="3">
+            <img *ngIf="!item.customer[0].image" src="assets/img/postage.png" class="booking-img" />
+            <img *ngIf="item.customer[0].image" src="{{imgurl}}user/{{item.customer[0].image}}" class="booking-img" />
+          </ion-col>
+          <ion-col size="9" style="margin-top: 7px;">
+            <ion-row>
+              <ion-col size="12">
+                <span class="ser-title">
+                  {{item.customer[0].first_name + " " + item.customer[0].last_name}}
+                </span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top: -8px;">
+              <ion-col size="12">
+                <ion-icon name="location" class="loc-icon"></ion-icon>
+                <span style="font-size: 11px;">{{item.address[0] }}</span>
+              </ion-col>
+            </ion-row>
+
+            <ion-row style="margin-top: -2px;">
+              <ion-col size="12">
+                <span class="card-time">Time: {{item.booking_time | date:'shortTime'}}</span>
+                <span class="card-date" style="float: right;"> Date:{{item.booking_date}}</span>
+              </ion-col>
+            </ion-row>
+
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+      <!-- product card -->
+      <ion-card class="round{{i+1}}" *ngIf="item.isProduct==true" class="card-style"
+        (click)="toPage(item.booking_number, item.booking_status, item._id)">
+        <ion-row>
+          <ion-col size="3">
+            <img *ngIf="!item.customer[0].image" src="assets/img/postage.png" class="booking-img" />
+            <img *ngIf="item.customer[0].image" src="{{imgurl}}user/{{item.customer[0].image}}" class="booking-img" />
+
+
+          </ion-col>
+          <ion-col size="9" style="margin-top: 7px;">
+            <ion-row>
+              <ion-col size="12">
+                <span class="ser-title">
+                  {{item.customer[0].first_name + " " + item.customer[0].last_name}}
+
+                </span>
+              </ion-col>
+            </ion-row>
+
+
+
+            <ion-row style="margin-top: -7px;">
+              <ion-col size="12">
+                <ion-icon name="location" class="loc-icon"></ion-icon>
+                <span style="font-size: 11px;"> {{item.delivery_address}}</span>
+                <!-- <span class="card-time">Time: {{item.booking_time | date:'shortTime'}}</span> -->
+                <!-- <span class="card-date" style="float: right;"> Date:{{item.booking_date}}</span> -->
+              </ion-col>
+            </ion-row>
+
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </div>
+  </div>
+
+  <div *ngIf="booking_list && booking_list.length == 0" style="text-align: center">
+    <img class="no-book-img" src="assets/img/no-camera.png" />
+    <h6 class="more-info-text">No bookings yet.</h6>
+  </div>
+</ion-content>

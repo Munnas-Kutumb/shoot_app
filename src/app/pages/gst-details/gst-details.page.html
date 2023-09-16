@@ -1,0 +1,55 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-icon (click)="backBtn()" class="back-btn" slot="start" name="chevron-back-outline"></ion-icon> 
+    <ion-title>GST Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <h5 class="hero-title">YOUR GST DETAILS</h5>
+
+  <p class="hero-para">Fill your GST details to get Tax reimburdement</p>
+
+  <div style="text-align: center; margin: 45px 25px; height: 6rem; border-bottom: 1px solid gray;">
+
+    <ion-button class="gst-btn" size="full" (click)="toAddGst()">Add your gst details</ion-button>
+
+  </div>
+
+  <h5 class="hero-title"> SHOOT GST DETAILS</h5>
+
+  <p class="hero-para">Use the following details to file your taxes</p>
+
+  <div style="margin: 0px 25px;">
+
+    <ion-row>
+      <ion-col style="text-align: left;">
+       <h6>GST Number</h6>
+      </ion-col>
+      <ion-col style="text-align: left;">
+       <h6> 10110333045 </h6>
+      </ion-col>
+    </ion-row>
+   
+    <ion-row>
+     <ion-col style="text-align: left;">
+      <h6>Shoot Pan</h6>
+     </ion-col>
+     <ion-col style="text-align: left;">
+      <h6> 10110333045 </h6>
+     </ion-col>
+   </ion-row>
+   
+   <ion-row >
+     <ion-col style="text-align: left;">
+      <h6>Shoot Address</h6>
+     </ion-col>
+     <ion-col style="text-align: left;">
+      <h6> Indore, Madhya Pradesh </h6>
+     </ion-col>
+   </ion-row>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,391 @@
+.back-btn {
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
+.cart-img {
+
+    width: 7rem;
+    height: 7rem;
+    float: right;
+}
+
+.b-name {
+
+    margin-left: 10px;
+    font-size: 19px;
+    margin-top: 20px;
+}
+
+.b-address {
+
+    margin-left: 10px;
+}
+
+.pay-btn {
+    margin: 10px;
+    --background : #ff4600;
+}
+
+.shop-img {
+
+    width: 100px;
+    height: 100px;
+    margin-left: 10px;
+}
+
+
+.shop-address {
+
+    font-size: 12px;
+    // margin-left: -2.1rem;
+    margin-top: -9px;
+}
+.date-time {
+
+    font-size: 10px;
+    margin-top: -5px;
+}
+
+.shop-logo {
+
+    width: 3.9rem;
+    height: 3.9rem;
+    border-radius: 5px;
+}
+
+.shop-name {
+    margin-top: 8px;
+    // margin-left: -2.1rem;
+    font-size: 13px;
+    color: #908282;
+}
+
+.shop-address  {
+
+    font-size:10px;
+    color: #908282;
+}
+
+.service-name {
+
+    font-size: 12px;
+    margin-left: -0.2rem;
+    color: #908282;
+    position: relative;
+    top: -3px;
+
+}
+
+.service-adress {
+
+    margin-top: -0.65rem;
+    margin-left: -0.6rem;
+    font-size: 13px;
+    color: #35ad35;
+    font-weight: bold;
+}
+
+.date-card {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.date-txt{
+    position: relative;
+    left: 5px;
+    top: -2px;
+    font-size: 12px;
+}
+
+.time-card {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.venue-card{
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: -4px;
+}
+
+.shed-box {
+
+    margin-top: -25px;
+}
+
+.red-amount {
+
+    font-weight: 600;
+    text-decoration: line-through;
+    color: #FF3031;
+}
+
+.green-amount {
+
+    font-weight: 600;
+    color: #43BE31;
+}
+
+.discount {
+
+    color: #43BE31;
+    font-weight: 600;
+}
+
+.demo-data {
+
+    font-size: 10px;
+    margin-top: -12px;
+    color: #908282;
+}
+
+.cart-label {
+
+    color: #908282;
+    font-size: 12px;
+}
+
+.cart-value {
+
+    font-size: 12px;
+    text-align: right;
+    color: #908282;
+    
+}
+
+.head-services{
+    margin-left: 0.2rem;
+    margin-top: 5px;
+    border-bottom: 1px solid darkgray;
+    color: #908282;
+    font-size: 14px;
+
+}
+
+.del-icon{
+    font-size: 14px;
+    color: #908282;
+
+}
+
+.ico-more{
+    font-size: 13px;
+    margin-top: -4px;
+    cursor: pointer;
+    margin-left: 4px;
+}
+.total-amt{
+    float: right;
+    font-size: 12px;
+    // font-weight: bold;
+    color: #908282;
+
+
+}
+.bg-model{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0,0,0,0.7);
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+    width: 300px;
+    height: 145px;
+    background-color: white;
+    opacity: 1;
+    border-radius: 5px;
+    padding: 20px;
+    position: relative;
+  }
+  
+  .modal-content-term {
+    width: 310px;
+    height: 230px;
+    background-color: white;
+    opacity: 1;
+    border-radius: 5px;
+    padding: 20px;
+    position: relative;
+    color: #908282;
+ }
+
+  .close {
+    position: absolute;
+    top: -4px;
+    right: 8px;
+    font-size: 30px;
+    transform: rotate(45deg);
+    cursor: pointer;
+  }
+
+  .head-product{
+    margin-left: 0.9rem;
+    margin-top: 1.3rem;
+    border-bottom: 1px solid darkgray;
+
+  }
+  .savebtn{
+    margin: auto;
+    display: block;
+    background-color: #ff4600;
+    color: white;
+    border-radius: 13px;
+    padding: 4px;
+    width: 3.5rem;
+    position: relative;
+    top: 5px;
+  }
+// backup:-
+// .back-btn {
+//     font-size: 1.5rem;
+//     margin-left: 10px;
+// }
+
+// .cart-img {
+
+//     width: 7rem;
+//     height: 7rem;
+//     float: right;
+// }
+
+// .b-name {
+
+//     margin-left: 10px;
+//     font-size: 19px;
+//     margin-top: 20px;
+// }
+
+// .b-address {
+
+//     margin-left: 10px;
+// }
+
+// .pay-btn {
+//     margin: 10px;
+//     --background : #ff4600;
+// }
+
+// .shop-img {
+
+//     width: 100px;
+//     height: 100px;
+//     margin-left: 10px;
+// }
+
+// .shop-name {
+
+//     font-size: 22px;
+//     margin-top: -1px;
+// }
+
+// .shop-address {
+
+//     font-size: 14px;
+//     margin-top: -5px;
+// }
+// .date-time {
+
+//     font-size: 10px;
+//     margin-top: -5px;
+// }
+
+// .shop-logo {
+
+//     width: 5rem;
+//     height: 5rem;
+//     margin-left: 10px;
+// }
+
+// .shop-name {
+
+//     margin-top: 5px;
+//     margin-left: -1rem;
+//     font-size: 1rem;
+// }
+
+// .shop-address  {
+
+//     font-size:14px;
+// }
+
+// .service-name {
+
+//     font-size: 16px;
+//     margin-left: 10px;
+//     color: #ff4600;
+//     font-weight: 600;
+// }
+
+// .service-adress {
+
+//     font-size: 12px;
+//     margin-left: 10px;
+//     margin-top: -2px;
+// }
+
+// .date-card {
+
+//     font-size: 10px;
+// }
+
+// .time-card {
+
+//     font-size: 10px;
+// }
+
+// .shed-box {
+
+//     margin-top: -25px;
+// }
+
+// .red-amount {
+
+//     font-weight: 600;
+//     text-decoration: line-through;
+//     color: #FF3031;
+// }
+
+// .green-amount {
+
+//     font-weight: 600;
+//     color: #43BE31;
+// }
+
+// .discount {
+
+//     color: #43BE31;
+//     font-weight: 600;
+// }
+
+// .demo-data {
+
+//     font-size: 11px;
+//     margin-top: -10px;
+// }
+
+// .cart-label {
+
+//     margin-left: 10px;
+//     font-weight: 600;
+//     font-size: 14px;
+// }
+
+// .cart-value {
+
+//     margin-right: 10px;
+//     font-weight: 600;
+//     font-size: 14px;
+//     text-align: right
+
+// }
+
+// .cost-box {
+
+//     margin-top: -20px;
+// }

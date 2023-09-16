@@ -1,0 +1,54 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>merRegister</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+
+  <!-- <div style="text-align: center; margin-top: 2rem;">
+    <img class="profile-icon" src="assets/img/user_icon.png">
+  </div> -->
+<div>
+  <h3 class="hero-1"> Welcome To Shoot App.</h3>
+  <p class="hero-2">Experinece Photography World</p>
+</div>
+  
+
+  <div style="margin: 15px 25px;">
+
+    <ion-item style="margin-bottom: 15px;">
+      <ion-label position="floating">First Name</ion-label>
+      <ion-input [(ngModel)]="first_name" type="text" onkeypress='return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122  ' ></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 15px;">
+      <ion-label position="floating">Last Name</ion-label>
+      <ion-input [(ngModel)]="last_name" type="text" onkeypress='return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122  ' ></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 15px;">
+      <ion-label position="floating">Email Address</ion-label>
+      <ion-input [(ngModel)]="email" type="mail"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 15px;">
+      <ion-label position="stacked">Phone Number</ion-label>
+      <ion-input disabled>+91 {{user_phone}}</ion-input>
+    </ion-item>
+
+    <!-- <ion-item style="margin-bottom: 35px;">
+      <ion-label position="floating">Phone Number</ion-label>
+      <ion-input [(ngModel)]="phone" type="tel"></ion-input>
+    </ion-item> -->
+
+  </div>
+
+  <div style="margin: 3rem 1.5rem;">
+    
+    <ion-button class="save-btn" size="block" (click)="updateProfile()" >Continue</ion-button>
+
+    <ion-button color="light" class="cancel-btn" expand="block" (click)="skipBtn()" >Skip >></ion-button>
+  </div> 
+
+</ion-content>

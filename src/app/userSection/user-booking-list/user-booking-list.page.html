@@ -1,0 +1,384 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-segment (ionChange)="optSegment($event)" [(ngModel)]="optionSec">
+      <!-- <ion-segment-button value="upcoming">
+        <ion-label>Upcoming Booking</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="past">
+        <ion-label>Past Booking</ion-label>
+      </ion-segment-button> -->
+
+      <ion-segment-button (click)="getPendingBooking()" value="upcoming">
+        <ion-label>Upcoming</ion-label>
+      </ion-segment-button>
+      <ion-segment-button (click)="getAcceptedBooking()" value="accepted">
+        <ion-label>Ongoing</ion-label>
+      </ion-segment-button>
+      <ion-segment-button (click)="getCancelledBooking()" value="past">
+        <ion-label>Previous</ion-label>
+      </ion-segment-button>
+
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+<!-- 
+<ion-content style="--background: #f9f9ff;"
+  *ngIf="view == 'upcoming' && (acceptedBooking.length > 0 || pendingBooking.length > 0)"> -->
+
+<ion-content style="--background: #f9f9ff;" *ngIf="view == 'upcoming' &&  pendingBooking.length > 0">
+
+  <ion-card *ngFor="let p of pendingBooking" style="height: 7.5rem;">
+    <ion-row *ngIf="p.isProduct==false">
+      <ion-col size="3" (click)="toBookingDeatil(p)">
+        <img *ngIf="p.merchant[0].banner_image" src="{{imgUrl}}merchant/{{p.merchant[0].banner_image}}"
+          class="card-img">
+        <img *ngIf="!p.merchant[0].banner_image" src="assets/img/profilepic.jpg" class="card-img">
+      </ion-col>
+      <ion-col size="7" (click)="toBookingDeatil(p)">
+        <h6>{{ p.merchant[0].name }}</h6>
+        <h6 class="loc-add">
+          <ion-icon name="location" class="loc-icon" ></ion-icon> {{ p.address[0] }}
+        </h6>
+      </ion-col>
+      <ion-col size="2">
+        <h6 style="text-align: right;">
+          <ion-icon (click)="callNow(p.merchant[0].phone)" name="call" class="call-btn"></ion-icon>
+        </h6>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin: 2px 5px;" (click)="toBookingDeatil(p)" *ngIf="p.isProduct==false">
+      <ion-col size="4">
+        <p class="sec-date"><span class="text-b"> Date </span>{{p.booking_date}}</p>
+      </ion-col>
+      <ion-col size="4">
+        <p class="sec-time"><span class="text-b"> Time </span> {{p.booking_time  | date:'shortTime'}}</p>
+      </ion-col>
+      <ion-col size="4">
+        <p class="sec-status">PENDING</p>
+      </ion-col>
+    </ion-row>
+    <!-- product card -->
+    <ion-row *ngIf="p.isProduct==true">
+      <ion-col size="3" (click)="toBookingDeatil(p)">
+        <img *ngIf="p.merchant[0].banner_image" src="{{imgUrl}}merchant/{{p.merchant[0].banner_image}}"
+          class="card-img">
+        <img *ngIf="!p.merchant[0].banner_image" src="assets/img/profilepic.jpg" class="card-img">
+      </ion-col>
+      <ion-col size="7" (click)="toBookingDeatil(p)">
+        <h6>{{ p.merchant[0].brand_name }}</h6>
+        <h6 class="saddr">
+          <ion-icon name="location" class="loc-icon" ></ion-icon> {{ p.delivery_address }}
+        </h6>
+      </ion-col>
+      <ion-col size="2">
+        <h6 style="text-align: right;">
+          <ion-icon (click)="callNow(p.merchant[0].phone)" name="call" class="call-btn"></ion-icon>
+        </h6>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin: 2px 5px;" (click)="toBookingDeatil(p)" *ngIf="p.isProduct==true">
+      <ion-col size="8">
+        <p class="sec-date"><span class="text-b">Delivery By: </span>{{p.booking_details[0].product_delivery_day}} Days</p>
+      </ion-col>
+      <!-- <ion-col size="4"> -->
+        <!-- <p class="sec-time"><span class="text-b"> Time </span> {{p.booking_time  | date:'shortTime'}}</p> -->
+      <!-- </ion-col> -->
+      <ion-col size="4">
+        <p class="sec-status">PENDING</p>
+      </ion-col>
+    </ion-row>
+    
+  </ion-card>
+</ion-content>
+
+<ion-content *ngIf="view == 'accepted' && acceptedBooking.length > 0">
+  <ion-card *ngFor="let p of acceptedBooking" style="height: 7.5rem;">
+    <ion-row *ngIf="p.isProduct==false">
+      <ion-col size="3" (click)="toBookingDeatil(p)">
+        <img *ngIf="p.merchant[0].banner_image" src="{{imgUrl}}merchant/{{p.merchant[0].banner_image}}"
+          class="card-img">
+        <img *ngIf="!p.merchant[0].banner_image" src="assets/img/profilepic.jpg" class="card-img">
+      </ion-col>
+      <ion-col size="7" (click)="toBookingDeatil(p)">
+        <h6>{{ p.merchant[0].name }}</h6>
+
+        <h6 class="loc-add">
+          <ion-icon (click)="toBookingDeatil(p)" name="location" class="loc-icon"></ion-icon>  {{p.address[0]}}
+        </h6>
+      </ion-col>
+      <ion-col size="2">
+        <ion-icon name="call" class="call-btn" (click)="callNow(p.merchant[0].phone)"  style="float: right; top: 14px;" ></ion-icon>
+
+      </ion-col>
+
+      
+    </ion-row>
+
+    <ion-row style="margin: 2px 5px;" (click)="toBookingDeatil(p)" *ngIf="p.isProduct==false">
+      <ion-col size="4">
+        <p class="sec-date"><span class="text-b"> Date </span>{{p.booking_date}}</p>
+      </ion-col>
+      <ion-col size="4">
+        <p class="sec-time"><span class="text-b"> Time </span> {{p.booking_time | date:'shortTime'}}</p>
+      </ion-col>
+
+      <ion-col size="4" *ngIf="p.booking_status=='accepted'">
+        <p class="sec-status-accepted">  Accepted </p>
+      </ion-col>
+      <ion-col size="4" *ngIf="p.booking_status=='ongoing'">
+        <p class="sec-status-accepted">  Live </p>
+      </ion-col>
+    </ion-row>
+    <!-- product card -->
+    <ion-row *ngIf="p.isProduct==true">
+      <ion-col size="3" (click)="toBookingDeatil(p)">
+        <img *ngIf="p.merchant[0].banner_image" src="{{imgUrl}}merchant/{{p.merchant[0].banner_image}}"
+          class="card-img">
+        <img *ngIf="!p.merchant[0].banner_image" src="assets/img/profilepic.jpg" class="card-img">
+      </ion-col>
+      <ion-col size="7" (click)="toBookingDeatil(p)">
+        <h6>{{ p.merchant[0].brand_name }}</h6>
+        <h6 class="loc-add">
+          <ion-icon (click)="toBookingDeatil(p)" name="location" class="loc-icon"></ion-icon>  {{ p.delivery_address}}
+        </h6>
+      </ion-col>
+      <ion-col size="2">
+        <h6 style="text-align: right;">
+          <ion-icon name="call" class="call-btn" (click)="callNow(p.merchant[0].phone)"  ></ion-icon>
+        </h6>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin: 2px 5px;" (click)="toBookingDeatil(p)" *ngIf="p.isProduct==true">
+      <ion-col size="6">
+        <p class="sec-date"><span class="text-b"> Delivery By: </span>{{p.booking_details[0].product_delivery_day}} Days</p>
+      </ion-col>
+      <ion-col size="2">
+        <!-- <p class="sec-time"><span class="text-b"> Time </span> {{p.booking_time | date:'shortTime'}}</p> -->
+      </ion-col>
+      <ion-col size="4" *ngIf="p.booking_status=='accepted'">
+        <p class="sec-status-accepted">  Accepted </p>
+      </ion-col>
+      <ion-col size="4" *ngIf="p.booking_status=='ongoing'">
+        <p class="sec-status-accepted">  Live </p>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>
+
+<ion-content style="--background:#f9f9ff;"
+  *ngIf="view == 'past' && (completedBooking.length > 0 || rejectedBooking.length > 0 || cancelledBooking.length > 0)">
+  <ion-card (click)="toBookingDeatil(p)" *ngFor="let p of completedBooking" style="height: 7.5rem;">
+    <ion-row *ngIf="p.isProduct==false">
+      <ion-col size="3">
+        <img *ngIf="p.merchant[0].banner_image" src="{{imgUrl}}merchant/{{p.merchant[0].banner_image}}"
+          class="card-img">
+        <img *ngIf="!p.merchant[0].banner_image" src="assets/img/profilepic.jpg" class="card-img">
+      </ion-col>
+      <ion-col size="7">
+        <h6>{{ p.merchant[0].name }}</h6>
+        <h6 class="loc-add">
+          <ion-icon name="location" class="loc-icon"></ion-icon> {{p.address[0]}}
+        </h6>
+      </ion-col>
+      <ion-col size="2">
+        <!-- <h6 style="text-align: right;"><ion-icon name="call" class="call-btn"></ion-icon></h6> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin: 2px 5px;" *ngIf="p.isProduct==false">
+      <ion-col size="4">
+        <p class="sec-date"><span class="text-b"> Date </span>{{p.booking_date}}</p>
+      </ion-col>
+      <ion-col size="4">
+        <p class="sec-time"><span class="text-b"> Time </span> {{p.booking_time  | date:'shortTime'}}</p>
+      </ion-col>
+      <ion-col size="4">
+        <p class="sec-status-accepted">Completed</p>
+      </ion-col>
+    </ion-row>
+    <!-- product card -->
+    <ion-row *ngIf="p.isProduct==true">
+      <ion-col size="3">
+        <img *ngIf="p.merchant[0].banner_image" src="{{imgUrl}}merchant/{{p.merchant[0].banner_image}}"
+          class="card-img">
+        <img *ngIf="!p.merchant[0].banner_image" src="assets/img/profilepic.jpg" class="card-img">
+      </ion-col>
+      <ion-col size="7">
+        <h6>{{ p.merchant[0].brand_name }}</h6>
+        <h6 class="loc-add">
+          <ion-icon name="location" class="loc-icon"></ion-icon> {{p.delivery_address}}
+        </h6>
+      </ion-col>
+      <ion-col size="2">
+        <!-- <h6 style="text-align: right;"><ion-icon name="call" class="call-btn"></ion-icon></h6> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin: 2px 5px;" *ngIf="p.isProduct==true">
+      <ion-col size="6">
+        <p class="sec-date"><span class="text-b"> Delivery By: </span>{{p.booking_details[0].product_delivery_day}} Days</p>
+      </ion-col>
+      <ion-col size="2">
+        <!-- <p class="sec-time"><span class="text-b"> Time </span> {{p.booking_time  | date:'shortTime'}}</p> -->
+      </ion-col>
+      <ion-col size="4">
+        <p class="sec-status-accepted">Completed</p>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card (click)="toBookingDeatil(p)" *ngFor="let p of rejectedBooking" style="height: 7.5rem;">
+    <ion-row *ngIf="p.isProduct==false">
+      <ion-col size="3">
+        <img *ngIf="p.merchant[0].banner_image" src="{{imgUrl}}merchant/{{p.merchant[0].banner_image}}"
+          class="card-img">
+        <img *ngIf="!p.merchant[0].banner_image" src="assets/img/profilepic.jpg" class="card-img">
+      </ion-col>
+      <ion-col size="7">
+        <h6>{{ p.merchant[0].name }}</h6>
+        <h6 class="loc-add">
+          <ion-icon name="location" class="loc-icon"></ion-icon> {{  p.address[0] }}
+        </h6>
+      </ion-col>
+      <ion-col size="2">
+        <!-- <h6 style="text-align: right;"><ion-icon name="call" class="call-btn"></ion-icon></h6> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin: 2px 5px;" *ngIf="p.isProduct==false">
+      <ion-col size="4">
+        <p class="sec-date"><span class="text-b"> Date </span>{{p.booking_date}}</p>
+      </ion-col>
+      <ion-col size="4">
+        <p class="sec-time"><span class="text-b"> Time </span> {{p.booking_time  | date:'shortTime'}}</p>
+      </ion-col>
+      <ion-col size="4">
+        <p class="sec-status-rej-cancelled">Rejected</p>
+      </ion-col>
+    </ion-row>
+    <!-- product card -->
+    <ion-row *ngIf="p.isProduct==true">
+      <ion-col size="3">
+        <img *ngIf="p.merchant[0].banner_image" src="{{imgUrl}}merchant/{{p.merchant[0].banner_image}}"
+          class="card-img">
+        <img *ngIf="!p.merchant[0].banner_image" src="assets/img/profilepic.jpg" class="card-img">
+      </ion-col>
+      <ion-col size="7">
+        <h6>{{ p.merchant[0].brand_name }}</h6>
+        <h6 class="loc-add">
+          <ion-icon name="location" class="loc-icon"></ion-icon> {{ p.delivery_address }}
+        </h6>
+      </ion-col>
+      <ion-col size="2">
+        <!-- <h6 style="text-align: right;"><ion-icon name="call" class="call-btn"></ion-icon></h6> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin: 2px 5px;" *ngIf="p.isProduct==true">
+      <ion-col size="4">
+        <p class="sec-date"><span class="text-b"> Delivery By: </span>{{p.booking_details[0].product_delivery_day}} Days</p>
+      </ion-col>
+      <ion-col size="4">
+        <!-- <p class="sec-time"><span class="text-b"> Time </span> {{p.booking_time  | date:'shortTime'}}</p> -->
+      </ion-col>
+      <ion-col size="4">
+        <p class="sec-status-rej-cancelled">Rejected</p>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card (click)="toBookingDeatil(p)" *ngFor="let p of cancelledBooking" style="height: 8rem;">
+    <ion-row *ngIf="p.isProduct==false">
+      <ion-col size="3">
+        <img *ngIf="p.merchant[0].banner_image" src="{{imgUrl}}merchant/{{p.merchant[0].banner_image}}"
+          class="card-img">
+        <img *ngIf="!p.merchant[0].banner_image" src="assets/img/profilepic.jpg" class="card-img">
+      </ion-col>
+      <ion-col size="7">
+        <h6>{{ p.merchant[0].name }}</h6>
+        <h6 class="loc-add">
+          <ion-icon name="location" class="loc-icon"></ion-icon> {{  p.address[0]}}
+        </h6>
+      </ion-col>
+      <ion-col size="2">
+        <!-- <h6 style="text-align: right;"><ion-icon name="call" class="call-btn"></ion-icon></h6> -->
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin: 2px 5px;" *ngIf="p.isProduct==false">
+      <ion-col size="4">
+        <p class="sec-date"><span class="text-b"> Date </span>{{p.booking_date}}</p>
+      </ion-col>
+      <ion-col size="4">
+        <p class="sec-time"><span class="text-b"> Time </span> {{p.booking_time  | date:'shortTime'}}</p>
+      </ion-col>
+      <ion-col size="4">
+        <p class="sec-status-rej-cancelled">Cancelled</p>
+      </ion-col>
+    </ion-row>
+    <!-- product card -->
+    <ion-row *ngIf="p.isProduct==true">
+      <ion-col size="3">
+        <img *ngIf="p.merchant[0].banner_image" src="{{imgUrl}}merchant/{{p.merchant[0].banner_image}}"
+          class="card-img">
+        <img *ngIf="!p.merchant[0].banner_image" src="assets/img/profilepic.jpg" class="card-img">
+      </ion-col>
+      <ion-col size="7">
+        <h6>{{ p.merchant[0].brand_name }}</h6>
+        <h6 class="loc-add">
+          <ion-icon name="location" class="loc-icon"></ion-icon> {{  p.delivery_address}}
+        </h6>
+      </ion-col>
+      <ion-col size="2">
+        <!-- <h6 style="text-align: right;"><ion-icon name="call" class="call-btn"></ion-icon></h6> -->
+      </ion-col>
+    </ion-row>
+  <ion-row style="margin: 2px 5px;" *ngIf="p.isProduct==true">
+      <ion-col size="6">
+        <p class="sec-date"><span class="text-b"> Delivery By: </span>{{p.booking_details[0].product_delivery_day}} Days</p>
+      </ion-col>
+      <ion-col size="2">
+        <!-- <p class="sec-time"><span class="text-b"> Time </span> {{p.booking_time  | date:'shortTime'}}</p> -->
+      </ion-col>
+      <ion-col size="4">
+        <p class="sec-status-rej-cancelled">Cancelled</p>
+      </ion-col>
+    </ion-row>
+    
+  </ion-card>
+</ion-content>
+
+<ion-content *ngIf="view == 'upcoming' &&  pendingBooking.length == 0">
+  <div style="text-align: center;">
+    <img src="assets/img/camera-logo.png" class="no-camera">
+  </div>
+  <h6 class="no-bbok-text"> YOU HAVEN'T BOOKING YET </h6>
+  <p class="no-text-small">Choose your moment and city, book a photoshoot,
+    and we will make your moment memorable.</p>
+  <ion-button size="full" class="book-service-btn" (click)="bookNow()">Book Photoshoot</ion-button>
+</ion-content>
+
+<ion-content *ngIf="view == 'accepted' && acceptedBooking.length == 0">
+  <div style="text-align: center;">
+    <img src="assets/img/camera-logo.png" class="no-camera">
+  </div>
+  <h6 class="no-bbok-text"> YOU HAVEN'T BOOKING YET </h6>
+  <p class="no-text-small">Choose your moment and city, book a photoshoot,
+    and we will make your moment memorable.</p>
+  <ion-button size="full" class="book-service-btn" (click)="bookNow()">Book Photoshoot</ion-button>
+</ion-content>
+
+
+<ion-content
+  *ngIf="view == 'past' && (completedBooking.length == 0 && rejectedBooking.length == 0 && cancelledBooking.length == 0)">
+  <div style="text-align: center;">
+    <img src="assets/img/camera-logo.png" class="no-camera">
+  </div>
+  <h6 class="no-bbok-text"> YOU HAVEN'T BOOKING YET </h6>
+  <p class="no-text-small">Choose your moment and city, book a photoshoot,
+    and we will make your moment memorable.</p>
+  <ion-button size="full" class="book-service-btn" (click)="bookNow()">Book Photoshoot</ion-button>
+</ion-content>

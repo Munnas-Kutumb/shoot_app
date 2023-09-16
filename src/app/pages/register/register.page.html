@@ -1,0 +1,43 @@
+<ion-content>
+  <div style="text-align: center">
+    <ion-icon *ngIf="!profileimage" class="profile-pic" name="person-circle-outline" (click)="uploadimg()"></ion-icon>
+    <img *ngIf="profileimage" class="profile-pic" (click)="uploadimg()"
+      src="{{this.commonservice.serviceurl}}merchant/{{profileimage}}" />
+  </div>
+
+  <div style="margin: 15px 25px">
+    <ion-item style="margin-bottom: 15px">
+      <ion-label position="stacked">Full Name</ion-label>
+      <ion-input [(ngModel)]="fullName" (keyup)="titlecase($event)" type="text" onkeypress='return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122  ' ></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 15px">
+      <ion-label position="stacked">Brand Name</ion-label>
+      <ion-input [(ngModel)]="brandName" type="text" autocomplete="off"></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-bottom: 15px">
+      <ion-label position="stacked">Email Address</ion-label>
+      <ion-input [(ngModel)]="email" type="email" (ionChange)="checkEmail('email')" (keyup)="checkEmail('email')" (focusout)="checkEmail('email')" ></ion-input>
+    </ion-item>
+    <span *ngIf="email_valid" style="color: red; font-size: 10px;">Invalid Email!</span>
+
+    <ion-item *ngIf="!merchant_details.referred_from" style="margin-bottom: 15px">
+      <ion-label position="stacked">Referral Code</ion-label>
+      <ion-input [(ngModel)]="referred_from" type="text" placeholder="(optional)" ></ion-input>
+      <ion-button color="light" slot="end" class="cancel-btn" (click)="applyReferral()">Apply</ion-button>
+    </ion-item>
+    <div style="text-align: center">
+      <ion-text *ngIf="merchant_details.referred_from" style="color: green">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;Referral
+        applied successfully [ {{referred_from}} ]
+      </ion-text>
+    </div>
+  </div>
+
+  <div style="margin: 3rem 1.5rem">
+    <ion-button class="save-btn" size="block" (click)="register()">Continue</ion-button>
+
+    <ion-button color="light" class="cancel-btn" expand="block" (click)="cancelBtn()">Cancel</ion-button>
+  </div>
+</ion-content>

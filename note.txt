@@ -1,0 +1,5 @@
+ionic cordova build --release android
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore shoot.keystore shoot.apk shoot
+
+zipalign -v 4 shoot.apk shoot-final.apk

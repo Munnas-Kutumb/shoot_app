@@ -1,0 +1,7 @@
+{
+  "name": "shootApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

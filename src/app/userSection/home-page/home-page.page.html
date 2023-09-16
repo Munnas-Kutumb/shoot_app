@@ -1,0 +1,220 @@
+<ion-content>
+  <div style="height: 13rem;" *ngIf="himageArr.length > 0">
+    <span *ngFor="let item of himageArr; let i = index;">
+      <img *ngIf="item.type == 0 " class="bkimage" [ngClass]="{'bkimage-show': i == imageBk}"
+        src="{{this.common.serviceurl}}banner/{{item.banner_img}}" alt="not available">
+    </span>
+  </div>
+
+  <div style="height: 13rem;" *ngIf="himageArr.length == 0">
+    <img src="assets/img/sunburn-cover.png">
+  </div>
+
+  <div style="position: absolute;top: 0.5rem;left: 0.5rem;">
+    <ion-chip style="background-color: white; width: 6rem;height:2rem;" (click)="close()">
+      <ion-icon name="location" style="margin-top: -0.3rem; margin-left: -5px;"></ion-icon>
+      <ion-label color="dark" style="margin-left: -5px;">{{selected_loc}}</ion-label>
+      <!-- <ion-select interface="popover">
+        <ion-select-option value="indore">Indore</ion-select-option>
+        <ion-select-option value="mp">MP</ion-select-option>
+        <ion-select-option value="bhopal">Bhopal</ion-select-option>
+
+      </ion-select> -->
+    </ion-chip>
+  </div>
+  <div class="search-div">
+    <ion-item lines="none" (click)="navigate()" style="border-radius: 4px;">
+      <ion-icon name="search"></ion-icon>
+      <p>Search Photographer</p>
+    </ion-item>
+    <!-- <ion-searchbar inputmode="none" showCancelButton="focus" cancelButtonText="Custom Cancel" 
+      placeholder="Search Photographer" style="caret-color: transparent;">
+
+    </ion-searchbar> -->
+  </div>
+  <ion-row>
+    <ion-col size="6">
+      <ion-chip class="iconone" (click)="explorepage()">
+        <img src="assets/img/photo.png" alt="camera_icon" class="icons">
+        <!-- <ion-icon name="camera-outline" color="dark" style="zoom: 2;"></ion-icon> -->
+        <ion-label style="font-weight: bold; margin-left: -10px;">Instant Photographer</ion-label>
+      </ion-chip>
+    </ion-col>
+    <ion-col size="6">
+      <ion-chip class="iconone" (click)="toServiceDetails(categories[0])">
+        <img src="assets/img/menu.png" alt="menu_icon" class="icons">
+        <!-- <ion-icon name="grid-outline" color="dark" style="zoom: 1.7;"></ion-icon> -->
+        <ion-label style="font-weight: bold; margin-left: -7px;">Browse Categories</ion-label>
+      </ion-chip>
+    </ion-col>
+  </ion-row>
+  <h4 class="heading">Photography for Every Milestone</h4>
+
+  <div class="scrolling" style="margin-left: -0.5rem; ">
+    <div>
+      <div class="card" *ngFor="let c of categories;let i = index;">
+        <ion-card class="card" (click)="toServiceDetails(c)" *ngIf="i < categories.length/2">
+          <img src="{{baseUrl}}category/{{c.image}}" alt="" class="card-img">
+          <div class="layer">
+            <p class="card-text">{{c.category_name}}</p>
+          </div>
+        </ion-card>
+      </div>
+    </div>
+
+
+    <div style="margin-left: -5px; margin-top:-0.7rem;">
+      <div class="card" *ngFor="let c of categories;let i = index;">
+        <ion-card class="card" (click)="toServiceDetails(c)" *ngIf="i >= categories.length/2">
+          <img src="{{baseUrl}}category/{{c.image}}" alt="" class="card-img">
+          <div class="layer">
+            <p class="card-text">{{c.category_name}}</p>
+          </div>
+        </ion-card>
+      </div>
+    </div>
+
+
+  </div>
+
+  <ion-row>
+    <ion-col size="12">
+      <h5 class="brwtxt" (click)="toServiceDetails(categories[0])">Browse all Categories <ion-icon class="icon-more"
+          name="chevron-forward-outline" (click)="toServiceDetails(categories[0])"></ion-icon>
+      </h5>
+    </ion-col>
+
+  </ion-row>
+
+  <!-- <ion-row class="pr-ct">
+    <ion-col size="8">
+      <h5 class="pr-text">Product Categories</h5>
+    </ion-col>
+
+    <ion-col size="4">
+      <div style="margin-top: 1.2rem; margin-left: 6px;">
+        <span class="view-txt" (click)="navcategory()">View All<ion-icon name="chevron-forward-outline"
+            class="view-icon"></ion-icon> </span>
+      </div>
+    </ion-col>
+  </ion-row> -->
+  <ion-row class="pr-ct">
+    <ion-col size="8">
+      <h5 class="pr-text">Product Categories</h5>
+    </ion-col>
+    <ion-col size="4" style="float: right;">
+      <h5 class="vtxt" (click)="navcategory()">View All<ion-icon name="chevron-forward-outline" class="view-icon">
+        </ion-icon>
+      </h5>
+    </ion-col>
+  </ion-row>
+
+  <div class="scrolling-pro">
+    <ion-card class="card" *ngFor="let item of pro_categry">
+      <div (click)="goToProduct(item._id,item.subcategory_name)">
+        <img src="{{this.common.serviceurl}}subcategory/{{item.image}}" alt="" class="card-img">
+        <div class="layer">
+          <p class="card-text">{{item.subcategory_name}}</p>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+
+  <h3 class="hero-label" *ngIf=" photographers && photographers.length>0">Instant Photographer Nearby</h3>
+
+
+  <div class="scrolling-wrapper" *ngIf=" photographers && photographers.length>0">
+
+    <div class="card" *ngFor="let item of photographers" (click)="mprofile(item._id)">
+      <ion-card (click)="toServiceDetails()" style="height: 8.5rem;">
+        <img *ngIf="item.banner_image" src="{{this.common.serviceurl}}merchant/{{item.banner_image}}"
+          class="card-bg-img">
+        <img *ngIf="!item.banner_image" src="assets/img/event-camera.png" class="card-bg-img">
+        <div class="card-brand-name" *ngIf="item.brand_name.length>20">
+          <p style=" font-size: 12px;font-weight: 700;margin: 0;">{{ item.brand_name.slice(0,15) }}....</p>
+        </div>
+        <div class="card-brand-name" *ngIf="item.brand_name.length <= 20">
+          <p style=" font-size: 12px;font-weight: 700;margin: 0;">{{ item.brand_name }}</p>
+        </div>
+        <!-- <p class="card-star"><span class="star-card">
+            <ion-icon name="star"></ion-icon>
+          </span> 4.5 (91)</p> -->
+        <span class="card-location">
+          <span>
+            <ion-icon name="location" class="loc-icon"></ion-icon> {{item.address.address.split(",")[0]}}
+          </span>
+
+
+
+        </span>
+      </ion-card>
+    </div>
+
+    <!-- <div class="card" style="margin-left: -10px;">
+      <ion-card (click)="toServiceDetails()">
+        <img src="assets/img/event-camera.png" class="card-bg-img">
+        <p class="card-brand-name">Brand Name</p>
+        <p class="card-star"><span class="star-card">
+            <ion-icon name="star"></ion-icon>
+          </span> 4.5 (91)</p>
+        <p class="card-location"><span class="loc-icon">
+            <ion-icon name="location"></ion-icon>
+          </span> Vijay Nagar, Indore </p>
+      </ion-card>
+    </div>
+
+    <div class="card" style="margin-left: -10px;">
+      <ion-card (click)="toServiceDetails()">
+        <img src="assets/img/event-camera.png" class="card-bg-img">
+        <p class="card-brand-name">Brand Name</p>
+        <p class="card-star"><span class="star-card">
+            <ion-icon name="star"></ion-icon>
+          </span> 4.5 (91)</p>
+        <p class="card-location"><span class="loc-icon">
+            <ion-icon name="location"></ion-icon>
+          </span> Vijay Nagar, Indore </p>
+      </ion-card>
+    </div> -->
+
+  </div>
+
+  <div>
+    <ion-slides pager="true" #mySlider *ngIf="fimageArr.length > 0">
+      <ion-slide *ngFor="let item of fimageArr; let i = index;">
+        <ion-row>
+          <ion-col style="padding: 0;">
+            <ion-img src="{{this.common.serviceurl}}banner/{{item.banner_img}}" style="width: 100%;height: 100%;">
+            </ion-img>
+          </ion-col>
+        </ion-row>
+
+        <!-- <div *ngIf="item.type == 1"> -->
+        <!-- <img src={{this.common.serviceurl}}banner/{{fimageArr[0].banner_img}} alt="image"> -->
+        <!-- </div> -->
+      </ion-slide>
+    </ion-slides>
+    <img src="assets/img/girl-photo.png" *ngIf="fimageArr.length == 0">
+  </div>
+
+</ion-content>
+
+<!-- popup for the cities -->
+
+<div class="bg-model" *ngIf="isopen">
+  <div class="modal-content">
+    <div class="close" (click)="close()">
+      +
+    </div>
+    <h1 class="cityd">Choose City</h1>
+
+    <ion-list>
+      <ion-item (click)="setLocation(item)" lines="none" *ngFor="let item of cities ;let i = index">
+        <ion-label>{{item.name}}</ion-label>
+        <ion-icon name="checkmark-circle" slot="end" style="color: #4dab4d;" *ngIf="item.selected"> </ion-icon>
+        <!-- <ion-checkbox value="{{item.id}}" [(ngModel)]="item.isChecked" (ionChange)="selectedLoc($event.detail, i)"> -->
+        <!-- </ion-checkbox> -->
+      </ion-item>
+    </ion-list>
+
+  </div>
+</div>

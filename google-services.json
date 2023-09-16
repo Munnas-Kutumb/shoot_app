@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "97456418633",
+    "project_id": "shoot-58988",
+    "storage_bucket": "shoot-58988.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97456418633:android:2c216f71a6bb09628f3498",
+        "android_client_info": {
+          "package_name": "com.appshoot.www"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97456418633-6eripjtsgihgiv7l0iqfd1p3v2ee0k3c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdxxiXpyrfWZAvjcg1cnMJFUW2wsvXGgk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97456418633-6eripjtsgihgiv7l0iqfd1p3v2ee0k3c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

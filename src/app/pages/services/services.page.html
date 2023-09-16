@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center">My Services</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-row style="text-align: center; margin-top: 10px">
+    <div *ngFor="let items of categoryList" class="item-list">
+      <ion-col (click)="selectMenuList(items)">
+        <img src="{{baseUrl}}category/{{items.image}}" class="img-cir" *ngIf="items.image"
+          [ngClass]="{'cat_id': selected_cat == items._id}" />
+        <p class="ser-name">{{items.category_name}}</p>
+      </ion-col>
+    </div>
+  </ion-row> -->
+
+  <ion-row style="text-align: center; margin-top: 10px">
+    <ion-col size="4" *ngFor="let items of categoryList">
+      <div (click)="selectMenuList(items)">
+        <img src="{{baseUrl}}category/{{items.image}}" class="img-cir" *ngIf="items.image"
+          [ngClass]="{'cat_id': selected_cat == items._id}" />
+        <p class="ser-name">{{items.category_name}}</p>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <div>
+    <div (click)="toServicePage(item)" *ngFor="let item of categorySubList; let i = index;">
+      <h1 *ngIf="item.length">Soon!!</h1>
+      <!-- <ion-card class="round{{i+1}}">
+        <p class="list-name">{{item.subcategory_name}}<br /><span>{{item.tagline}}</span></p>
+        <img *ngIf="!item.image" class="img-sec" src="assets/img/no-img.png" />
+        <img
+          *ngIf="item.image"
+          class="img-sec"
+          src="{{baseUrl}}subcategory/{{item.image}}"
+        />
+      </ion-card> -->
+
+
+      <ion-card class="round{{i+1}}" [ngStyle]="{'background': item.color_code }">
+        <img *ngIf="!item.image" class="img-sec" src="assets/img/no-img.png" />
+        <img *ngIf="item.image" class="img-sec" src="{{baseUrl}}subcategory/{{item.image}}" />
+        <p class="card-label">
+          {{item.subcategory_name}}
+        </p>
+        <p class="list-prime">
+          {{item.tagline}}
+        </p>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

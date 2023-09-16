@@ -1,0 +1,287 @@
+.back-btn {
+  font-size: 1.2rem;
+  margin-left: 10px;
+}
+
+.location {
+  margin-left: 14px;
+  margin-top: -18px;
+  font-size: 14px;
+}
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin-left: 5px;
+
+  .card {
+    display: inline-block;
+    height: 70px;
+    margin-right: 5px;
+    text-align: center;
+  }
+}
+
+.scrl-img {
+  width: 7rem;
+  height: 7rem;
+}
+
+.hero-label {
+  margin-left: 10px;
+  font-weight: 700;
+  color: rgb(252, 78, 15);
+}
+
+.see-all {
+  text-align: right;
+  margin-right: 10px;
+}
+
+.label-sec {
+  margin-bottom: -15px;
+}
+
+.list-name {
+  color: rgb(252, 78, 15);
+}
+
+.cart-btn {
+  float: right;
+  margin-right: 10px;
+  --background: rgb(252, 78, 15);
+}
+
+.ser-text {
+  margin-left: 10px;
+}
+
+.drop-sec {
+  font-size: 10px;
+}
+
+.drop-icon {
+  margin-left: 5px;
+}
+
+.button {
+  margin: 25px 0px;
+}
+
+.item-sel-box {
+  margin: 15px;
+  border: 2px solid rgb(252, 78, 15);
+  border-radius: 6px;
+}
+
+.add-text {
+  border: 2px solid rgb(252, 78, 15);
+}
+
+.add-btn {
+  font-size: 18px;
+  color: rgb(252, 78, 15);
+}
+
+.total-sc-btn {
+  border-style: none;
+  box-shadow: none;
+  border: none;
+  text-shadow: none;
+}
+
+.ser-name {
+  color: rgb(252, 78, 15);
+}
+
+.acc-icon {
+  color: rgb(252, 78, 15);
+}
+
+.list-name {
+  color: #2b2b52;
+  font-size: 14px;
+}
+
+.services-selected-tx {
+  text-align: left;
+  color: rgb(252, 78, 15);
+  padding: 5px;
+  font-weight: 700;
+}
+
+.checkout-btn {
+  border: 3px solid rgb(252, 78, 15);
+  float: right;
+  border-radius: 10px;
+  padding: 5px;
+  color: #2b2b52;
+}
+
+.banr_img {
+  height: 12rem;
+  width: 26rem;
+}
+.mec-pro {
+  width: 100%;
+  height: 200px;
+  // position: relative;
+  object-fit: cover;
+}
+
+.mdetail{
+  color: #494949;
+  font-size: 1.1rem;
+}
+.short{
+  font-size: 1rem;
+    margin-left: 4px;
+}
+
+
+//new
+.mname{
+  font-size: 1rem;
+  font-weight: bold;
+  color: #4b4b4b;
+  position: relative;
+  top: 6px;
+}
+
+.loc{
+  color: #8f8f8f;
+  font-size: 14px;
+  position: relative;
+  top: 2px;
+}
+.text{
+  font-size: 14px;
+  color: #8f8f8f;
+  font-weight: bold;
+}
+.star{
+  background-color: #58a929;
+  margin-left: 0.7rem;
+  padding: 6px;
+  width: 3.5rem;
+  color: white;
+}
+.iconstar{
+  margin-top: 1px;
+}
+.rating{
+  margin-left: 2px;
+  font-size: 12px;
+
+}
+.revtxt{
+  margin-left: 1px;
+  font-weight: bold;
+  color: #7b7b7b;
+  font-size: 12px;
+}
+.book{
+  color: #7e7e7e;
+  zoom: 1.4;
+  margin-top: -2px;
+  vertical-align: middle;
+}
+.short{
+  font-size: 13px;
+  // position: absolute;
+  // top: 12px;
+  // left: 1.7rem;
+  color: #a5a5a5;
+}
+.album{
+  position: absolute;
+  top: 10rem;
+  right: 1rem;
+  
+  button{
+    border-radius: 25px;
+    height: 24px;
+    cursor: pointer;
+    width: 5rem;
+  }
+
+  .photo{
+    margin-right: 0.3rem;
+  }
+}
+
+
+
+// service card css
+
+.service-card{
+  padding: 0.5rem;
+  margin: 1rem;
+  box-shadow: 0 1px 5px 2px #ccc;
+
+  p{
+    margin: 0.3rem;
+  }
+
+  .p1{
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    ion-icon{
+      vertical-align: text-top;
+      margin-right: 0.5rem;
+      float: right;
+    }
+  }
+
+  .p2{
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .p3{
+    font-size: 0.9rem;
+    letter-spacing: 0.8px;
+    margin-top: 0.5rem;
+  }
+
+  .p4{
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .addBtn{
+    --background: #f76d3b;
+    margin: 0;
+    height: 1.4rem;
+    --border-radius: 1rem;
+    margin-top: -0.2rem;
+    font-size: 0.75rem;
+  }
+
+  .removeBtn{
+    margin: 0;
+    height: 1.4rem;
+    border: 1px solid #f00;
+    color: #f00;
+    --background: transparent;
+    --border-radius: 1rem;
+    margin-top: -0.2rem;
+    font-size: 0.75rem;
+    border-radius: 1rem;
+  }
+}
+
+ion-toggle{
+  --background:#f5ab91;
+  --background-checked:#f5ab91;
+  --handle-background:#f76d3b;
+  --handle-background-checked:#f76d3b;
+}
+
+.fdesign{
+  background-color: white !important;
+}

@@ -1,0 +1,137 @@
+ion-segment-button {
+    // --color-checked: var(--ion-color-success);
+    --color-checked: #FF4600;
+  }
+
+.card-img {
+
+    width: 4rem;
+    height: 4rem;
+    /* border-radius: 50%; */
+    margin-top: 10px;
+    margin-left: 8px;
+    border-radius: 5px;
+}
+
+.loc-add {
+
+    font-size: 12px;
+    margin-top: -7px;
+}
+
+.sec-date {
+
+    font-size: 12px;
+    text-align:left ;
+    position: relative;
+    top: -1rem;
+}
+
+.sec-time {
+
+    font-size: 12px;
+    text-align: center;
+    position: relative;
+    top: -1rem;
+}
+
+.sec-status {
+
+    font-size: 12px;
+    text-align: right;
+    margin-right: 5px;
+    color: #FF4600;
+    position: relative;
+    top: -1rem;
+}
+
+.sec-status-accepted {
+
+    font-size: 12px;
+    text-align: right;
+    margin-right: 5px;
+    color:#089429;
+    position: relative;
+    top: -15px;
+
+}
+
+.sec-status-rej-cancelled {
+
+    font-size: 12px;
+    text-align: right;
+    margin-right: 5px;
+    color:#D10B26;
+    position: relative;
+    top: -15px;
+
+}
+
+.sec-status-cancelled {
+
+    font-size: 12px;
+    text-align: right;
+    margin-right: 5px;
+    color:#F61111;
+}
+
+.text-b {
+
+    font-weight: 700;
+}
+
+.loc-icon {
+
+    color: #FF4600;
+    font-size: 15px;
+    position: relative;
+    top: 4px;
+    
+}
+
+.call-btn {
+
+    background-color: #FFD8CC;
+    border-radius: 50%;
+    padding: 5px;
+    position: relative;
+    right: 5px;
+}
+
+.no-camera {
+
+    width: auto;
+    height: 12rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.no-bbok-text {
+
+    text-align: center;
+    color:  #FF4600;
+}
+
+.no-text-small {
+
+    text-align: center;
+    margin: 0px 25px;
+    font-size: 12px;
+    margin-bottom: 5rem;
+}
+
+.book-service-btn {
+
+    margin: 0px 15px;
+    --background :  #FF4600;
+}
+
+.addres-item {
+
+    margin: 0;
+}
+.saddr{
+    position: relative;
+    top: -10px;
+    font-size: 13px;
+}

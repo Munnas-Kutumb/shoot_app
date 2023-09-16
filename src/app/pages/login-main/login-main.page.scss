@@ -1,0 +1,203 @@
+.input-box {
+
+    border: 1px solid gray;
+}
+
+#rounded {
+    
+    width: 100%;
+    height: 65px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+#container {
+    
+    width: 300px; 
+    margin-left:auto; 
+    margin-right: auto;
+}
+
+.hero-text {
+
+    text-align: center;
+    font-weight: 600;
+    margin-top: 7rem;
+}
+
+.sub-hero-text {
+
+    text-align: center;
+    color: #919191;
+    font-size: 17px;
+    margin-top: 2.5rem;
+    margin-left: 35px;
+    margin-right: 35px;
+
+}
+
+
+.login-btn {
+
+    box-shadow: none;
+    margin-top: 2rem;
+    // --background: #f56733;
+    --background: #fc8019;
+}
+
+/*****************OTP SCREEN*********************/
+
+
+.cancel-btn {
+
+    padding: 18px;
+    font-size: 30px;
+  }
+  
+  .enter-otp-header {
+  
+    text-align: center;
+    margin-top: 35px;    
+  }
+  
+  .forgot-img {
+  
+    height: 145px;
+    width: 145px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 45px;
+  }
+  
+  .cancel-btn-otp {
+  
+    float: right;
+    width: 7.5rem;
+    height: 2.5rem;
+  }
+  
+  .reset-btn-otp {
+  
+    float: left;
+    width: 7.5rem;
+    height: 2.5rem;
+  }
+  
+  .enter-otp-subheader {
+  
+    text-align: center;
+    margin-top: 35px;
+  }
+  
+  .enter-otp-box {
+  
+    padding: 15px;
+  }
+  
+  .hero-otp-verify {
+  
+    padding: 15px;
+  }
+  
+  .user-mobile-number {
+  
+    color: #0e91c4;
+    font-weight: 700;
+  }
+  
+  .msg-img {
+  
+    width: 10rem;
+    height: auto;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 45px;
+  }
+  
+  ion-item{
+    padding-left: 5px;
+    text-align: center;
+  }
+  
+  .otpinput ion-input{
+    display:inline-block;
+    width:50px;
+    height:50px;
+    margin:10px;
+    --background:#e1e1e1;
+    --padding-start:7px;
+    font-size: 2rem;
+  }
+  
+  .invalid-otp {
+  
+    color: #E71C23;
+    text-align: center;
+    margin-top: 25px;
+  }
+  
+  .new-pass-hero {
+  
+    padding: 39px;
+    margin-bottom: 25px;
+    font-size: 40px;
+    font-weight: 600;
+  }
+  
+  .new-pass-input {
+  
+    margin: 15px;
+    margin-bottom: 45px;
+  }
+  
+  .submit-btn {
+    margin-top: 10px;
+    width: 230px;
+  }
+  
+  .resend-text {
+  
+   text-align: center;
+   color:   #fc8019;
+  }
+
+  .btn-div {
+
+    margin: 35px;
+  }
+
+  .ion-label {
+
+    text-align: left;
+  }
+
+  .login-btn {
+
+    margin: 20px 30px;
+  }
+
+  .input-mob-ar {
+
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .otp-btn {
+
+    --background:  #fc8019;
+  }
+
+  .click-here {
+
+    margin-top: -2.5px;
+    color: #fc8019;
+  }
+
+  .logo_ico{
+    text-align: center;
+    padding: 25px;
+  }
